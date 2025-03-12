@@ -1,0 +1,554 @@
+{
+    "title": "Ta Là Tà Đế - Ta Là Tà Đế Chap 2 Next Chap 3 Tiếng Việt",
+    "chapterUrl": "https://truyenqqto.com/truyen-tranh/ta-la-ta-de-8456-chap-2.html",
+    "totalImages": 81,
+    "images": [
+        {
+            "id": 1,
+            "original_url": "https://st.truyenqqto.com/template/frontend/images/logo-icon.png",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/cnq6y4qs5uhmzpoxhvou.png",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.141Z"
+        },
+        {
+            "id": 2,
+            "original_url": "https://i200.truyenvua.com/8456/2/0.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/avzoigg4xj2dvtkwhzkk.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.572Z"
+        },
+        {
+            "id": 3,
+            "original_url": "https://i200.truyenvua.com/8456/2/1.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/f7aqy62iaplrlczdfdvp.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.276Z"
+        },
+        {
+            "id": 4,
+            "original_url": "https://i200.truyenvua.com/8456/2/2.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/yr76xoived2xxpuojt3g.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.698Z"
+        },
+        {
+            "id": 5,
+            "original_url": "https://i200.truyenvua.com/8456/2/3.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/nu6kovpy2bktlgwfleom.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.716Z"
+        },
+        {
+            "id": 6,
+            "original_url": "https://i200.truyenvua.com/8456/2/4.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/g2lckdabqr1a38trhejc.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.928Z"
+        },
+        {
+            "id": 7,
+            "original_url": "https://i200.truyenvua.com/8456/2/5.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/gvtxn4st6tlm0scj58pa.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.181Z"
+        },
+        {
+            "id": 8,
+            "original_url": "https://i200.truyenvua.com/8456/2/6.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567302/mgqgj3bwwyb0i9tcrb4n.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.480Z"
+        },
+        {
+            "id": 9,
+            "original_url": "https://i200.truyenvua.com/8456/2/7.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/cbhn74u3fcrfkhekqwnd.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.842Z"
+        },
+        {
+            "id": 10,
+            "original_url": "https://i200.truyenvua.com/8456/2/8.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/r15ioyc8hrl7kidswpjd.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.314Z"
+        },
+        {
+            "id": 11,
+            "original_url": "https://i200.truyenvua.com/8456/2/9.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/igts2amvfaqi5vpkgj9k.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.518Z"
+        },
+        {
+            "id": 12,
+            "original_url": "https://i200.truyenvua.com/8456/2/10.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/emmej78pqoryzxyh8rb6.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.369Z"
+        },
+        {
+            "id": 13,
+            "original_url": "https://i200.truyenvua.com/8456/2/11.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/iltadxxq1iz4gf7enirv.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.046Z"
+        },
+        {
+            "id": 14,
+            "original_url": "https://i200.truyenvua.com/8456/2/12.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/zirew5tv9kgrtopg214i.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.881Z"
+        },
+        {
+            "id": 15,
+            "original_url": "https://i200.truyenvua.com/8456/2/13.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/p02ivzg5zoyb6osb7i5c.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.603Z"
+        },
+        {
+            "id": 16,
+            "original_url": "https://i200.truyenvua.com/8456/2/14.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/kvlbu1n1e07oy27ldvie.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.957Z"
+        },
+        {
+            "id": 17,
+            "original_url": "https://i200.truyenvua.com/8456/2/15.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567302/qta6vi3hb6muqenospxm.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.608Z"
+        },
+        {
+            "id": 18,
+            "original_url": "https://i200.truyenvua.com/8456/2/16.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/ygvurzfbocdibyiiznbf.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.681Z"
+        },
+        {
+            "id": 19,
+            "original_url": "https://i200.truyenvua.com/8456/2/17.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/gwgj9xoh4x3uhonptmcb.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.274Z"
+        },
+        {
+            "id": 20,
+            "original_url": "https://i200.truyenvua.com/8456/2/18.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/ocow0mtcuca0e5mgttld.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.051Z"
+        },
+        {
+            "id": 21,
+            "original_url": "https://i200.truyenvua.com/8456/2/19.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/b23opzh1nymclnzn2px6.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.585Z"
+        },
+        {
+            "id": 22,
+            "original_url": "https://i200.truyenvua.com/8456/2/20.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/f6vadm5it7x2p4031kkc.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.597Z"
+        },
+        {
+            "id": 23,
+            "original_url": "https://i200.truyenvua.com/8456/2/21.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/hj3b9p5tcyp5hw2alurp.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.217Z"
+        },
+        {
+            "id": 24,
+            "original_url": "https://i200.truyenvua.com/8456/2/22.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/sitl0tml8gkbcesjjyh6.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.836Z"
+        },
+        {
+            "id": 25,
+            "original_url": "https://i200.truyenvua.com/8456/2/23.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/afbtymzhxssea5kz0xyn.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.203Z"
+        },
+        {
+            "id": 26,
+            "original_url": "https://i200.truyenvua.com/8456/2/24.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/iav5kfdad1nx7cdffmuf.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:29.907Z"
+        },
+        {
+            "id": 27,
+            "original_url": "https://i200.truyenvua.com/8456/2/25.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/ewuuefbf2nwwhebax1x5.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.926Z"
+        },
+        {
+            "id": 28,
+            "original_url": "https://i200.truyenvua.com/8456/2/26.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/urgvme9opj3hcexygzz2.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.342Z"
+        },
+        {
+            "id": 29,
+            "original_url": "https://i200.truyenvua.com/8456/2/27.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/chrzkngu2yyv0cofttvq.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.095Z"
+        },
+        {
+            "id": 30,
+            "original_url": "https://i200.truyenvua.com/8456/2/28.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/jq1rcer7b3ucjzonehxu.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.097Z"
+        },
+        {
+            "id": 31,
+            "original_url": "https://i200.truyenvua.com/8456/2/29.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/wi4fh9grreixeesnbi4b.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.737Z"
+        },
+        {
+            "id": 32,
+            "original_url": "https://i200.truyenvua.com/8456/2/30.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567303/qgv6gkpdxdntvtm2nzpn.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:32.897Z"
+        },
+        {
+            "id": 33,
+            "original_url": "https://i200.truyenvua.com/8456/2/31.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567302/tc1mkqtqtljeoflf77zb.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.341Z"
+        },
+        {
+            "id": 34,
+            "original_url": "https://i200.truyenvua.com/8456/2/32.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/ssljsnjufuaxuz9p3buz.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.717Z"
+        },
+        {
+            "id": 35,
+            "original_url": "https://i200.truyenvua.com/8456/2/33.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/ooq8yifwfts4mesmsg6z.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.467Z"
+        },
+        {
+            "id": 36,
+            "original_url": "https://i200.truyenvua.com/8456/2/34.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/dciymblhuyixbc9whrux.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.662Z"
+        },
+        {
+            "id": 37,
+            "original_url": "https://i200.truyenvua.com/8456/2/35.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/fjmjjz9if42unim8lrku.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.554Z"
+        },
+        {
+            "id": 38,
+            "original_url": "https://i200.truyenvua.com/8456/2/36.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/sqwffzb01ttdltnj3kcl.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.830Z"
+        },
+        {
+            "id": 39,
+            "original_url": "https://i200.truyenvua.com/8456/2/37.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/iunktbia6g4n7l8rolxj.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.690Z"
+        },
+        {
+            "id": 40,
+            "original_url": "https://i200.truyenvua.com/8456/2/38.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/eykj4qav4ev9xairgqqp.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.188Z"
+        },
+        {
+            "id": 41,
+            "original_url": "https://i200.truyenvua.com/8456/2/39.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/xx91nhcqrbdop8nrjba6.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.918Z"
+        },
+        {
+            "id": 42,
+            "original_url": "https://i200.truyenvua.com/8456/2/40.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/feynua34bmrf7epqltiz.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.894Z"
+        },
+        {
+            "id": 43,
+            "original_url": "https://i200.truyenvua.com/8456/2/41.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567304/tgwwhkg5iayrijg8ntjb.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:33.413Z"
+        },
+        {
+            "id": 44,
+            "original_url": "https://i200.truyenvua.com/8456/2/42.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/losrqdw3iixfd9myrlx9.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.364Z"
+        },
+        {
+            "id": 45,
+            "original_url": "https://i200.truyenvua.com/8456/2/43.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/l4ujrj3pljuqdnqu8y22.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.332Z"
+        },
+        {
+            "id": 46,
+            "original_url": "https://i200.truyenvua.com/8456/2/44.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567303/nciwlgnyjph7oqahlt9o.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:33.284Z"
+        },
+        {
+            "id": 47,
+            "original_url": "https://i200.truyenvua.com/8456/2/45.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/pjeo8b41gkkdod71kpa3.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.783Z"
+        },
+        {
+            "id": 48,
+            "original_url": "https://i200.truyenvua.com/8456/2/46.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567302/tnojnj6oupkxlkll71uj.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.732Z"
+        },
+        {
+            "id": 49,
+            "original_url": "https://i200.truyenvua.com/8456/2/47.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567302/rsazra9mug08mgtb08kr.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:32.534Z"
+        },
+        {
+            "id": 50,
+            "original_url": "https://i200.truyenvua.com/8456/2/48.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/ngorvosptzxuvh2lklhl.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.476Z"
+        },
+        {
+            "id": 51,
+            "original_url": "https://i200.truyenvua.com/8456/2/49.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567303/pgepq51v5b1np1ajhu0r.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:32.904Z"
+        },
+        {
+            "id": 52,
+            "original_url": "https://i200.truyenvua.com/8456/2/50.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/wqoaljyboeyxefdr6clm.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.062Z"
+        },
+        {
+            "id": 53,
+            "original_url": "https://i200.truyenvua.com/8456/2/51.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/nnt4hw36qmwljyvgsnjx.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.894Z"
+        },
+        {
+            "id": 54,
+            "original_url": "https://i200.truyenvua.com/8456/2/52.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/xzqhtpztrnzv5v9dlsyv.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.029Z"
+        },
+        {
+            "id": 55,
+            "original_url": "https://i200.truyenvua.com/8456/2/53.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/b3xm8k64udhx7kprcexd.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.698Z"
+        },
+        {
+            "id": 56,
+            "original_url": "https://i200.truyenvua.com/8456/2/54.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/ssgjcgc43wdq7w7ijfum.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.729Z"
+        },
+        {
+            "id": 57,
+            "original_url": "https://i200.truyenvua.com/8456/2/55.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567302/sc1ecnll2uabcwsesxxj.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.974Z"
+        },
+        {
+            "id": 58,
+            "original_url": "https://i200.truyenvua.com/8456/2/56.jpg?c=w132321",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 59,
+            "original_url": "https://i200.truyenvua.com/8456/2/57.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567300/x0mxnmv8kbquqlttvcc9.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:30.365Z"
+        },
+        {
+            "id": 60,
+            "original_url": "https://i200.truyenvua.com/8456/2/58.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567303/lh2zl9taw5lwb9vzwquy.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:33.137Z"
+        },
+        {
+            "id": 61,
+            "original_url": "https://i200.truyenvua.com/8456/2/59.jpg?c=w132321",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567302/dcygkezdl4ag6czedzqm.jpg",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:32.660Z"
+        },
+        {
+            "id": 62,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 63,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 64,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 65,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 66,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 67,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 68,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 69,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 70,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 71,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 72,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 73,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 74,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 75,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 76,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 77,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 78,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 79,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 80,
+            "original_url": "https://truyenqqto.comdata:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+            "upload_url": "Failed",
+            "status": "Failed"
+        },
+        {
+            "id": 81,
+            "original_url": "https://st.truyenqqto.com/template/frontend/images/logo.png",
+            "upload_url": "https://res.cloudinary.com/dgo9xrxhu/image/upload/v1738567301/us06nl6hmfcjcgtymdyf.png",
+            "status": "Success",
+            "upload_time": "2025-02-03T07:21:31.195Z"
+        }
+    ]
+}
