@@ -32,15 +32,15 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private Role role = Role.USER;
 
-    private String avatar;
+    private String avatar = "";
 
-    private Boolean verified;
+    private Boolean verified = false;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Status status;
+    private Status status = Status.ACTIVE;
 
     @CreationTimestamp
     @Column(updatable = false)
@@ -74,5 +74,12 @@ public class User {
     public enum Status{
         ACTIVE, BAN
     }
+
+    public User(String email, String password, String fullName) {
+        this.email = email;
+        this.password = password;
+        this.fullName = fullName;
+    }
+
 
 }

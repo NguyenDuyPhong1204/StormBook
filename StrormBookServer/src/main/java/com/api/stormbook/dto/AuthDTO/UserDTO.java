@@ -17,11 +17,23 @@ public class UserDTO {
     private long id;
     private String email;
     private String fullName;
-    private Role role;
-    private String avatar;
-    private Boolean verified;
-    private Status status;
+    private Role role = Role.USER;
+    private String avatar = "";
+    private Boolean verified = false;
+    private Status status = Status.ACTIVE;
     private Instant createdAt;
     private Instant updatedAt;
+
+//    public UserDTO(long id, String email, String fullName, Role role, String avatar, Boolean verified, Status status, Instant createdAt, Instant updatedAt) {
+//        this.id = id;
+//        this.email = email;
+//        this.fullName = fullName;
+//        this.role = role;
+//        this.avatar = avatar;
+//        this.verified = verified;
+//        this.status = status;
+//        this.createdAt = createdAt;
+//        this.updatedAt = updatedAt;
+//    }
 }
 

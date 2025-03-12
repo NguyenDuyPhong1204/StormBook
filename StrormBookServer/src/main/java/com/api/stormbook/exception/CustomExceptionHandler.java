@@ -1,6 +1,7 @@
 package com.api.stormbook.exception;
 
 import com.api.stormbook.entity.response.ApiResponse;
+import com.api.stormbook.entity.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -22,10 +23,23 @@ public class CustomExceptionHandler {
 //        return new ErrorResponse(HttpStatus.NOT_FOUND, e.getMessage());
 //    }
 
-    @ExceptionHandler
+    @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ApiResponse<Object>> handleNotFound(NotFoundException ex, WebRequest request) {
        ApiResponse<Object> response = new ApiResponse<>(HttpStatus.NOT_FOUND.value(), ex.getMessage(), null);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(ExistingException.class)
+    public ResponseEntity<ApiResponse<Object>> handleExisting(Exception ex, WebRequest request) {
+        ApiResponse<Object> response = new ApiResponse<>(HttpStatus.FOUND.value(), ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.FOUND);
+    }
+
+    @ExceptionHandler(ErrorException.class)
+    public ResponseEntity<ErrorResponse> handleError(Exception ex, WebRequest request) {
+        ErrorResponse response = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
+        return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+    }
+
 
 }
