@@ -10,6 +10,7 @@ import com.api.stormbook.repository.AuthRepository.AuthUserRepository;
 import com.api.stormbook.service.AuthService.AuthUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,23 +34,22 @@ public class AuthController {
 //        Optional<User> optionalUser = authUserRepository.findById(id);
         User user = authUserRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User not found"));
-//        if (optionalUser.isEmpty()) {  // Kiểm tra nếu không tìm thấy user
-//            ApiMailResponse response = new ApiMailResponse(HttpStatus.NOT_FOUND.value(), "Người dùng không tồn tại");
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response); // Trả về 404
-//        }
-
-//        User user = optionalUser.get();
-//        System.out.println(user.getEmail() + user.getId());
-
         if (user.getVerified()) {
-            ApiMailResponse response = new ApiMailResponse(HttpStatus.OK.value(), "Tài khoản của bạn đã xác nhận trước đó!");
-            return ResponseEntity.ok(response);
+            String htmlContent = "<html><head><meta charset='UTF-8'></head><body style='text-align: center; font-family: Arial, sans-serif;'>" +
+                    "<h2 style='color: orange;'>Tài khoản đã được xác nhận trước đó!</h2>" +
+                    "<p>Bạn có thể đăng nhập ngay.</p>" +
+                    "</body></html>";
+            return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(htmlContent);
         }
 
         user.setVerified(true);
         authUserRepository.save(user);
-        ApiResponse response = new ApiResponse(HttpStatus.OK.value(), "Xác nhận tài khoản thành công", user);
-        return ResponseEntity.ok(response);
+        String htmlContent = "<html><head><meta charset='UTF-8'></head><body style='text-align: center; font-family: Arial, sans-serif;'>" +
+                "<h2 style='color: green;'>Xác nhận tài khoản thành công!</h2>" +
+                "<p>Cảm ơn bạn đã đăng ký. Bạn có thể đăng nhập ngay bây giờ.</p>" +
+                "</body></html>";
+
+        return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(htmlContent);
     }
 
 

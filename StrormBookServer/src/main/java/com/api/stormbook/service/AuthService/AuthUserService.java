@@ -30,19 +30,17 @@ public class AuthUserService {
     //DANG KY
     public UserDTO register(AuthRequest authRequest){
         //kiem tra xem email da ton tai hay chua
-//
-        User user = authUserRepository.findByEmail(authRequest.getEmail()).orElseThrow();
-        if(user.getEmail().equals(authRequest.getEmail())){
+        Optional<User> existingUser = authUserRepository.findByEmail(authRequest.getEmail());
+        if(existingUser.isPresent()){
             throw new ExistingException("Email đã tồn tại");
         }
-
         //ma hoa mat khau
         String hashedPassword = passwordEncoder.encode(authRequest.getPassword());
 
         //luu user vao database
         User newUser = new User(authRequest.getEmail(), hashedPassword, authRequest.getFullName());
         authUserRepository.save(newUser);
-        emailService.sendMail(newUser.getId(), newUser.getEmail());
+        emailService.sendMail(newUser.getId(), newUser.getEmail(), newUser.getFullName());
         return new UserDTO(
                 newUser.getId(),
                 newUser.getEmail(),
@@ -60,12 +58,11 @@ public class AuthUserService {
     public UserDTO login(AuthRequest request){
         //tim nguoi dung theo email
         User user = authUserRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new NotFoundException("Tài khoản không tồn tại"));
+                .orElseThrow(() -> new NotFoundException("Email không tồn tại"));
         //kiem tra mat khau
         if(!passwordEncoder.matches(request.getPassword(), user.getPassword())){
             throw new ErrorException("Mật khẩu không đúng!");
         }
-
         return new UserDTO(
                 user.getId(),
                 user.getEmail(),
