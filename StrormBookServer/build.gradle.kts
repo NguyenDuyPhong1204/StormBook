@@ -43,6 +43,9 @@ dependencies {
 	//mail
 	implementation("org.springframework.boot:spring-boot-starter-mail")
 
+	//redis
+	implementation("org.springframework.boot:spring-boot-starter-data-redis")
+
 }
 
 tasks.withType<Test> {

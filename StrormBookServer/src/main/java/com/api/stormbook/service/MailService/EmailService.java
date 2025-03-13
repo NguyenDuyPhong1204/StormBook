@@ -2,6 +2,7 @@ package com.api.stormbook.service.MailService;
 
 import jakarta.mail.internet.MimeMessage;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMailMessage;
@@ -13,6 +14,9 @@ import org.springframework.stereotype.Service;
 @Setter
 public class EmailService {
     private final JavaMailSender mailSender;
+
+    @Autowired
+    private OTPService otpService;
 
     @Value("${spring.mail.username}")
     private String formMail;
@@ -62,4 +66,40 @@ public class EmailService {
 
     }
 
+    public void sendMailPassword(String toEmail, String fullName){
+
+        //tao otp luu vao cache
+        String otp = otpService.createOTP(toEmail);
+
+        String title = "Thay đổi mật khẩu";
+//        String confirmUrl = serverHost + "api/auth/updatePassword/" + userId;
+        String contentEmail = String.format(
+                "<body style=\"font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px;\">\n" +
+                        "    <div style=\"max-width: 600px; margin: auto; background: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);\">\n" +
+                        "        <div style=\"text-align: center;\">\n" +
+                        "            <img src=\"https://res.cloudinary.com/dgo9xrxhu/image/upload/v1741807353/cubdpdh2pvcjlicplxbp.png\" alt=\"Logo\" width=\"80\">\n" +
+                        "            <h2 style=\"color: #5865F2;\">StormBook</h2>\n" +
+                        "        </div>\n" +
+                        "        <h3>Xin chào <b>%s</b>,</h3>\n" +
+                        "        <p>Đây là mã xác nhận để thay đổi mật khẩu của bạn: </p>\n" +
+                        "         <h3 style=\"text-align:center\">%s</h3>       "+
+                        "        <p>Nếu bạn muốn thay đổi mật khẩu, vui lòng bỏ qua email này.</p>\n" +
+                        "        <hr style=\"border: none; border-top: 1px solid #ddd; margin: 20px 0;\">\n" +
+                        "        <p style=\"text-align: center; color: grey; font-size: 14px;\">Được gửi bởi StormBook</p>\n" +
+                        "    </div>\n" +
+                        "</body>", fullName, otp // Truyền đúng username và URL xác nhận
+        );
+
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom(formMail);
+            helper.setTo(toEmail);
+            helper.setSubject(title);
+            helper.setText(contentEmail, true);
+            mailSender.send(message);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

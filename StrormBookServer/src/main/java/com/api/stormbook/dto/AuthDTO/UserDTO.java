@@ -11,12 +11,13 @@ import java.time.Instant;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDTO {
     private long id;
     private String email;
     private String fullName;
+//    private String password;
     private Role role = Role.USER;
     private String avatar = "";
     private Boolean verified = false;
@@ -24,7 +25,7 @@ public class UserDTO {
     private Instant createdAt;
     private Instant updatedAt;
 
-//    public UserDTO(long id, String email, String fullName, Role role, String avatar, Boolean verified, Status status, Instant createdAt, Instant updatedAt) {
+    //    public UserDTO(long id, String email, String fullName, Role role, String avatar, Boolean verified, Status status, Instant createdAt, Instant updatedAt) {
 //        this.id = id;
 //        this.email = email;
 //        this.fullName = fullName;

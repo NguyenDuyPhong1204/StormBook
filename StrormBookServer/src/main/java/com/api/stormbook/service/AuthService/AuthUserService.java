@@ -8,6 +8,7 @@ import com.api.stormbook.exception.ExistingException;
 import com.api.stormbook.exception.NotFoundException;
 import com.api.stormbook.repository.AuthRepository.AuthUserRepository;
 import com.api.stormbook.service.MailService.EmailService;
+import com.api.stormbook.service.MailService.OTPService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,12 +20,14 @@ public class AuthUserService {
     private final AuthUserRepository authUserRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final EmailService emailService;
+    private final OTPService otpService;
 
     @Autowired
-    public AuthUserService(AuthUserRepository authUserRepository, BCryptPasswordEncoder passwordEncoder, EmailService emailService) {
+    public AuthUserService(AuthUserRepository authUserRepository, BCryptPasswordEncoder passwordEncoder, EmailService emailService, OTPService otpService) {
         this.authUserRepository = authUserRepository;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
+        this.otpService = otpService;
     }
 
     //DANG KY
@@ -75,4 +78,35 @@ public class AuthUserService {
                 user.getUpdatedAt()
         );
     }
+
+    //Quen mat khau
+    public UserDTO updatePassword(String email, String newPassword){
+        //kiem tra ma otp hop le
+//        if(!otpService.validateOTP(email, otp)){
+//            throw new ErrorException("Mã OTP không hợp lệ hoặc đã hết hạn");
+//        }
+
+        //tim user theo email
+        User user = authUserRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("Email không tồn tại"));
+
+        //cap nhat mat khau moi
+        user.setPassword(passwordEncoder.encode(newPassword));
+        authUserRepository.save(user);
+        //xoa otp sau khi thanh cong
+        otpService.removeOTP(email);
+
+        return new UserDTO(
+                user.getId(),
+                user.getEmail(),
+                user.getFullName(),
+                user.getRole(),
+                user.getAvatar(),
+                user.getVerified(),
+                user.getStatus(),
+                user.getCreatedAt(),
+                user.getUpdatedAt()
+        );
+    }
+
 }

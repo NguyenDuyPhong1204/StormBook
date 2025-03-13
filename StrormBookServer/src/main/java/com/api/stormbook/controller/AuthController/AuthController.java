@@ -1,6 +1,7 @@
 package com.api.stormbook.controller.AuthController;
 
 import com.api.stormbook.dto.AuthDTO.AuthRequest;
+import com.api.stormbook.dto.AuthDTO.OTPRequest;
 import com.api.stormbook.dto.AuthDTO.UserDTO;
 import com.api.stormbook.entity.User;
 import com.api.stormbook.entity.response.ApiMailResponse;
@@ -8,19 +9,24 @@ import com.api.stormbook.entity.response.ApiResponse;
 import com.api.stormbook.exception.NotFoundException;
 import com.api.stormbook.repository.AuthRepository.AuthUserRepository;
 import com.api.stormbook.service.AuthService.AuthUserService;
+import com.api.stormbook.service.MailService.EmailService;
+import com.api.stormbook.service.MailService.OTPService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
 
     private final AuthUserRepository authUserRepository;
+
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private OTPService otpService;
 
     @Autowired
     private AuthUserService authUserService;
@@ -67,13 +73,33 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
+    //gui otp
+    @PostMapping("/send-otp")
+    public ResponseEntity<?> sendOTP(@RequestBody AuthRequest request){
+        //gui email
+        emailService.sendMailPassword(request.getEmail(), request.getFullName());
+        ApiMailResponse apiMailResponse = new ApiMailResponse(HttpStatus.OK.value(), "Vui lòng kiểm tra email để nhận mã xác nhận");
+        return ResponseEntity.ok(apiMailResponse);
+    }
 
+    //kiem tra otp
+    @PostMapping("/verify-otp")
+    public ResponseEntity<?> verifyOTP(@RequestBody OTPRequest request) {
+        if (otpService.validateOTP(request.getEmail(), request.getOtp())) {
+            otpService.removeOTP(request.getEmail());
+            return ResponseEntity.ok("OTP hợp lệ!");
+        }
+        ApiMailResponse apiMailResponse = new ApiMailResponse(HttpStatus.OK.value(), "Xác nhận OTP thành công");
+        return ResponseEntity.ok(apiMailResponse);
+    }
 
-
-
-
-
-
+    //thay doi mat khau
+    @PutMapping("/update-password")
+    public ResponseEntity<?> updatePassword(@RequestBody AuthRequest request){
+        UserDTO result = authUserService.updatePassword(request.getEmail(), request.getPassword());
+        ApiResponse<UserDTO> response = new ApiResponse<>(HttpStatus.OK.value(), "Thay đổi mật khẩu thành công", result);
+        return ResponseEntity.ok(response);
+    }
 
 
 
