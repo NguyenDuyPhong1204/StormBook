@@ -25,10 +25,11 @@ public class Chapter {
     private Story story;
 
     @Column
-    private int chapter_id;
+    private int chapterNumber;
 
     @Column
     private String title;
+
 
     @Column
     private int view_count;
@@ -37,7 +38,9 @@ public class Chapter {
     private Boolean is_read;
 
     @ElementCollection
-    private List<String> images;
+    @CollectionTable(name = "chapter_images", joinColumns = @JoinColumn(name = "chapter_id"))
+    @Column(name = "image_url")
+    private List<String> image_url;
 
     @CreationTimestamp
     private Instant createdAt;

@@ -1,5 +1,6 @@
 package com.api.stormbook.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,14 @@ public class Category {
     @Column
     private String description;
 
+    @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
+    private List<Story> stories;
+
+    public Category(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 //    @ManyToMany(mappedBy = "categories")
 //    private List<Story> stories;
 

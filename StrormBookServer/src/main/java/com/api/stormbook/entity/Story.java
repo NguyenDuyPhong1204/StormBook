@@ -29,7 +29,7 @@ public class Story {
     @Column(nullable = false)
     private String transGroup;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "story_category",
             joinColumns = @JoinColumn(name = "story_id"),
@@ -53,7 +53,7 @@ public class Story {
     @Column
     private int total_chapters;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @CreationTimestamp

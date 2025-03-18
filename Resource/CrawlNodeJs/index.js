@@ -1,20 +1,22 @@
 const axios = require("axios");
 const fs = require("fs");
-const cloudinary = require("cloudinary").v2;
+const path = require("path");
 const cheerio = require("cheerio");
+const https = require('https');
+// const cloudinary = require("cloudinary").v2;
 
 // Cấu hình Cloudinary
-cloudinary.config({
-  cloud_name: "dgo9xrxhu",
-  api_key: "353827519624881",
-  api_secret: "6A6NOHRY5XFp6_iV0YpdYrgzATE",
-});
+// cloudinary.config({
+//   cloud_name: "dgo9xrxhu",
+//   api_key: "353827519624881",
+//   api_secret: "6A6NOHRY5XFp6_iV0YpdYrgzATE",
+// });
 
 // Danh sách các chương cần tải ảnh
 const nameTruyen = "thiet-huyet-kiem-si-hoi-quy";
 const chapterNumbers = [1, 2, 3, 4, 5]; // Thay đổi theo số chương bạn muốn
 const baseChapterUrl =
-  "https://truyenqqto.com/truyen-tranh/thiet-huyet-kiem-si-hoi-quy-14046-chap-";
+  "https://truyenqqto.com/truyen-tranh/ta-la-ta-de-8456-chap-";
 
 const userHeaders = {
   "User-Agent":
@@ -22,6 +24,74 @@ const userHeaders = {
   Referer: "https://truyenqqto.com",
   Accept: "image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
 };
+
+// Tạo thư mục cho truyện nếu chưa tồn tại
+const outputDir = path.join(__dirname, nameTruyen);
+if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+}
+
+async function downloadImage(imageUrl, chapterNumber, id) {
+  try {
+    // Tạo thư mục cho chapter nếu chưa tồn tại
+    const chapterDir = path.join(outputDir, `chapter_${chapterNumber}`);
+    if (!fs.existsSync(chapterDir)) {
+      fs.mkdirSync(chapterDir, { recursive: true });
+    }
+
+    console.log(
+      `📥 Đang tải ảnh ${id} từ chương ${chapterNumber}: ${imageUrl}`
+    );
+
+    return new Promise((resolve, reject) => {
+      const request = https.get(imageUrl, {
+        headers: userHeaders
+      }, (response) => {
+        const contentType = response.headers['content-type'];
+        let extension = 'jpg'; // mặc định
+        if (contentType.includes('png')) extension = 'png';
+        else if (contentType.includes('jpeg') || contentType.includes('jpg')) extension = 'jpg';
+        else if (contentType.includes('webp')) extension = 'webp';
+
+        const imagePath = path.join(chapterDir, `${id}.${extension}`);
+        const fileStream = fs.createWriteStream(imagePath);
+
+        response.pipe(fileStream);
+
+        fileStream.on('finish', () => {
+          console.log(`✔ Ảnh ${id} từ chương ${chapterNumber} đã tải về thành công!`);
+          resolve({
+            id,
+            original_url: imageUrl,
+            local_path: imagePath,
+            status: "Success",
+            download_time: new Date().toISOString(),
+          });
+        });
+
+        fileStream.on('error', (err) => {
+          reject(err);
+        });
+      });
+
+      request.on('error', (err) => {
+        reject(err);
+      });
+    });
+
+  } catch (error) {
+    console.error(
+      `❌ Không thể tải ảnh ${id} từ chương ${chapterNumber}:`,
+      error.message
+    );
+    return {
+      id,
+      original_url: imageUrl,
+      local_path: null,
+      status: "Failed",
+    };
+  }
+}
 
 async function fetchImages(chapterUrl, chapterNumber) {
   try {
@@ -40,63 +110,32 @@ async function fetchImages(chapterUrl, chapterNumber) {
       `📖 Chương ${chapterNumber}: 🔍 Tìm thấy ${imageUrls.length} ảnh`
     );
 
-    // Tải lên Cloudinary song song
-    const uploadPromises = imageUrls.map((url, index) =>
-      uploadToCloudinary(url, chapterNumber, index + 1)
+    // Tải ảnh song song
+    const downloadPromises = imageUrls.map((url, index) =>
+      downloadImage(url, chapterNumber, index + 1)
     );
-    const uploadedImages = await Promise.all(uploadPromises);
+    const downloadedImages = await Promise.all(downloadPromises);
 
     const outputData = {
       title: $("title").text().trim(),
       chapterNumber,
       chapterUrl,
-      totalImages: uploadedImages.length,
-      images: uploadedImages,
+      totalImages: downloadedImages.length,
+      images: downloadedImages,
     };
 
-    // Lưu dữ liệu vào file JSON riêng cho từng chương
+    // Lưu thông tin vào file JSON
+    const outputPath = path.join(outputDir, `chapter_${chapterNumber}.json`);
     fs.writeFileSync(
-      `${nameTruyen}_chapter_${chapterNumber}.json`,
+      outputPath,
       JSON.stringify(outputData, null, 4),
       "utf-8"
     );
     console.log(
-      `✅ Ảnh từ chương ${chapterNumber} đã được lưu vào chapter_${chapterNumber}.json!`
+      `✅ Thông tin chương ${chapterNumber} đã được lưu vào ${outputPath}!`
     );
   } catch (error) {
     console.error(`❌ Lỗi khi tải ảnh từ chương ${chapterNumber}:`, error);
-  }
-}
-
-// Hàm tải ảnh lên Cloudinary
-async function uploadToCloudinary(imageUrl, chapterNumber, id) {
-  try {
-    console.log(
-      `📤 Đang tải ảnh ${id} từ chương ${chapterNumber}: ${imageUrl}`
-    );
-    const response = await cloudinary.uploader.upload(imageUrl);
-    console.log(
-      `✔ Ảnh ${id} từ chương ${chapterNumber} đã tải lên thành công!`
-    );
-
-    return {
-      id,
-      original_url: imageUrl,
-      upload_url: response.secure_url,
-      status: "Success",
-      upload_time: new Date().toISOString(),
-    };
-  } catch (error) {
-    console.error(
-      `❌ Không thể tải ảnh ${id} từ chương ${chapterNumber}:`,
-      error
-    );
-    return {
-      id,
-      original_url: imageUrl,
-      upload_url: "Failed",
-      status: "Failed",
-    };
   }
 }
 
