@@ -16,28 +16,23 @@ import java.util.List;
 @Builder
 public class ReadingHistory {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//id tu dong tang
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User users;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @ManyToMany
-    @JoinTable(
-            name = "story_history",
-            joinColumns = @JoinColumn(name = "story_id"),
-            inverseJoinColumns = @JoinColumn(name = "history_id")
-    )
-    private List<Story> stories;
+    @ManyToOne
+    @JoinColumn(name = "story_id", nullable = false)
+    private Story story;
 
-    @ManyToMany
-    @JoinTable(
-            name = "chapter_history",
-            joinColumns = @JoinColumn(name = "chapter_id"),
-            inverseJoinColumns = @JoinColumn(name = "history_id")
-    )
-    private List<Chapter> chapters;
+    @ManyToOne
+    @JoinColumn(name = "chapter_id", nullable = false)
+    private Chapter chapter;
+
+    @Column(nullable = false)
+    private Boolean isRead = false;
 
     @UpdateTimestamp
     private Instant last_read_at;

@@ -34,5 +34,9 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 
     //check xem truyen co ton tai hay khong
     boolean existsById(Long id);
+    //lay danh sach truyen da doc
+    @Query("SELECT DISTINCT rh.story FROM ReadingHistory rh WHERE rh.user.id = :userId")
+    List<Story> findReadStoriesByUser(@Param("userId") Long userId);
+
 
 }

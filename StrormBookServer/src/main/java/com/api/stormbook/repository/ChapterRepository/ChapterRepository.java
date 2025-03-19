@@ -32,4 +32,7 @@ public interface ChapterRepository extends JpaRepository<Chapter, Long> {
             "c.id, c.chapterNumber, c.title, c.story.id, " +
             "c.view_count, c.is_read,c.createdAt,c.updatedAt) FROM Chapter c WHERE c.story.id = :storyId")
     List<ChapterDTO> listChapterByStoryId(@Param("storyId") Long storyId);
+    //lay danh sach chuong da doc cua tung truyen
+    List<Chapter> findByStory(Story story);
+
 }

@@ -1,11 +1,13 @@
 package com.api.stormbook.controller.ChapterController;
 
 import com.api.stormbook.dto.ChapterDTO.ChapterDTO;
+import com.api.stormbook.dto.ChapterDTO.ChapterReadStatusDTO;
 import com.api.stormbook.entity.Chapter;
 import com.api.stormbook.entity.response.ApiResponse;
 import com.api.stormbook.exception.NotFoundException;
 import com.api.stormbook.repository.ChapterRepository.ChapterRepository;
 import com.api.stormbook.service.ChapterService.ChapterService;
+import com.api.stormbook.service.ChapterService.ChapterUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,8 @@ public class ChapterController {
     private ChapterService chapterService;
     @Autowired
     private ChapterRepository chapterRepository;
+    @Autowired
+    private ChapterUserService chapterUserService;
 
     @GetMapping("/{chapterId}")
     public ResponseEntity<?> getChapter(@PathVariable("chapterId") Long chapterId){
@@ -43,4 +47,18 @@ public class ChapterController {
         ApiResponse<List<ChapterDTO>> response = new ApiResponse<>(HttpStatus.OK.value(), "Lấy danh sách chương thành công!", chapterList);
         return ResponseEntity.ok(response);
     }
+    //danh sach chap da doc
+    @GetMapping("/list-chapter-read/{userId}/{storyId}")
+    public ResponseEntity<?> getChapterListRead(
+            @PathVariable("userId") Long userId,
+            @PathVariable("storyId") Long storyId
+    ){
+        List<ChapterReadStatusDTO> result = chapterUserService.getAllChapterReadStatus(userId, storyId);
+        if(result.isEmpty()){
+            throw new NotFoundException("Danh sách chương trống!");
+        }
+        ApiResponse<List<ChapterReadStatusDTO>> response = new ApiResponse<>(HttpStatus.OK.value(), "Lấy danh sách chương thành công", result);
+        return ResponseEntity.ok(response);
+    }
+
 }

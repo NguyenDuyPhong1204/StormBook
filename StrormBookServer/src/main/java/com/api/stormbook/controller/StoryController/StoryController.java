@@ -7,6 +7,7 @@ import com.api.stormbook.entity.response.ApiResponse;
 import com.api.stormbook.exception.NotFoundException;
 import com.api.stormbook.repository.StoryRepository.StoryRepository;
 import com.api.stormbook.service.StoryService.StoryAdminService;
+import com.api.stormbook.service.StoryService.StoryUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +25,8 @@ public class StoryController {
     private StoryAdminService storyAdminService;
     @Autowired
     private StoryRepository storyRepository;
+    @Autowired
+    private StoryUserService storyUserService;
 
     //lay danh sach truyen theo id the loai
     @GetMapping("/list-by-categoryId/{categoryId}")
@@ -64,5 +67,16 @@ public class StoryController {
        ApiResponse<Story> response = new ApiResponse<>(HttpStatus.OK.value(), "Lấy thông tin truyện thành công!", result);
         return ResponseEntity.ok(response);
     }
+    //lay danh sach truyen da doc
+    @GetMapping("/list-read/{userId}")
+    public ResponseEntity<?> getReadStoryById(@PathVariable Long userId) {
+        List<StoryDTO> storyDTOList = storyUserService.getReadStoryByUser(userId);
+        if(storyDTOList.isEmpty()){
+            throw new NotFoundException("Không có truyện nào đã đọc!");
+        }
+        ApiResponse<List<StoryDTO>> response = new ApiResponse<>(HttpStatus.OK.value(), "Lấy danh sách truyện thành công!", storyDTOList);
+        return ResponseEntity.ok(response);
+    }
+
 //
 }

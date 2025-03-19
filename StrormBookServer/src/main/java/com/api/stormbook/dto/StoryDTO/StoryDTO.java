@@ -33,4 +33,19 @@ public class StoryDTO {
 
     private MultipartFile imageFile;
 
+    public StoryDTO(long id, String title, String author, String transGroup, List<Long> categoryId, String cover_image, Status status, int view_count, int rating, int total_chapters, String description, Instant createdAt, Instant updatedAt) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.transGroup = transGroup;
+        this.categoryId = categoryId;
+        this.cover_image = cover_image;
+        this.status = status;
+        this.view_count = view_count;
+        this.rating = rating;
+        this.total_chapters = total_chapters;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 }
