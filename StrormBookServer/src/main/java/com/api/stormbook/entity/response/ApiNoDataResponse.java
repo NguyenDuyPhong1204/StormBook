@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApiMailResponse {
+public class ApiNoDataResponse {
     private int status;
     private String message;
 }

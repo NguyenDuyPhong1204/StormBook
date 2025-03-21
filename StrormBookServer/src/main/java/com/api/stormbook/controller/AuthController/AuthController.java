@@ -4,7 +4,7 @@ import com.api.stormbook.dto.AuthDTO.AuthRequest;
 import com.api.stormbook.dto.AuthDTO.OTPRequest;
 import com.api.stormbook.dto.AuthDTO.UserDTO;
 import com.api.stormbook.entity.User;
-import com.api.stormbook.entity.response.ApiMailResponse;
+import com.api.stormbook.entity.response.ApiNoDataResponse;
 import com.api.stormbook.entity.response.ApiResponse;
 import com.api.stormbook.exception.NotFoundException;
 import com.api.stormbook.repository.AuthRepository.AuthUserRepository;
@@ -78,8 +78,8 @@ public class AuthController {
     public ResponseEntity<?> sendOTP(@RequestBody AuthRequest request){
         //gui email
         emailService.sendMailPassword(request.getEmail(), request.getFullName());
-        ApiMailResponse apiMailResponse = new ApiMailResponse(HttpStatus.OK.value(), "Vui lòng kiểm tra email để nhận mã xác nhận");
-        return ResponseEntity.ok(apiMailResponse);
+        ApiNoDataResponse apiNoDataResponse = new ApiNoDataResponse(HttpStatus.OK.value(), "Vui lòng kiểm tra email để nhận mã xác nhận");
+        return ResponseEntity.ok(apiNoDataResponse);
     }
 
     //kiem tra otp
@@ -89,8 +89,8 @@ public class AuthController {
             otpService.removeOTP(request.getEmail());
             return ResponseEntity.ok("OTP hợp lệ!");
         }
-        ApiMailResponse apiMailResponse = new ApiMailResponse(HttpStatus.OK.value(), "Xác nhận OTP thành công");
-        return ResponseEntity.ok(apiMailResponse);
+        ApiNoDataResponse apiNoDataResponse = new ApiNoDataResponse(HttpStatus.OK.value(), "Xác nhận OTP thành công");
+        return ResponseEntity.ok(apiNoDataResponse);
     }
 
     //thay doi mat khau

@@ -1,12 +1,9 @@
 package com.api.stormbook.controller.StoryController;
 
 import com.api.stormbook.dto.StoryDTO.StoryDTO;
-import com.api.stormbook.entity.Category;
-import com.api.stormbook.entity.Story;
-import com.api.stormbook.entity.response.ApiMailResponse;
+import com.api.stormbook.entity.response.ApiNoDataResponse;
 import com.api.stormbook.entity.response.ApiResponse;
 import com.api.stormbook.exception.ErrorException;
-import com.api.stormbook.exception.NotFoundException;
 import com.api.stormbook.repository.StoryRepository.StoryRepository;
 import com.api.stormbook.service.StoryService.StoryAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +83,7 @@ public class StoryAdminController {
     ){
         try{
             storyAdminService.deleteStory(storyId);
-            ApiMailResponse response = new ApiMailResponse(HttpStatus.OK.value(), "Xóa truyện thành công");
+            ApiNoDataResponse response = new ApiNoDataResponse(HttpStatus.OK.value(), "Xóa truyện thành công");
             return ResponseEntity.ok(response);
         }catch (Exception e){
             throw new ErrorException("Lỗi xóa truyện: "+ e.getMessage());

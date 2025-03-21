@@ -62,4 +62,11 @@ public class ReHiService {
                 history.getLast_read_at());
     }
 
+    public void deleteStoryHistory(Long id){
+        if(!reHiRepository.existsReadingById(id)){
+            throw new NotFoundException("Không tìm thấy lịch sử đọc với ID: "+ id);
+        }
+        reHiRepository.deleteById(id);
+    }
+
 }

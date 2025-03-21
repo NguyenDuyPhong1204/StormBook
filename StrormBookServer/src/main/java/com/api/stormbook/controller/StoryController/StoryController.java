@@ -31,9 +31,9 @@ public class StoryController {
     //lay danh sach truyen theo id the loai
     @GetMapping("/list-by-categoryId/{categoryId}")
     public ResponseEntity<?> listStoryByCategoryId(@PathVariable Long categoryId,
-                                                   @RequestParam(defaultValue = "1") int page,
+                                                   @RequestParam(defaultValue = "0") int page,
                                                    @RequestParam(defaultValue = "10") int size) {
-        Pageable pageable = PageRequest.of(page - 1, size);
+        Pageable pageable = PageRequest.of(page, size);
         Page<Story> result = storyRepository.findStoriesByCategoryId(categoryId, pageable);
         if(result.isEmpty()){
             throw new NotFoundException("Không có truyện nào!");
@@ -69,8 +69,12 @@ public class StoryController {
     }
     //lay danh sach truyen da doc
     @GetMapping("/list-read/{userId}")
-    public ResponseEntity<?> getReadStoryById(@PathVariable Long userId) {
-        List<StoryDTO> storyDTOList = storyUserService.getReadStoryByUser(userId);
+    public ResponseEntity<?> getReadStoryById(
+            @PathVariable Long userId,
+            @RequestParam("page") int page,
+            @RequestParam("size") int size
+    ) {
+        List<StoryDTO> storyDTOList = storyUserService.getReadStoryByUser(userId, page, size);
         if(storyDTOList.isEmpty()){
             throw new NotFoundException("Không có truyện nào đã đọc!");
         }

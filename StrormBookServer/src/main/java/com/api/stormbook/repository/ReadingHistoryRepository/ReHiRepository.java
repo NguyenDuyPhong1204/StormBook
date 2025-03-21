@@ -16,4 +16,6 @@ public interface ReHiRepository extends JpaRepository<ReadingHistory, Long> {
     @Query("SELECT rh.chapter.id FROM ReadingHistory rh WHERE rh.user.id = :userId AND rh.story.id = :storyId")
     List<Long> findReadChapterIdsByUserAndStory(@Param("userId") Long userId, @Param("storyId") Long storyId);
 
+    //kiem tra ton tai hay khong
+    boolean existsReadingById(Long id);
 }

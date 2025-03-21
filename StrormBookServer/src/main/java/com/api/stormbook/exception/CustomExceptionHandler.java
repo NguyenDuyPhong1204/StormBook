@@ -37,8 +37,8 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(ErrorException.class)
     public ResponseEntity<ErrorResponse> handleError(Exception ex, WebRequest request) {
-        ErrorResponse response = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
-        return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+        ErrorResponse response = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());
+        return new ResponseEntity<>(response,HttpStatus.INSUFFICIENT_STORAGE);
     }
 
     @ExceptionHandler(BadRequestException.class)

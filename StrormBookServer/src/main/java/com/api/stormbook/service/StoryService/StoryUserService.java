@@ -8,6 +8,9 @@ import com.api.stormbook.exception.NotFoundException;
 import com.api.stormbook.repository.AuthRepository.AuthUserRepository;
 import com.api.stormbook.repository.StoryRepository.StoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,11 +25,12 @@ public class StoryUserService {
     private AuthUserRepository authUserRepository;
 
     //lay danh sach truyen da doc
-    public List<StoryDTO> getReadStoryByUser(Long userId){
+    public List<StoryDTO> getReadStoryByUser(Long userId, int page, int size) {
         User user = authUserRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException("Người dùng không tồn tại"));
         //lay danh sach truyen ma user da doc
-        List<Story> storyList = storyRepository.findReadStoriesByUser(user.getId());
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Story> storyList = storyRepository.findReadStoriesByUser(user.getId(), pageable);
         //chuyen danh sach thanh dto
         return storyList.stream()
                 .map(story -> new StoryDTO(

@@ -23,13 +23,9 @@ public class Favorite {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany
-    @JoinTable(
-            name = "faorite_story",
-            joinColumns = @JoinColumn(name = "favorite_id"),
-            inverseJoinColumns = @JoinColumn(name = "story_id")
-    )
-    private List<Story> stories;
+    @ManyToOne
+    @JoinColumn(name = "story_id")
+    private Story story;
 
     @CreationTimestamp
     private Instant createdAt;

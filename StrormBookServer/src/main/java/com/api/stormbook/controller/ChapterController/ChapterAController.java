@@ -1,13 +1,9 @@
 package com.api.stormbook.controller.ChapterController;
 
 import com.api.stormbook.dto.ChapterDTO.ChapterDTO;
-import com.api.stormbook.dto.StoryDTO.StoryDTO;
-import com.api.stormbook.entity.Chapter;
-import com.api.stormbook.entity.response.ApiMailResponse;
+import com.api.stormbook.entity.response.ApiNoDataResponse;
 import com.api.stormbook.entity.response.ApiResponse;
 import com.api.stormbook.exception.ErrorException;
-import com.api.stormbook.exception.NotFoundException;
-import com.api.stormbook.repository.ChapterRepository.ChapterRepository;
 import com.api.stormbook.service.ChapterService.ChapterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -75,7 +71,7 @@ public class ChapterAController {
     ){
         try{
             chapterService.deleteChapter(chapterId);
-            ApiMailResponse response = new ApiMailResponse(HttpStatus.OK.value(), "Xóa chương thành công");
+            ApiNoDataResponse response = new ApiNoDataResponse(HttpStatus.OK.value(), "Xóa chương thành công");
             return ResponseEntity.ok(response);
         }catch (Exception e){
             throw new ErrorException("Lỗi xóa chương: "+ e.getMessage());
