@@ -25,7 +25,7 @@ public class StoryDTO {
     private String cover_image;
     private Status status = Status.OnGoing;
     private int view_count = 0;
-    private int rating = 0;
+    private double rating = 0.0;
     private int total_chapters = 0;
     private String description;
     private Instant createdAt;
@@ -33,7 +33,7 @@ public class StoryDTO {
 
     private MultipartFile imageFile;
 
-    public StoryDTO(long id, String title, String author, String transGroup, List<Long> categoryId, String cover_image, Status status, int view_count, int rating, int total_chapters, String description, Instant createdAt, Instant updatedAt) {
+    public StoryDTO(long id, String title, String author, String transGroup, List<Long> categoryId, String cover_image, Status status, int view_count, double rating, int total_chapters, String description, Instant createdAt, Instant updatedAt) {
         this.id = id;
         this.title = title;
         this.author = author;

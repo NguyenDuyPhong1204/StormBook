@@ -17,7 +17,7 @@ import java.time.Instant;
 public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -28,7 +28,7 @@ public class Rating {
     private Story story;
 
     @Column
-    private int rating;
+    private double rating;
 
     @Column
     private String review;

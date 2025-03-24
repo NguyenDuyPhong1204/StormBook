@@ -47,6 +47,7 @@ public class CommentService {
         comment.setChapter(chapter);
         comment.setContent(commentDTO.getContent());
         comment.setReplies(commentDTO.getReplies());
+        comment.setLikes(commentDTO.getLikes());
         commentRepository.save(comment);
         return new CommentDTO(
           comment.getId(),
@@ -55,6 +56,7 @@ public class CommentService {
           comment.getChapter().getId(),
           comment.getReplies(),
           comment.getContent(),
+          comment.getLikes(),
           comment.getCreatedAt(),
           comment.getUpdatedAt()
         );
@@ -83,6 +85,7 @@ public class CommentService {
         comment.setParent(parentComment);
         comment.setContent(commentDTO.getContent());
         comment.setReplies(commentDTO.getReplies());
+        comment.setLikes(commentDTO.getLikes());
         commentRepository.save(comment);
 
         //cap nhat danh sach tra loi comment
@@ -97,10 +100,32 @@ public class CommentService {
                 comment.getParent().getId(),
 //                comment.getReplies(),
                 comment.getContent(),
+                comment.getLikes(),
                 comment.getCreatedAt(),
                 comment.getUpdatedAt()
         );
     }
+
+    //chinh sua comment
+    public CommentDTO updateComment(Long commentId, CommentDTO commentDTO) {
+        Comment commentInfo = commentRepository.findById(commentId)
+                .orElseThrow(() -> new NotFoundException("Không có comment với ID: " + commentId));
+        commentInfo.setContent(commentDTO.getContent());
+        commentRepository.save(commentInfo);
+        return new CommentDTO(
+                commentInfo.getId(),
+                commentInfo.getUser().getId(),
+                commentInfo.getStory().getId(),
+                commentInfo.getChapter().getId(),
+                commentInfo.getReplies(),
+                commentInfo.getContent(),
+                commentInfo.getLikes(),
+                commentInfo.getCreatedAt(),
+                commentInfo.getUpdatedAt()
+        );
+    }
+
+
 
     public List<CommentResponseDTO> getCommentChapter(Long chapterId){
         List<CommentResponseDTO> listComment = commentRepository.findListCommentChapter(chapterId);
@@ -123,4 +148,10 @@ public class CommentService {
         commentRepository.deleteById(id);
     }
 
+    public void deleteAllComment(Long chapterId){
+        if(!chapterRepository.existsById(chapterId)) {
+            throw new NotFoundException("Không tìm thấy chương với ID: " +chapterId);
+        }
+        commentRepository.deleteAllByChapterId(chapterId);
+    }
 }

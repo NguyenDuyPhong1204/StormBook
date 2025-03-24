@@ -48,7 +48,7 @@ public class Story {
     private int view_count;
 
     @Column
-    private int rating;
+    private double rating;
 
     @Column
     private int total_chapters;

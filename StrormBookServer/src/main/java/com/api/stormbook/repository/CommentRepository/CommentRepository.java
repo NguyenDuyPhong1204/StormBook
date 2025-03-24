@@ -12,7 +12,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     //lay danh sach binh luan cua chapter
     @Query("SELECT new com.api.stormbook.dto.CommentDTO.CommentResponseDTO(" +
             "c.id, c.user.id, c.story.id, c.chapter.id, c.parent.id, " +
-            "c.content, c.user.avatar, c.user.fullName, c.createdAt) " +
+            "c.content,c.likes, c.user.avatar, c.user.fullName, c.createdAt) " +
             "FROM Comment c " +
             "JOIN c.user u " +
             "WHERE c.chapter.id = :chapterId " +
@@ -26,11 +26,13 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 //    List<Comment> findListReplyComment(Long commentId);
     @Query("SELECT new com.api.stormbook.dto.CommentDTO.CommentResponseDTO(" +
             "c.id, c.user.id, c.story.id, c.chapter.id, c.parent.id, " +
-            "c.content, c.user.fullName, c.user.avatar, c.createdAt) " +
+            "c.content,c.likes, c.user.fullName, c.user.avatar, c.createdAt) " +
             "FROM Comment c " +
             "JOIN c.user u " +
             "WHERE c.parent.id = :commentId " +
             "ORDER BY c.createdAt ASC")
     List<CommentResponseDTO> findRepliesByParentId(Long commentId);
 
+    //xoa tat ca binh luan
+    void deleteAllByChapterId(Long chapterId);
 }

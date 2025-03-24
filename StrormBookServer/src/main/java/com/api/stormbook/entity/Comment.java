@@ -42,6 +42,9 @@ public class Comment {
     @Column
     private String content;
 
+    @Column
+    private int likes;
+
     @CreationTimestamp
     private Instant createdAt;
 

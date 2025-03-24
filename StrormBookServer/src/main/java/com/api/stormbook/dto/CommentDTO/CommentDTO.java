@@ -34,28 +34,32 @@ public class CommentDTO {
 
     private String content;
 
+    private int likes = 0;
+
     private Instant createdAt;
 
     private Instant updatedAt;
 
-    public CommentDTO(Long id, Long userId, Long storyId, Long chapterId, List<Comment> replies, String content, Instant createdAt, Instant updatedAt) {
+    public CommentDTO(Long id, Long userId, Long storyId, Long chapterId, List<Comment> replies, String content,int likes, Instant createdAt, Instant updatedAt) {
         this.id = id;
         this.userId = userId;
         this.storyId = storyId;
         this.chapterId = chapterId;
         this.replies = replies;
         this.content = content;
+        this.likes = likes;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
-    public CommentDTO(Long id, Long userId, Long storyId, Long chapterId, Long parentId, String content, Instant createdAt, Instant updatedAt) {
+    public CommentDTO(Long id, Long userId, Long storyId, Long chapterId, Long parentId, String content,int likes, Instant createdAt, Instant updatedAt) {
         this.id = id;
         this.userId = userId;
         this.storyId = storyId;
         this.chapterId = chapterId;
         this.parentId = parentId;
         this.content = content;
+        this.likes = likes;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }

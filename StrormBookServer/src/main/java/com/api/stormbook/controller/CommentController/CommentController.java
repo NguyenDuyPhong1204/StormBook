@@ -61,7 +61,30 @@ public class CommentController {
             ApiNoDataResponse noDataResponse = new ApiNoDataResponse(HttpStatus.OK.value(), "Xóa comment thành công!");
             return ResponseEntity.ok(noDataResponse);
         }catch (Exception e){
-            throw new ErrorException("Lỗi lấy danh sách comment!" + e.getMessage());
+            throw new ErrorException("Lỗi xóa comment!" + e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/delete-all/{chapterId}")
+    public ResponseEntity<?> deleteAllComment(@PathVariable Long chapterId){
+        try {
+            commentService.deleteAllComment(chapterId);
+            ApiNoDataResponse response = new ApiNoDataResponse(HttpStatus.OK.value(), "Xóa comment thành công");
+            return ResponseEntity.ok(response);
+        }catch (Exception e){
+            throw new ErrorException("Lỗi xóa comment!" + e.getMessage());
+        }
+    }
+
+    //chinh sua comment
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateComment(@PathVariable Long id,@RequestBody CommentDTO commentDTO){
+        try {
+            CommentDTO comment = commentService.updateComment(id, commentDTO);
+            ApiResponse<CommentDTO> response = new ApiResponse<>(HttpStatus.OK.value(), "Chỉnh sửa comment thành công!", comment);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            throw new ErrorException("Lỗi sửa comment!" + e.getMessage());
         }
     }
 

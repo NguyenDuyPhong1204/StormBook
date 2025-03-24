@@ -26,19 +26,22 @@ public class CommentResponseDTO {
     private List<CommentResponseDTO> replies;
 
     private String content;
+    private int likes = 0;
     private String fullName;  // Thông tin user
     private String avatar;
     private Instant createdAt;
 
-    public CommentResponseDTO(Long id, Long userId, Long storyId, Long chapterId, Long parentId, String content, String avatar, String fullName, Instant createdAt) {
+    public CommentResponseDTO(Long id, Long userId, Long storyId, Long chapterId, Long parentId, String content,int likes, String avatar, String fullName, Instant createdAt) {
         this.id = id;
         this.userId = userId;
         this.storyId = storyId;
         this.chapterId = chapterId;
         this.parentId = parentId;
         this.content = content;
+        this.likes = likes;
         this.avatar = avatar;
         this.fullName = fullName;
         this.createdAt = createdAt;
     }
+
 }
