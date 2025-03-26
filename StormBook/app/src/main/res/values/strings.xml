@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Storm Book</string>
+    <string name="hello_1">Chào bạn!</string>
+    <string name="hello_2">Chào bạn đến với Storm Book!</string>
 </resources>

@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.phongbaoto.stormbook"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.phongbaoto.stormbook"
@@ -56,4 +56,12 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    //thu vien lottie
+    implementation("com.airbnb.android:lottie-compose:6.2.0")
+    //navigation
+    implementation("androidx.navigation:navigation-compose:2.8.0")
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
 }
