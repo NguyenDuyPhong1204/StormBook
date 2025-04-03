@@ -18,7 +18,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.phongbaoto.stormbook.R
-import com.phongbaoto.stormbook.ROUTER
+import com.phongbaoto.stormbook.navigation.ROUTER
 import com.phongbaoto.stormbook.ui.theme.Black
 import kotlinx.coroutines.delay
 

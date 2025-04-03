@@ -62,6 +62,7 @@ fun BoxComponent(title: String){
                         color = Black,
                         textAlign = TextAlign.Center
                     )
+                    Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = title,
                         fontSize = 13.sp,

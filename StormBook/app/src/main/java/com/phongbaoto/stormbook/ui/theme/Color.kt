@@ -12,3 +12,7 @@ val Pink40 = Color(0xFF7D5260)
 
 val Black = Color(0xFF000000)
 val White = Color(0xFFFFFFFF)
+val BlueInput = Color(0xFF40DEF6)
+val BlueButton = Color(0xFF0098FF)
+val RedIndicator = Color(0xFFFE0101)
+val RedWhite = Color(0xFFD66363)

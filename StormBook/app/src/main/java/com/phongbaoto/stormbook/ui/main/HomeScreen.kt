@@ -1,0 +1,140 @@
+package com.phongbaoto.stormbook.ui.main
+
+import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.phongbaoto.stormbook.data.model.Category
+import com.phongbaoto.stormbook.ui.main.component.BannedComponent
+import com.phongbaoto.stormbook.ui.main.component.ListCategory
+import com.phongbaoto.stormbook.ui.main.component.SearchComponent
+import com.phongbaoto.stormbook.ui.main.component.TitleComponent
+import com.phongbaoto.stormbook.ui.theme.Black
+import com.phongbaoto.stormbook.utils.UtilsComponent.HideStatusBarAndNavigation
+import com.phongbaoto.stormbook.utils.UtilsComponent.Space
+import com.phongbaoto.stormbook.utils.background
+import com.phongbaoto.stormbook.utils.hot
+import com.phongbaoto.stormbook.utils.propose
+
+@SuppressLint("ConfigurationScreenWidthHeight")
+@Composable
+fun HomeScreen(navController: NavController) {
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+    val scrollState = rememberScrollState()
+    var previousScrollPosition by remember { mutableStateOf(0) }
+    var isVisible by remember { mutableStateOf(true) }
+
+    LaunchedEffect(scrollState.value) {
+        val currentPosition = scrollState.value
+        isVisible = currentPosition <= previousScrollPosition
+        previousScrollPosition = currentPosition
+    }
+
+    //an hien statusbar va navigation
+    if(!isVisible){
+        HideStatusBarAndNavigation()
+    }
+    val listCategory = listOf(
+        Category(1, "Manhua"),
+        Category(2, "Manhwa"),
+        Category(3, "Action"),
+        Category(4,"Lmao")
+    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .navigationBarsPadding()
+            .background(color = Black)
+            .verticalScroll(scrollState)
+    ) {
+        Image(
+            painter = painterResource(background),
+            contentDescription = "background",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(screenHeight / 2.5f)
+                .offset(x = 0.dp, y = -35.dp)
+        )
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(start = 15.dp, end = 15.dp)
+        ){
+            //tim kiem
+            SearchComponent(
+                onClick = {}
+            )
+
+            //banner
+            Space(15.dp)
+            BannedComponent()
+
+            //the loai
+            Column {
+                TitleComponent(
+                    title = "Thể loại",
+                    onClick = {},
+                    isImage = false,
+                    image = null
+                )
+
+                ListCategory(listCategory = listCategory)
+
+            }
+
+            //de xuat
+            Column {
+                TitleComponent(
+                    title = "Đề xuất",
+                    onClick = {},
+                    isImage = true,
+                    image = propose
+                )
+            }
+
+            //truyen hot
+            Column {
+                TitleComponent(
+                    title = "Truyện Hot",
+                    onClick = {},
+                    isImage = true,
+                    image = hot
+                )
+            }
+
+        }
+
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewHome() {
+    val navController = rememberNavController()
+    HomeScreen(navController)
+}
