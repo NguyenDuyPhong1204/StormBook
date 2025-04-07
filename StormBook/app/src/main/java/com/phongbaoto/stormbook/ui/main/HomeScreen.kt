@@ -27,14 +27,20 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.phongbaoto.stormbook.data.model.Category
+import com.phongbaoto.stormbook.data.model.Story
 import com.phongbaoto.stormbook.ui.main.component.BannedComponent
 import com.phongbaoto.stormbook.ui.main.component.ListCategory
+import com.phongbaoto.stormbook.ui.main.component.ListStory
 import com.phongbaoto.stormbook.ui.main.component.SearchComponent
 import com.phongbaoto.stormbook.ui.main.component.TitleComponent
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.utils.UtilsComponent.HideStatusBarAndNavigation
 import com.phongbaoto.stormbook.utils.UtilsComponent.Space
 import com.phongbaoto.stormbook.utils.background
+import com.phongbaoto.stormbook.utils.banner
+import com.phongbaoto.stormbook.utils.banner_2
+import com.phongbaoto.stormbook.utils.banner_3
+import com.phongbaoto.stormbook.utils.banner_4
 import com.phongbaoto.stormbook.utils.hot
 import com.phongbaoto.stormbook.utils.propose
 
@@ -64,12 +70,21 @@ fun HomeScreen(navController: NavController) {
         Category(3, "Action"),
         Category(4,"Lmao")
     )
+
+    val listStory = listOf(
+        Story(1, banner, "Ta Là Tà Đế", 200),
+        Story(2, banner_2, "Ta Là Tà Đế", 300),
+        Story(1, banner_3, "Ta Là Tà Đế", 100),
+        Story(1, banner_4, "Ta Là Tà Đế", 250),
+    )
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .navigationBarsPadding()
             .background(color = Black)
             .verticalScroll(scrollState)
+            .padding(bottom = screenHeight/7.5f)
     ) {
         Image(
             painter = painterResource(background),
@@ -115,9 +130,12 @@ fun HomeScreen(navController: NavController) {
                     isImage = true,
                     image = propose
                 )
+                Space(5.dp)
+                ListStory(listStory)
             }
 
             //truyen hot
+            Space(5.dp)
             Column {
                 TitleComponent(
                     title = "Truyện Hot",
@@ -125,16 +143,11 @@ fun HomeScreen(navController: NavController) {
                     isImage = true,
                     image = hot
                 )
+                Space(5.dp)
+                ListStory(listStory)
             }
 
         }
 
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewHome() {
-    val navController = rememberNavController()
-    HomeScreen(navController)
 }

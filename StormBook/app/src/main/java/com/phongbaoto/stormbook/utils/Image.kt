@@ -14,3 +14,7 @@ val banner_3 = R.drawable.banner_3
 val banner_4 = R.drawable.banner_4
 val propose = R.drawable.propose
 val hot = R.drawable.hot_story
+val home = R.drawable.home
+val story = R.drawable.book
+val category = R.drawable.category
+val person = R.drawable.person_2
