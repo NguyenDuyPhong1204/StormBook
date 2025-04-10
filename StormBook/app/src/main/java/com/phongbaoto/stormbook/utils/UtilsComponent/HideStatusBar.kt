@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
-fun HideStatusBarAndNavigation() {
+fun HideStatusBar() {
     val systemUiController = rememberSystemUiController()
     systemUiController.isStatusBarVisible = false  // Ẩn thanh StatusBar
-    systemUiController.isNavigationBarVisible = false //an thanh navigation
+//    systemUiController.isNavigationBarVisible = false //an thanh navigation
 }

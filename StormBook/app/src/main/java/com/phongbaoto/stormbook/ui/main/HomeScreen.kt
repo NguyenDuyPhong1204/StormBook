@@ -28,13 +28,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.phongbaoto.stormbook.data.model.Category
 import com.phongbaoto.stormbook.data.model.Story
+import com.phongbaoto.stormbook.navigation.ROUTER
 import com.phongbaoto.stormbook.ui.main.component.BannedComponent
 import com.phongbaoto.stormbook.ui.main.component.ListCategory
 import com.phongbaoto.stormbook.ui.main.component.ListStory
 import com.phongbaoto.stormbook.ui.main.component.SearchComponent
 import com.phongbaoto.stormbook.ui.main.component.TitleComponent
 import com.phongbaoto.stormbook.ui.theme.Black
-import com.phongbaoto.stormbook.utils.UtilsComponent.HideStatusBarAndNavigation
+import com.phongbaoto.stormbook.utils.UtilsComponent.HideStatusBar
 import com.phongbaoto.stormbook.utils.UtilsComponent.Space
 import com.phongbaoto.stormbook.utils.background
 import com.phongbaoto.stormbook.utils.banner
@@ -54,16 +55,7 @@ fun HomeScreen(navController: NavController) {
     var previousScrollPosition by remember { mutableStateOf(0) }
     var isVisible by remember { mutableStateOf(true) }
 
-    LaunchedEffect(scrollState.value) {
-        val currentPosition = scrollState.value
-        isVisible = currentPosition <= previousScrollPosition
-        previousScrollPosition = currentPosition
-    }
-
-    //an hien statusbar va navigation
-    if(!isVisible){
-        HideStatusBarAndNavigation()
-    }
+    HideStatusBar()
     val listCategory = listOf(
         Category(1, "Manhua"),
         Category(2, "Manhwa"),
@@ -113,7 +105,9 @@ fun HomeScreen(navController: NavController) {
             Column {
                 TitleComponent(
                     title = "Thể loại",
-                    onClick = {},
+                    onClick = {
+                        navController.navigate(ROUTER.Category.name)
+                    },
                     isImage = false,
                     image = null
                 )

@@ -18,3 +18,4 @@ val home = R.drawable.home
 val story = R.drawable.book
 val category = R.drawable.category
 val person = R.drawable.person_2
+val plus = R.drawable.plus

@@ -4,5 +4,6 @@ enum class ROUTER{
     Welcome,
     LoginUser,
     Home,
-    BottomNav
+    BottomNav,
+    Category
 }

@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.phongbaoto.stormbook.ui.auth.LoginUserScreen
+import com.phongbaoto.stormbook.ui.category.CategoryScreen
 import com.phongbaoto.stormbook.ui.main.HomeScreen
 import com.phongbaoto.stormbook.ui.welcome.WelcomeScreen
 
@@ -26,6 +27,9 @@ fun MainNavigation(){
         }
         composable(ROUTER.BottomNav.name){
             BottomNavigation(navController)
+        }
+        composable(ROUTER.Category.name){
+            CategoryScreen(navController)
         }
     }
 }
