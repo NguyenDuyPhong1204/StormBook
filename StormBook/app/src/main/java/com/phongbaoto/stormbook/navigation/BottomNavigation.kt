@@ -22,7 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.phongbaoto.stormbook.ui.category.CategoryScreen
 import com.phongbaoto.stormbook.ui.main.HomeScreen
+import com.phongbaoto.stormbook.ui.storyAdmin.StoryScreen
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.RedIndicator
 import com.phongbaoto.stormbook.ui.theme.White
@@ -99,5 +101,7 @@ fun ContentScreen(
 
     when(selectedIndex){
         0 -> HomeScreen(navController)
+        1 -> CategoryScreen(navController)
+        2 -> StoryScreen(navController)
     }
 }

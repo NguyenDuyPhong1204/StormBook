@@ -44,8 +44,8 @@ fun CategoryScreen(
        modifier = Modifier
            .fillMaxSize()
            .background(color = Black)
-           .padding(top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding())
-//           .statusBarsPadding()
+//           .padding(top = WindowInsets.statusBars.asPaddingValues().calculateTopPadding())
+           .statusBarsPadding()
    ){
 
 //       HideStatusBar()

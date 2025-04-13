@@ -31,12 +31,11 @@ fun ButtonComponent(
     textColor: Color,
     image: Int?,
     isImage: Boolean = false,
-    fontWeight: FontWeight
+    fontWeight: FontWeight,
+    modifier: Modifier = Modifier
 ){
     Button(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(50.dp),
+        modifier = modifier,
         onClick = onClick,
         shape = RoundedCornerShape(10.dp),
         colors = ButtonColors(
