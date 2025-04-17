@@ -1,23 +1,17 @@
 package com.phongbaoto.stormbook.ui.auth
 
 import android.annotation.SuppressLint
-import android.widget.Button
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -27,7 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,14 +33,12 @@ import com.phongbaoto.stormbook.ui.auth.component.GoToRegister
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.BlueButton
 import com.phongbaoto.stormbook.ui.theme.White
-import com.phongbaoto.stormbook.utils.UtilsComponent.BoxComponent
 import com.phongbaoto.stormbook.utils.UtilsComponent.ButtonComponent
 import com.phongbaoto.stormbook.utils.UtilsComponent.DividerWithText
 import com.phongbaoto.stormbook.utils.UtilsComponent.Space
 import com.phongbaoto.stormbook.utils.UtilsComponent.TextFieldComponent
-import com.phongbaoto.stormbook.utils.UtilsComponent.WelcomeComponent
+import com.phongbaoto.stormbook.ui.auth.component.WelcomeComponent
 import com.phongbaoto.stormbook.utils.google
-import com.phongbaoto.stormbook.utils.image_hello
 import com.phongbaoto.stormbook.utils.login
 
 @SuppressLint("ConfigurationScreenWidthHeight")
@@ -62,7 +54,7 @@ fun LoginUserScreen(navController: NavController){
     var isFocusedEmail by remember { mutableStateOf(false) }
     val isFocusedPass by remember { mutableStateOf(false) }
     //
-
+    val focusManager = LocalFocusManager.current
 
     Box(
         modifier = Modifier
@@ -70,6 +62,13 @@ fun LoginUserScreen(navController: NavController){
             .background(color = Black)
             .padding(top = 50.dp, start = 15.dp, end = 15.dp)
             .navigationBarsPadding()
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null // Bỏ hiệu ứng khi click
+            ) {
+                // Khi click vào (bất kỳ đâu trên màn hình), hủy tất cả focus
+                focusManager.clearFocus()
+            }
     ){
         Column(
             modifier = Modifier

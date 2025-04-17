@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbook.utils.UtilsComponent
+package com.phongbaoto.stormbook.ui.auth.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.phongbaoto.stormbook.utils.UtilsComponent.BoxComponent
 import com.phongbaoto.stormbook.utils.image_hello
-import com.phongbaoto.stormbook.utils.login
 
 @Composable
 fun WelcomeComponent(title: String){

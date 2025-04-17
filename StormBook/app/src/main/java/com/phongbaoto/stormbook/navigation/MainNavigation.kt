@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.phongbaoto.stormbook.ui.auth.LoginUserScreen
 import com.phongbaoto.stormbook.ui.category.CategoryScreen
 import com.phongbaoto.stormbook.ui.main.HomeScreen
+import com.phongbaoto.stormbook.ui.storyAdmin.AddNewStory
 import com.phongbaoto.stormbook.ui.welcome.WelcomeScreen
 
 @Composable
@@ -30,6 +31,9 @@ fun MainNavigation(){
         }
         composable(ROUTER.Category.name){
             CategoryScreen(navController)
+        }
+        composable(ROUTER.AddStory.name){
+            AddNewStory(navController)
         }
     }
 }

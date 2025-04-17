@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.phongbaoto.stormbook.data.model.Story
+import com.phongbaoto.stormbook.navigation.ROUTER
 import com.phongbaoto.stormbook.ui.storyAdmin.component.PendingStory
 import com.phongbaoto.stormbook.ui.storyAdmin.component.PostedStory
 import com.phongbaoto.stormbook.ui.theme.Black
@@ -74,7 +75,9 @@ fun StoryScreen(
             fontWeight = FontWeight.SemiBold,
             color = BlueButton,
             image = null,
-            onClick = {},
+            onClick = {
+                navController.navigate(ROUTER.AddStory.name)
+            },
             modifier =  Modifier
                 .align(Alignment.BottomCenter)
                 .padding(start = 15.dp, end = 15.dp, bottom = 110.dp)

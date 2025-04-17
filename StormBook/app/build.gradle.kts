@@ -71,5 +71,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:1.5.0")
     //system ui
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.32.0")
-
+    //thu vien anh
+    implementation("io.coil-kt.coil3:coil-compose:3.1.0")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.1.0")
 }
