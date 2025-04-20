@@ -62,8 +62,8 @@ fun StoryScreen(
                 modifier = Modifier.weight(1f) // Cho phép nội dung tab chiếm hết không gian còn lại
             ) { selectedTabIndex ->
                 when (selectedTabIndex) {
-                    0 -> PostedStory()
-                    1 -> PendingStory()
+                    0 -> PostedStory(navController)
+                    1 -> PendingStory(navController)
                 }
             }
         }
@@ -84,13 +84,4 @@ fun StoryScreen(
                 .fillMaxWidth()
         )
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewStory(){
-    val navController = rememberNavController()
-    StoryScreen(
-        navController
-    )
 }

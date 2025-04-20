@@ -40,7 +40,7 @@ fun PaginationControls(
     modifier: Modifier = Modifier
 ){
     if(totalPage <=1) return //khong hien thi phan trang neu chi co 1 trang
-    val visiblePageNumber = 5 //so luong trang hien thi
+    val visiblePageCount = 5 //so luong trang hien thi
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
@@ -77,47 +77,21 @@ fun PaginationControls(
         }
         Space(8.dp)
         //tinh toan cac trang se hien thi
-        val statePage = maxOf(1, minOf(currentPage - visiblePageNumber / 2, totalPage - visiblePageNumber + 1))
-        val endPage = minOf(statePage + visiblePageNumber - 1, totalPage)
+        // Tính toán start và end page để hiển thị
+        val half = visiblePageCount / 2
+        val startPage = when {
+            currentPage <= half -> 1
+            currentPage >= totalPage - half -> totalPage - visiblePageCount + 1
+            else -> currentPage - half
+        }.coerceAtLeast(1)
 
-        //jien thi "1" va "..." neu khong hien thi tu trang dau tien
-        if(statePage > 1){
-            PageNumber(
-                page = 1,
-                isSelected = currentPage == 1,
-                onClick = {onPageSelected(1)}
-            )
-        }
+        val endPage = (startPage + visiblePageCount - 1).coerceAtMost(totalPage)
 
-        if(statePage > 2){
-            Text(
-                text = "...",
-                color = White,
-                modifier = Modifier.padding(horizontal = 8.dp)
-            )
-        }
-        //hien thi cac so trang
-        for (page in statePage..endPage){
+        for (page in startPage..endPage) {
             PageNumber(
                 page = page,
                 isSelected = page == currentPage,
-                onClick = {onPageSelected(page)}
-            )
-        }
-
-        //hien thi "..." va trang cuoi neu khong hien thi den trang cuoi
-        if(endPage < totalPage){
-            if(endPage < totalPage - 1){
-                Text(
-                    text = "...",
-                    color = White,
-                    modifier = Modifier.padding(horizontal = 8.dp)
-                )
-            }
-            PageNumber(
-                page = totalPage,
-                isSelected = currentPage == totalPage,
-                onClick = {onPageSelected(totalPage)}
+                onClick = { onPageSelected(page) }
             )
         }
 
@@ -155,7 +129,7 @@ fun PageNumber(
     onClick: () -> Unit
 ) {
     Box(
-        modifier = Modifier.padding(horizontal = 8.dp)
+        modifier = Modifier.padding(horizontal = 6.dp)
     ){
         Box(
             contentAlignment = Alignment.Center,

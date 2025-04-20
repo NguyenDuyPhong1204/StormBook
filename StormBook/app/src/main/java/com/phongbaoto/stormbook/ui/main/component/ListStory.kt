@@ -20,7 +20,8 @@ fun ListStory(
             StoryItem(
                 width = 165.dp,
                 height = 200.dp,
-                story = item
+                story = item,
+                onClick = {}
             )
         }
     }

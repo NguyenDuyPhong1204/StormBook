@@ -16,6 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.phongbaoto.stormbook.ui.theme.Black
@@ -32,12 +34,15 @@ fun ButtonComponent(
     image: Int?,
     isImage: Boolean = false,
     fontWeight: FontWeight,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    shape: Dp = 10.dp,
+    sizeIcon: Dp = 30.dp,
+    fontSize: TextUnit = 18.sp
 ){
     Button(
         modifier = modifier,
         onClick = onClick,
-        shape = RoundedCornerShape(10.dp),
+        shape = RoundedCornerShape(shape),
         colors = ButtonColors(
             containerColor = color,
             contentColor = color,
@@ -50,7 +55,7 @@ fun ButtonComponent(
             image?.let { painterResource(it) }?.let {
                 Image(
                     modifier = Modifier
-                        .size(30.dp),
+                        .size(sizeIcon),
                     painter = it,
                     contentDescription = "Image"
                 )
@@ -61,7 +66,7 @@ fun ButtonComponent(
 
         Text(
             text = title,
-            fontSize = 18.sp,
+            fontSize = fontSize,
             color = textColor,
             fontWeight = fontWeight
         )

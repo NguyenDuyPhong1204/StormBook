@@ -31,6 +31,7 @@ fun StoryItem(
     width: Dp,
     height: Dp,
     story: Story,
+    onClick: () -> Unit
 ){
     Column(
         modifier = Modifier
@@ -39,7 +40,7 @@ fun StoryItem(
             .clip(RoundedCornerShape(10.dp))
             .border(width = 1.dp, color = White, shape = RoundedCornerShape(10.dp))
             .background(color = Black)
-            .clickable {  },
+            .clickable { onClick() },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(

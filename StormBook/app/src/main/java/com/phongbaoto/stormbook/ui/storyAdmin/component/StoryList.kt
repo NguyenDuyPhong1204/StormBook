@@ -19,7 +19,8 @@ import com.phongbaoto.stormbook.utils.UtilsComponent.StoryItem
 @SuppressLint("ConfigurationScreenWidthHeight")
 @Composable
 fun StoryList(
-    listStory: List<Story>
+    listStory: List<Story>,
+    onClickItem: () -> Unit
 ) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
@@ -50,7 +51,8 @@ fun StoryList(
             StoryItem(
                 width = minItemWidth,
                 height = 200.dp,
-                story = item
+                story = item,
+                onClick = onClickItem
             )
         }
     )
