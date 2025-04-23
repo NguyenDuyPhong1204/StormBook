@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbook.ui.detailStoryAdmin.component
+package com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.phongbaoto.stormbook.data.model.Category
@@ -54,31 +55,36 @@ fun InfoStory(){
         RowContent(
             icon = user,
             title = "Tác giả: ",
-            content= "Đang cập nhật"
+            content= "Đang cập nhật",
+            width = 120.dp
         )
         //tinh trang
         RowContent(
             icon = wifi,
             title = "Tình trạng: ",
-            content = "Đang cập nhật"
+            content = "Đang cập nhật",
+            width = 120.dp
         )
         //luot thich
         RowContent(
             icon = like,
             title = "Lượt thích: ",
-            content = 5678.toString()
+            content = 5678.toString(),
+            width = 120.dp
         )
         //luot theo doi
         RowContent(
             icon = love,
             title = "lượt theo dõi: ",
-            content = 5678.toString()
+            content = 5678.toString(),
+            width = 120.dp
         )
         //luot theo doi
         RowContent(
             icon = eye_story,
             title = "Lượt xem: ",
-            content =  45678.toString()
+            content =  45678.toString(),
+            width = 120.dp
         )
 
         ListCategoryStory(listCategory)
@@ -91,7 +97,8 @@ fun InfoStory(){
 fun RowContent(
     icon: Int,
     title: String,
-    content: String
+    content: String,
+    width: Dp
 ){
     Row(
         modifier = Modifier
@@ -102,7 +109,7 @@ fun RowContent(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .width(120.dp)
+                .width(width)
         ){
             Icon(
                 painter = painterResource(id = icon),

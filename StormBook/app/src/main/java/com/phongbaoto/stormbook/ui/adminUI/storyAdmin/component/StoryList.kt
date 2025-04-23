@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbook.ui.storyAdmin.component
+package com.phongbaoto.stormbook.ui.adminUI.storyAdmin.component
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement

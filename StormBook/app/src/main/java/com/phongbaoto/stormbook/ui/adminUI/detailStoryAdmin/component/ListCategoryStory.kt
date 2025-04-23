@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbook.ui.detailStoryAdmin.component
+package com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
@@ -65,7 +65,7 @@ fun ItemCategory(
         border = BorderStroke(width = 2.dp, color = RedButton),
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier
-            .padding(horizontal = 10.dp, vertical = 5.dp)
+            .padding(horizontal = 6.dp, vertical = 5.dp)
             .width(110.dp),
     ) {
         Text(

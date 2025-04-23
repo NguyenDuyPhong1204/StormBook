@@ -125,7 +125,10 @@ fun HomeScreen(navController: NavController) {
                     image = propose
                 )
                 Space(5.dp)
-                ListStory(listStory)
+                ListStory(
+                    listStory,
+                    navController = navController
+                )
             }
 
             //truyen hot
@@ -138,7 +141,10 @@ fun HomeScreen(navController: NavController) {
                     image = hot
                 )
                 Space(5.dp)
-                ListStory(listStory)
+                ListStory(
+                    listStory,
+                    navController = navController
+                )
             }
 
         }

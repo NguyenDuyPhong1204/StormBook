@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbook.ui.detailStoryAdmin
+package com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -33,10 +33,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.phongbaoto.stormbook.ui.detailStoryAdmin.component.ConfirmComponent
-import com.phongbaoto.stormbook.ui.detailStoryAdmin.component.DialogRejectStory
-import com.phongbaoto.stormbook.ui.detailStoryAdmin.component.InfoStory
-import com.phongbaoto.stormbook.ui.detailStoryAdmin.component.IntroduceStory
+import com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component.ConfirmComponent
+import com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component.DialogRejectStory
+import com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component.InfoStory
+import com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component.IntroduceStory
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.BlueButton_3
 import com.phongbaoto.stormbook.ui.theme.GreenButton

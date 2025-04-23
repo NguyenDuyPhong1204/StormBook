@@ -60,9 +60,8 @@ fun ButtonComponent(
                     contentDescription = "Image"
                 )
             }
+            Spacer(modifier = Modifier.padding(10.dp))
         }
-
-        Spacer(modifier = Modifier.padding(10.dp))
 
         Text(
             text = title,

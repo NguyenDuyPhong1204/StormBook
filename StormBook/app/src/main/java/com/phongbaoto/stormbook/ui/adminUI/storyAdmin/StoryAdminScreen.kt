@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbook.ui.storyAdmin
+package com.phongbaoto.stormbook.ui.adminUI.storyAdmin
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -19,8 +19,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.phongbaoto.stormbook.data.model.Story
 import com.phongbaoto.stormbook.navigation.ROUTER
-import com.phongbaoto.stormbook.ui.storyAdmin.component.PendingStory
-import com.phongbaoto.stormbook.ui.storyAdmin.component.PostedStory
+import com.phongbaoto.stormbook.ui.adminUI.storyAdmin.component.PendingStory
+import com.phongbaoto.stormbook.ui.adminUI.storyAdmin.component.PostedStory
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.BlueButton
 import com.phongbaoto.stormbook.ui.theme.White

@@ -25,3 +25,6 @@ val love = R.drawable.love
 val eye_story = R.drawable.eye_2
 val user = R.drawable.user
 val information = R.drawable.infomation
+val data = R.drawable.data_2
+val comment = R.drawable.comments
+val comment_2 = R.drawable.comment_2

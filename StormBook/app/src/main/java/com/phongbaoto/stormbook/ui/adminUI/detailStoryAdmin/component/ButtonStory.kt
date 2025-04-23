@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbook.ui.detailStoryAdmin.component
+package com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxWidth

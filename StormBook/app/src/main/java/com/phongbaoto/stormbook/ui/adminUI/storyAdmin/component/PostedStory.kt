@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbook.ui.storyAdmin.component
+package com.phongbaoto.stormbook.ui.adminUI.storyAdmin.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.phongbaoto.stormbook.data.model.Story
+import com.phongbaoto.stormbook.navigation.ROUTER
 import com.phongbaoto.stormbook.utils.banner
 import com.phongbaoto.stormbook.utils.banner_2
 import com.phongbaoto.stormbook.utils.banner_3
@@ -108,6 +109,8 @@ fun PostedStory(
             .fillMaxWidth()
             .padding(start = 15.dp, end = 15.dp, bottom = 20.dp)
     ) {
-        StoryList(listStory, onClickItem = {})
+        StoryList(listStory, onClickItem = {
+            navController.navigate(ROUTER.DetailStory.name)
+        })
     }
 }

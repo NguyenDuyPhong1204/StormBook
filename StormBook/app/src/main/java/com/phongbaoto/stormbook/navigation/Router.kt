@@ -7,5 +7,6 @@ enum class ROUTER{
     BottomNav,
     Category,
     AddStory,
-    DetailStoryAdmin
+    DetailStoryAdmin,
+    DetailStory
 }

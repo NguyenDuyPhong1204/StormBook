@@ -38,6 +38,7 @@ fun TextFieldComponent(
     placeholder: String,
     isFocused: MutableState<Boolean>,
     isPassword: Boolean = false,
+    modifier: Modifier = Modifier
 ) {
 
     var passwordVisible = remember { mutableStateOf(false) }
@@ -46,7 +47,7 @@ fun TextFieldComponent(
         value = value,
         onValueChange = { newValue -> onValueChange(newValue) },
         placeholder = { Text(text = placeholder, color = PlaceHold) },
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(bottom = 10.dp)
             .border(

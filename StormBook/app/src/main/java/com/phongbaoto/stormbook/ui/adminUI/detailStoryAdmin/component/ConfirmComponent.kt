@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbook.ui.detailStoryAdmin.component
+package com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
-import com.phongbaoto.stormbook.ui.detailStoryAdmin.DetailStoryAdmin
+import com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.DetailStoryAdmin
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.BlueButton_2
 import com.phongbaoto.stormbook.ui.theme.RedButton

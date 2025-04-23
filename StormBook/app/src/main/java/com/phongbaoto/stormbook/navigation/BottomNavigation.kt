@@ -24,7 +24,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.phongbaoto.stormbook.ui.category.CategoryScreen
 import com.phongbaoto.stormbook.ui.main.HomeScreen
-import com.phongbaoto.stormbook.ui.storyAdmin.StoryScreen
+import com.phongbaoto.stormbook.ui.adminUI.storyAdmin.StoryScreen
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.RedIndicator
 import com.phongbaoto.stormbook.ui.theme.White

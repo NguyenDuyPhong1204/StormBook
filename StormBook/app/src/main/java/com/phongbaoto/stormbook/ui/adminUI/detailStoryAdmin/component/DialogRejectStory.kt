@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbook.ui.detailStoryAdmin.component
+package com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -71,6 +71,7 @@ fun DialogRejectStory(
                         },
                         placeholder = "Nhập lý do từ chối",
                         isFocused = remember { mutableStateOf(isFocused)},
+                        modifier = Modifier
                     )
                     Space(10.dp)
                     Row(

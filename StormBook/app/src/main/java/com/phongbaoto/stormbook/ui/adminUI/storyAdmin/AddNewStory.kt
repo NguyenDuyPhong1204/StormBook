@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbook.ui.storyAdmin
+package com.phongbaoto.stormbook.ui.adminUI.storyAdmin
 
 import android.net.Uri
 import android.util.Log
@@ -39,10 +39,10 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.phongbaoto.stormbook.data.model.Category
 import com.phongbaoto.stormbook.ui.category.component.DialogAddCategory
-import com.phongbaoto.stormbook.ui.storyAdmin.component.DialogSelectCategory
-import com.phongbaoto.stormbook.ui.storyAdmin.component.SelectCategoryField
-import com.phongbaoto.stormbook.ui.storyAdmin.component.SelectImage
-import com.phongbaoto.stormbook.ui.storyAdmin.component.TextFieldStory
+import com.phongbaoto.stormbook.ui.adminUI.storyAdmin.component.DialogSelectCategory
+import com.phongbaoto.stormbook.ui.adminUI.storyAdmin.component.SelectCategoryField
+import com.phongbaoto.stormbook.ui.adminUI.storyAdmin.component.SelectImage
+import com.phongbaoto.stormbook.ui.adminUI.storyAdmin.component.TextFieldStory
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.BlueButton
 import com.phongbaoto.stormbook.ui.theme.White
