@@ -38,6 +38,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.phongbaoto.stormbook.data.model.Chapter
 import com.phongbaoto.stormbook.data.model.Comment
+import com.phongbaoto.stormbook.navigation.ROUTER
 import com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component.ConfirmComponent
 import com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component.DialogRejectStory
 import com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component.InfoStory
@@ -59,12 +60,13 @@ import com.phongbaoto.stormbook.utils.story
 @Preview(showBackground = true)
 @Composable
 fun PreView(){
-    DetailStory(navController = rememberNavController())
+    DetailStory(navController = rememberNavController(),true)
 }
 
 @Composable
 fun DetailStory(
-    navController: NavController
+    navController: NavController,
+    isShowButton: Boolean
 ) {
 //    var showDialog by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
@@ -115,7 +117,7 @@ fun DetailStory(
             time = "2025-03-18 15:33:40.875691"
         ),
         Chapter(
-            chapterNumber = 123,
+            chapterNumber = 999,
             title = "",
             time = "2025-03-18 15:33:40.875691"
         )
@@ -235,7 +237,9 @@ fun DetailStory(
                     shape = 5.dp,
                     fontSize = 16.sp,
                     sizeIcon = 20.dp,
-                    onClick = {},
+                    onClick = {
+                        navController.navigate(ROUTER.ChapterScreen.name)
+                    },
                 )
                 //theo doi
                 ButtonComponent(
@@ -287,7 +291,8 @@ fun DetailStory(
        ){
            ListChapterStory(
                listChapter = listChapter,
-               navController = navController
+               navController = navController,
+               isShowButton = isShowButton
            )
        }
 

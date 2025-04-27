@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.phongbaoto.stormbook.data.model.Chapter
+import com.phongbaoto.stormbook.navigation.ROUTER
 import com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.component.RowContent
 import com.phongbaoto.stormbook.ui.main.component.TitleComponent
 import com.phongbaoto.stormbook.ui.theme.Black
@@ -44,6 +45,7 @@ import java.util.Date
 fun ListChapterStory(
     listChapter: List<Chapter>,
     navController: NavController,
+    isShowButton: Boolean
 ){
     Column(
         modifier = Modifier
@@ -76,33 +78,39 @@ fun ListChapterStory(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(355.dp)
-                    .padding(start = 10.dp, end = 10.dp, bottom = 10.dp, top = 5.dp)
+                    .padding(start = 10.dp, end = 10.dp, bottom = if(isShowButton) 50.dp else 10.dp, top = 5.dp)
             ){
                 items(listChapter){ item ->
                     ItemChapter(
                         chapter = item,
-                        onClick = {}
+                        onClick = {
+//                            navController.navigate("${ROUTER.DetailStory.name}/${false}")
+                        }
                     )
                 }
             }
 
             //button
-            ButtonComponent(
-                title = "Thêm chương mới",
-                color = BlueButton,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-                    .align(Alignment.BottomEnd),
-                textColor = White,
-                image = like,
-                fontWeight = FontWeight.Medium,
-                isImage = false,
-                shape = 0.dp,
-                fontSize = 16.sp,
-                sizeIcon = 20.dp,
-                onClick = {},
-            )
+            if(isShowButton){
+                ButtonComponent(
+                    title = "Thêm chương mới",
+                    color = BlueButton,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                        .align(Alignment.BottomEnd),
+                    textColor = White,
+                    image = like,
+                    fontWeight = FontWeight.Medium,
+                    isImage = false,
+                    shape = 0.dp,
+                    fontSize = 16.sp,
+                    sizeIcon = 20.dp,
+                    onClick = {
+                        navController.navigate(ROUTER.AddChapter.name)
+                    },
+                )
+            }
         }
 
     }

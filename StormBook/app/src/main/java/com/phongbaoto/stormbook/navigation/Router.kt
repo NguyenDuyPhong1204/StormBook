@@ -8,5 +8,8 @@ enum class ROUTER{
     Category,
     AddStory,
     DetailStoryAdmin,
-    DetailStory
+    DetailStory,
+    AddChapter,
+    ProfileScreen,
+    ChapterScreen
 }

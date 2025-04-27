@@ -110,7 +110,7 @@ fun PostedStory(
             .padding(start = 15.dp, end = 15.dp, bottom = 20.dp)
     ) {
         StoryList(listStory, onClickItem = {
-            navController.navigate(ROUTER.DetailStory.name)
+            navController.navigate("${ROUTER.DetailStory.name}/${true}")
         })
     }
 }

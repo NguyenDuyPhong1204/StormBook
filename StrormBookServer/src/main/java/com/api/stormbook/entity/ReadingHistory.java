@@ -31,6 +31,7 @@ public class ReadingHistory {
     @JoinColumn(name = "chapter_id", nullable = false)
     private Chapter chapter;
 
+    @Builder.Default
     @Column(nullable = false)
     private Boolean isRead = false;
 

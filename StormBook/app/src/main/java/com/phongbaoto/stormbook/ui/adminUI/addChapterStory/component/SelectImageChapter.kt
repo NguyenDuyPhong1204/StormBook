@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -63,8 +64,8 @@ fun SelectMultipleImages(
 
     // Launcher để chọn hình ảnh từ thư viện
     val galleryLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.GetContent()
-    ) { uri: Uri? ->
+        contract = ActivityResultContracts.GetMultipleContents()
+    ) { uri: List<Uri> ->
         uri?.let {
             val updatedList = selectedImageUris + it
             selectedImageUris = updatedList
@@ -75,7 +76,7 @@ fun SelectMultipleImages(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(380.dp)
+            .height(500.dp)
             .background(color = Black)
             .drawBehind {
                 val borderWidth = 4.dp.toPx() //độ rộng của viền
@@ -168,23 +169,34 @@ fun SelectMultipleImages(
 
         Space(5.dp)
 
+        // Hiển thị số lượng ảnh đã chọn
+        if (selectedImageUris.isNotEmpty()) {
+            Text(
+                text = "Đã chọn ${selectedImageUris.size} ảnh",
+                color = White,
+                fontSize = 14.sp,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+        }
+        Space(5.dp)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 25.dp)
-                .height(205.dp)
+                .height(250.dp)
         ) {
             if (selectedImageUris.isNotEmpty()) {
                 // Hiển thị danh sách hình ảnh
-                LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    contentPadding = PaddingValues(4.dp)
+                LazyColumn(
+                    contentPadding = PaddingValues(4.dp),
+                    modifier = Modifier
+                        .padding(bottom = 10.dp),
                 ) {
                     items(selectedImageUris) { uri ->
                         Box(
                             modifier = Modifier
-                                .width(150.dp)
-                                .height(190.dp)
+                                .fillMaxWidth()
+                                .fillParentMaxHeight()
                         ) {
                             AsyncImage(
                                 model = ImageRequest.Builder(context)
@@ -192,7 +204,7 @@ fun SelectMultipleImages(
                                     .crossfade(true)
                                     .build(),
                                 contentDescription = "Selected Image",
-                                contentScale = ContentScale.Crop,
+                                contentScale = ContentScale.Fit,
                                 modifier = Modifier
                                     .fillMaxSize()
                                     .clip(RoundedCornerShape(10.dp))
@@ -240,14 +252,6 @@ fun SelectMultipleImages(
             }
         }
 
-        // Hiển thị số lượng ảnh đã chọn
-        if (selectedImageUris.isNotEmpty()) {
-            Text(
-                text = "Đã chọn ${selectedImageUris.size} ảnh",
-                color = White,
-                fontSize = 14.sp,
-                modifier = Modifier.padding(top = 8.dp)
-            )
-        }
+
     }
 }

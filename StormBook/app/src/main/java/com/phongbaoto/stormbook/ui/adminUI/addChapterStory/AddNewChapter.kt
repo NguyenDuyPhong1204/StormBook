@@ -32,7 +32,7 @@ fun PreviewAddChapter(){
 
 @Composable
 fun AddNewChapter(
-    navController: NavController
+    navController: NavController,
 ){
     //chuong truyen
     var chapterNumber by remember { mutableStateOf("") }

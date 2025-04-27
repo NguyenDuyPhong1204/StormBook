@@ -25,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.phongbaoto.stormbook.ui.category.CategoryScreen
 import com.phongbaoto.stormbook.ui.main.HomeScreen
 import com.phongbaoto.stormbook.ui.adminUI.storyAdmin.StoryScreen
+import com.phongbaoto.stormbook.ui.profile.ProfileScreen
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.RedIndicator
 import com.phongbaoto.stormbook.ui.theme.White
@@ -72,7 +73,7 @@ fun BottomNavigation(
                                 text = navItem.label,
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Medium,
-                                color = White
+                                color = if(selectedIndex == index) RedIndicator else White
                                 )
                         },
                         colors = NavigationBarItemDefaults.colors(
@@ -103,5 +104,6 @@ fun ContentScreen(
         0 -> HomeScreen(navController)
         1 -> CategoryScreen(navController)
         2 -> StoryScreen(navController)
+        3 -> ProfileScreen(navController)
     }
 }

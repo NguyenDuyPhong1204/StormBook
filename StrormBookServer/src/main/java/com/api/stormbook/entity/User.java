@@ -30,14 +30,18 @@ public class User {
     @Column(nullable = false)
     private String fullName;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role = Role.USER;
 
+    @Builder.Default
     private String avatar = "";
 
+    @Builder.Default
     private Boolean verified = false;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status status = Status.ACTIVE;
@@ -48,24 +52,6 @@ public class User {
 
     @UpdateTimestamp
     private Instant updatedAt;
-
-//    @OneToMany(mappedBy = "users")
-//    private List<Report> reports;
-//
-//    @OneToMany(mappedBy = "users")
-//    private List<Favorite> favorites;
-//
-//    @OneToMany(mappedBy = "users")
-//    private List<Rating> ratings;
-//
-//    @OneToMany(mappedBy = "users")
-//    private List<Notification> notifications;
-//
-//    @OneToMany(mappedBy = "users")
-//    private List<Comment> comments;
-//
-//    @OneToMany(mappedBy = "users")
-//    private List<ReadingHistory> histories;
 
     public enum Role{
         USER,STORY_USER, ADMIN
