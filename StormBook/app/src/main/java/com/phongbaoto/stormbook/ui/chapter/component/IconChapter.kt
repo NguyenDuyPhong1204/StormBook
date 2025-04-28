@@ -20,7 +20,9 @@ fun IconChapter(
     modifier: Modifier
 ){
     IconButton(
-        onClick = {},
+        onClick = {
+            onClick()
+        },
         modifier = modifier
     ) {
         icon.RenderIcon(

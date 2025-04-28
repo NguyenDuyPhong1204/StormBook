@@ -1,5 +1,6 @@
 package com.phongbaoto.stormbook.ui.chapter.component
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -35,14 +36,10 @@ import com.phongbaoto.stormbook.utils.like
 import com.phongbaoto.stormbook.utils.plane
 import com.phongbaoto.stormbook.utils.report
 
-@Preview
 @Composable
-fun PreviewNavigation(){
-    NavigationChapter()
-}
-
-@Composable
-fun NavigationChapter(){
+fun NavigationChapter(
+    onShowReportDialog: () -> Unit = {}
+) {
     var comment by remember { mutableStateOf("") }
     var isFocused by remember { mutableStateOf(false) }
     Column(
@@ -51,13 +48,13 @@ fun NavigationChapter(){
             .height(150.dp)
             .padding(horizontal = 15.dp, vertical = 10.dp)
             .background(color = Black)
-    ){
+    ) {
         //comment
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-        ){
+        ) {
             TextFieldComponent(
                 value = comment,
                 isFocused = remember { mutableStateOf(isFocused) },
@@ -83,7 +80,7 @@ fun NavigationChapter(){
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
-        ){
+        ) {
             //back
             IconChapter(
                 icon = IconType.Vector(Icons.Default.ArrowBackIosNew),
@@ -96,7 +93,7 @@ fun NavigationChapter(){
                     .width(150.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
-            ){
+            ) {
                 //nut like
                 IconChapter(
                     icon = IconType.Resource(like),
@@ -112,7 +109,9 @@ fun NavigationChapter(){
                 //nut bao cao
                 IconChapter(
                     icon = IconType.Resource(report),
-                    onClick = {},
+                    onClick = {
+                        onShowReportDialog()
+                    },
                     modifier = Modifier.size(35.dp)
                 )
             }
@@ -124,6 +123,5 @@ fun NavigationChapter(){
                 modifier = Modifier.size(35.dp)
             )
         }
-
     }
 }

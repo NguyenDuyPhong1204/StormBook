@@ -47,13 +47,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
+import com.phongbaoto.stormbook.ui.chapter.component.DialogReport
 import com.phongbaoto.stormbook.ui.chapter.component.NavigationChapter
 
-@Preview
-@Composable
-fun PreviewChapter() {
-    ChapterScreen(rememberNavController())
-}
 
 @Composable
 fun ChapterScreen(
@@ -67,7 +63,9 @@ fun ChapterScreen(
     //cuon len thi true xuong thi false
     var isScrollingUp by remember { mutableStateOf(true) }
     var lastScrollOffset by remember { mutableStateOf(0) }
-
+    //
+    var showReportDialog by remember { mutableStateOf(false) }
+    Log.d("ShowDialog", "ChapterScreen: ${showReportDialog}")
     // Theo dõi scroll
     LaunchedEffect(listState.firstVisibleItemScrollOffset) {
         val currentOffset = listState.firstVisibleItemScrollOffset
@@ -90,7 +88,7 @@ fun ChapterScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-        ){
+        ) {
             HeaderComponent(
                 title = "Chương 1",
                 onClick = {},
@@ -116,7 +114,14 @@ fun ChapterScreen(
                 }
             }
         }
-
+        if (showReportDialog) {
+            DialogReport(
+                showDialog = showReportDialog,
+                onDismiss = {
+                    showReportDialog = false
+                }
+            )
+        }
         //thanh hoat dong cac thu
         AnimatedVisibility(
             visible = isScrollingUp,
@@ -136,9 +141,12 @@ fun ChapterScreen(
                 modifier = Modifier
                     .background(Black)
             ) {
-                NavigationChapter()
+                NavigationChapter(
+                    onShowReportDialog = {
+                        showReportDialog = true
+                    }
+                )
             }
         }
-
     }
 }

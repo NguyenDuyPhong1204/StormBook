@@ -22,7 +22,7 @@ fun MainNavigation(){
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = ROUTER.BottomNav.name
+        startDestination = ROUTER.ChapterScreen.name
     ) {
         //
         composable(ROUTER.Welcome.name){
