@@ -12,6 +12,7 @@ import com.phongbaoto.stormbook.ui.category.CategoryScreen
 import com.phongbaoto.stormbook.ui.adminUI.detailStoryAdmin.DetailStoryAdmin
 import com.phongbaoto.stormbook.ui.main.HomeScreen
 import com.phongbaoto.stormbook.ui.adminUI.storyAdmin.AddNewStory
+import com.phongbaoto.stormbook.ui.auth.component.RegisterScreen
 import com.phongbaoto.stormbook.ui.chapter.ChapterScreen
 import com.phongbaoto.stormbook.ui.detailStory.DetailStory
 import com.phongbaoto.stormbook.ui.profile.ProfileScreen
@@ -22,7 +23,7 @@ fun MainNavigation(){
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = ROUTER.ChapterScreen.name
+        startDestination = ROUTER.Home.name
     ) {
         //
         composable(ROUTER.Welcome.name){
@@ -31,6 +32,10 @@ fun MainNavigation(){
         //
         composable(ROUTER.LoginUser.name){
             LoginUserScreen(navController)
+        }
+        //
+        composable(ROUTER.Register.name){
+            RegisterScreen(navController)
         }
         //
         composable(ROUTER.Home.name){

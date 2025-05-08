@@ -40,7 +40,7 @@ fun PaginationControls(
     modifier: Modifier = Modifier
 ){
     if(totalPage <=1) return //khong hien thi phan trang neu chi co 1 trang
-    val visiblePageCount = 5 //so luong trang hien thi
+    val visiblePageCount = 4 //so luong trang hien thi
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,

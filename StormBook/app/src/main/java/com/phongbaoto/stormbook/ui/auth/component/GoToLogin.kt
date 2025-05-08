@@ -13,31 +13,32 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.phongbaoto.stormbook.navigation.ROUTER
-import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.BlueButton
 import com.phongbaoto.stormbook.ui.theme.White
 
 @Composable
-fun GoToRegister(navController: NavController){
+fun GoToLogin(
+    navController: NavController
+){
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Chưa có tài khoản ?",
+            text = "Đã có tài khoản ?",
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
             color = White
         )
         Text(
-            text = "Đăng ký",
+            text = "Đăng nhập",
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
             color = BlueButton,
             modifier = Modifier
                 .padding(start = 10.dp)
                 .clickable {
-                    navController.navigate(ROUTER.Register.name)
+                    navController.navigate(ROUTER.LoginUser.name)
                 }
         )
     }

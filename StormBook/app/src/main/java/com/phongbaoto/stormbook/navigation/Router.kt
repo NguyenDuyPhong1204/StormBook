@@ -3,6 +3,7 @@ package com.phongbaoto.stormbook.navigation
 enum class ROUTER{
     Welcome,
     LoginUser,
+    Register,
     Home,
     BottomNav,
     Category,
@@ -11,5 +12,6 @@ enum class ROUTER{
     DetailStory,
     AddChapter,
     ProfileScreen,
-    ChapterScreen
+    ChapterScreen,
+    ListStoryByCategory
 }

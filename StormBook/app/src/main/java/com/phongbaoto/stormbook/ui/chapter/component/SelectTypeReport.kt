@@ -85,7 +85,8 @@ fun SelectTypeReport(
                 containerColor = White,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
-                cursorColor = BlueInput
+                cursorColor = BlueInput,
+                disabledTextColor = Black
             ),
             shape = RoundedCornerShape(10.dp),
             // Thêm trailing icon cho password
@@ -103,7 +104,8 @@ fun SelectTypeReport(
                     )
                 }
             },
-            readOnly = true
+//            readOnly = true,
+            enabled = false
         )
 
         DropdownMenu(

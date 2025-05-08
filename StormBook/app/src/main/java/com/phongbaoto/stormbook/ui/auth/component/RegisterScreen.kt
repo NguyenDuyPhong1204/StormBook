@@ -1,19 +1,15 @@
-package com.phongbaoto.stormbook.ui.auth
+package com.phongbaoto.stormbook.ui.auth.component
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -21,39 +17,42 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.phongbaoto.stormbook.ui.auth.component.GoToRegister
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.BlueButton
 import com.phongbaoto.stormbook.ui.theme.White
 import com.phongbaoto.stormbook.utils.UtilsComponent.ButtonComponent
-import com.phongbaoto.stormbook.utils.UtilsComponent.DividerWithText
 import com.phongbaoto.stormbook.utils.UtilsComponent.Space
 import com.phongbaoto.stormbook.utils.UtilsComponent.TextFieldComponent
-import com.phongbaoto.stormbook.ui.auth.component.WelcomeComponent
-import com.phongbaoto.stormbook.utils.google
-import com.phongbaoto.stormbook.utils.login
+import com.phongbaoto.stormbook.utils.register
 
-@SuppressLint("ConfigurationScreenWidthHeight")
+@Preview
 @Composable
-fun LoginUserScreen(navController: NavController){
-    val context = LocalContext.current
+fun PreviewRegister(){
+    RegisterScreen(rememberNavController())
+}
+
+@Composable
+fun RegisterScreen(navController: NavController){
     val configuration = LocalConfiguration.current
-    val screenWidth = configuration.screenWidthDp.dp
-    val screenHeight = configuration.screenHeightDp.dp
-    //thong tin dang nhap
+    //thong tin dang ky
+    //email
     var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
     var isFocusedEmail by remember { mutableStateOf(false) }
-    val isFocusedPass by remember { mutableStateOf(false) }
+    //name or nickname
+    var name by remember { mutableStateOf("") }
+    var isFocusedName by remember { mutableStateOf(false) }
+    //password
+    var password by remember { mutableStateOf("") }
+    var isFocusedPass by remember { mutableStateOf(false) }
+    //confirm password
+    var confirmPassword by remember { mutableStateOf("") }
+    var isFocusedConfirmPass by remember { mutableStateOf(false) }
     //
     val focusManager = LocalFocusManager.current
 
@@ -65,9 +64,8 @@ fun LoginUserScreen(navController: NavController){
             .navigationBarsPadding()
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
-                indication = null // Bỏ hiệu ứng khi click
-            ) {
-                // Khi click vào (bất kỳ đâu trên màn hình), hủy tất cả focus
+                indication = null
+            ){
                 focusManager.clearFocus()
             }
     ){
@@ -75,7 +73,9 @@ fun LoginUserScreen(navController: NavController){
             modifier = Modifier
                 .fillMaxSize()
         ){
-            WelcomeComponent(title = login)
+            WelcomeComponent(
+                title = register
+            )
             //email
             TextFieldComponent(
                 value = email,
@@ -83,6 +83,16 @@ fun LoginUserScreen(navController: NavController){
                     email = valueEmail
                 },
                 placeholder = "Vui lòng nhập email!",
+                isFocused = remember { mutableStateOf(isFocusedEmail) }
+            )
+            //name
+            Space(7.dp)
+            TextFieldComponent(
+                value = name,
+                onValueChange = {valueName ->
+                    name = valueName
+                },
+                placeholder = "Vui lòng nhập tên hoặc biệt danh của bạn!",
                 isFocused = remember { mutableStateOf(isFocusedEmail) }
             )
             //password
@@ -96,26 +106,21 @@ fun LoginUserScreen(navController: NavController){
                 isFocused = remember { mutableStateOf(isFocusedPass)},
                 isPassword = true
             )
-
-            //quen mat khau
-            Space(5.dp)
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.End
-            ){
-                Text(
-                    text = "Quên mật khẩu ?",
-                    fontSize = 16.sp,
-                    color = White,
-                    textAlign = TextAlign.End
-                )
-            }
-
-            //button dang nhap
+            //confirm password
+            Space(7.dp)
+            TextFieldComponent(
+                value = confirmPassword,
+                onValueChange = {valueConfirmPassword ->
+                    confirmPassword = valueConfirmPassword
+                },
+                placeholder = "Vui lòng nhập lại mật khẩu!",
+                isFocused = remember { mutableStateOf(isFocusedConfirmPass)},
+                isPassword = true
+            )
+            //button dang ky
             Space(20.dp)
             ButtonComponent(
-                title = "Đăng nhập",
+                title = "Đăng ký",
                 onClick = {},
                 color = BlueButton,
                 textColor = White,
@@ -127,35 +132,10 @@ fun LoginUserScreen(navController: NavController){
                     .height(50.dp)
             )
 
-            //hoac
-            Space(15.dp)
-            DividerWithText("Hoặc")
-
-            Space(15.dp)
-            ButtonComponent(
-                title = "Đăng nhập bằng Google",
-                onClick = {},
-                color = White,
-                textColor = Black,
-                image = google,
-                isImage = true,
-                fontWeight = FontWeight.SemiBold,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-            )
-
-            //khong co tai khoan
             Space(20.dp)
-            GoToRegister(navController = navController)
+            GoToLogin(navController)
 
         }
     }
-}
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewLogin(){
-    val navigation = rememberNavController()
-    LoginUserScreen(navigation)
 }
