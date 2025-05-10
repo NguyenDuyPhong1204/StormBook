@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbook.ui.auth.component
+package com.phongbaoto.stormbook.ui.auth
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -23,6 +23,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.phongbaoto.stormbook.ui.auth.component.GoToLogin
+import com.phongbaoto.stormbook.ui.auth.component.WelcomeComponent
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.BlueButton
 import com.phongbaoto.stormbook.ui.theme.White

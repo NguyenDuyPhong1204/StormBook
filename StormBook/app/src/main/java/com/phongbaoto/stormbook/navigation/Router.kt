@@ -13,5 +13,7 @@ enum class ROUTER{
     AddChapter,
     ProfileScreen,
     ChapterScreen,
-    ListStoryByCategory
+    ListStoryByCategory,
+    PreForgotPass,
+    ForgotPass
 }
