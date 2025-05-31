@@ -4,8 +4,10 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.outlined.Visibility
@@ -26,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.BlueInput
 import com.phongbaoto.stormbook.ui.theme.PlaceHold
 import com.phongbaoto.stormbook.ui.theme.White
@@ -38,6 +41,7 @@ fun TextFieldComponent(
     placeholder: String,
     isFocused: MutableState<Boolean>,
     isPassword: Boolean = false,
+    isLeftIcon: Boolean = false,
     modifier: Modifier = Modifier
 ) {
 
@@ -71,7 +75,7 @@ fun TextFieldComponent(
                 IconButton(onClick = { passwordVisible.value = !passwordVisible.value }) {
                     Icon(
                         imageVector = if (passwordVisible.value)
-                        Icons.Outlined.Visibility
+                            Icons.Outlined.Visibility
                         else
                             Icons.Outlined.VisibilityOff,
                         contentDescription = if (passwordVisible.value)
@@ -82,5 +86,16 @@ fun TextFieldComponent(
                 }
             }
         } else null,
+        //icon ben trai
+        leadingIcon = if (isLeftIcon) {
+            {
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = "Search",
+                    tint = Black,
+                    modifier = Modifier.size(20.dp)
+                )
+            }
+        }else null
     )
 }

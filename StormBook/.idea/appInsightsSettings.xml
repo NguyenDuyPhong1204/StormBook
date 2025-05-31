@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.phongbaoto.stormbook" />
+                  <option name="mobileSdkAppId" value="1:953202089482:android:e73cdcef4a171e2aab89f3" />
+                  <option name="projectId" value="stormbook" />
+                  <option name="projectNumber" value="953202089482" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

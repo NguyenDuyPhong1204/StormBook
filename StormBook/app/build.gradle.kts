@@ -1,9 +1,18 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("org.jetbrains.kotlin.kapt")
+    id("com.google.dagger.hilt.android")
 }
-
+val localProperties = Properties().apply {
+    val file = rootProject.file("local.properties")
+    if (file.exists()) {
+        load(file.inputStream())
+    }
+}
 android {
     namespace = "com.phongbaoto.stormbook"
     compileSdk = 35
@@ -26,6 +35,21 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            buildConfigField("String", "BASE_URL", "\"${localProperties["BASE_URL"]}\"")
+            buildConfigField("String", "ANDROID_CLIENT_ID", "\"${localProperties["ANDROID_CLIENT_ID"]}\"")
+            buildConfigField("String", "WEB_CLIENT_ID", "\"${localProperties["WEB_CLIENT_ID"]}\"")
+        }
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            buildConfigField("String", "BASE_URL", "\"${localProperties["BASE_URL"]}\"")
+            buildConfigField("String", "WEB_CLIENT_ID", "\"${localProperties["WEB_CLIENT_ID"]}\"")
+            buildConfigField("String", "ANDROID_CLIENT_ID", "\"${localProperties["GOOGLE_API"]}\"")
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -35,6 +59,7 @@ android {
         jvmTarget = "11"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
 }
@@ -66,6 +91,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     //icon
     implementation("androidx.compose.material:material-icons-core:1.5.0")
     implementation("androidx.compose.material:material-icons-extended:1.5.0")
@@ -74,4 +100,14 @@ dependencies {
     //thu vien anh
     implementation("io.coil-kt.coil3:coil-compose:3.1.0")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.1.0")
+    //hilt
+    implementation("com.google.dagger:hilt-android:2.56.2")
+    kapt("com.google.dagger:hilt-android-compiler:2.56.2")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    //coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    //google
+    implementation("com.google.android.gms:play-services-auth:21.3.0")
+    implementation ("com.google.firebase:firebase-auth:22.3.0") // dùng Firebase Auth
+    implementation ("com.google.android.gms:play-services-auth:20.7.0") // Google Sign-In
 }

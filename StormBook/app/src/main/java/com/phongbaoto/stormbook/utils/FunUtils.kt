@@ -1,9 +1,12 @@
 package com.phongbaoto.stormbook.utils
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.Uri
 import android.os.Environment
 import androidx.core.content.FileProvider
+import androidx.core.content.getSystemService
 import java.io.File
 import java.text.SimpleDateFormat
 import java.time.Duration
@@ -58,6 +61,20 @@ object FunUtils {
             days < 7 -> "$days ngày trước"
             else -> parsedTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
         }
+    }
+
+    //kiem tra ket noi mang
+    fun isNetworkAvailable(context: Context): Boolean{
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    }
+
+    //kiem tra email
+    fun isValidEmail(email: String): Boolean {
+        val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"
+        return email.matches(emailRegex.toRegex())
     }
 
 }

@@ -26,7 +26,7 @@ fun MainNavigation() {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = ROUTER.PreForgotPass.name
+        startDestination = ROUTER.Welcome.name
     ) {
         //
         composable(ROUTER.Welcome.name) {

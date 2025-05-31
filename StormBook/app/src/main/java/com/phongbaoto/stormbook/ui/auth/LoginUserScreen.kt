@@ -1,6 +1,10 @@
 package com.phongbaoto.stormbook.ui.auth
 
 import android.annotation.SuppressLint
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -15,6 +19,8 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,8 +34,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.phongbaoto.stormbook.BuildConfig
+import com.phongbaoto.stormbook.navigation.ROUTER
 import com.phongbaoto.stormbook.ui.auth.component.GoToRegister
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.BlueButton
@@ -39,16 +51,21 @@ import com.phongbaoto.stormbook.utils.UtilsComponent.DividerWithText
 import com.phongbaoto.stormbook.utils.UtilsComponent.Space
 import com.phongbaoto.stormbook.utils.UtilsComponent.TextFieldComponent
 import com.phongbaoto.stormbook.ui.auth.component.WelcomeComponent
+import com.phongbaoto.stormbook.utils.UtilsComponent.LoadingComponent
+import com.phongbaoto.stormbook.utils.UtilsComponent.NotifyDialogComponent
 import com.phongbaoto.stormbook.utils.google
 import com.phongbaoto.stormbook.utils.login
+import com.phongbaoto.stormbook.viewmodel.authViewModel.LoginViewModel
 
 @SuppressLint("ConfigurationScreenWidthHeight")
 @Composable
-fun LoginUserScreen(navController: NavController){
+fun LoginUserScreen(
+    navController: NavController,
+    viewModel: LoginViewModel = hiltViewModel()
+) {
     val context = LocalContext.current
     val configuration = LocalConfiguration.current
-    val screenWidth = configuration.screenWidthDp.dp
-    val screenHeight = configuration.screenHeightDp.dp
+    val webClientAPI = BuildConfig.WEB_CLIENT_ID
     //thong tin dang nhap
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -56,6 +73,52 @@ fun LoginUserScreen(navController: NavController){
     val isFocusedPass by remember { mutableStateOf(false) }
     //
     val focusManager = LocalFocusManager.current
+    //
+    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        .requestIdToken(webClientAPI)
+        .requestEmail()
+        .build()
+
+    val googleSignInClient = GoogleSignIn.getClient(context, gso)
+
+    // Google Sign-In result launcher
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+        try {
+            val account = task.getResult(ApiException::class.java)
+            val idToken = account.idToken
+            if (idToken != null) {
+                viewModel.loginWithGoogle(idToken)
+            } else {
+                Toast.makeText(context, "Không lấy được ID token", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            Toast.makeText(context, "Lỗi không xác định: ${e.message}", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    //thuoc tinh hien thi dialog
+    var showDialog by remember { mutableStateOf(false) }
+
+    //lay thuoc tinh tu viewmodel
+    val errorMessage by viewModel.errorMessage.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+    val loginResult by viewModel.loginResult.collectAsState()
+    LaunchedEffect(loginResult) {
+        loginResult?.onSuccess {
+            navController.navigate(ROUTER.BottomNav.name) {
+                popUpTo(ROUTER.LoginUser.name) { inclusive = true }
+            }
+        }
+    }
+
+    LaunchedEffect(errorMessage) {
+        if (errorMessage != null) {
+            showDialog = true
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -70,16 +133,16 @@ fun LoginUserScreen(navController: NavController){
                 // Khi click vào (bất kỳ đâu trên màn hình), hủy tất cả focus
                 focusManager.clearFocus()
             }
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-        ){
+        ) {
             WelcomeComponent(title = login)
             //email
             TextFieldComponent(
                 value = email,
-                onValueChange = {valueEmail ->
+                onValueChange = { valueEmail ->
                     email = valueEmail
                 },
                 placeholder = "Vui lòng nhập email!",
@@ -89,11 +152,11 @@ fun LoginUserScreen(navController: NavController){
             Space(7.dp)
             TextFieldComponent(
                 value = password,
-                onValueChange = {valuePassword ->
+                onValueChange = { valuePassword ->
                     password = valuePassword
                 },
                 placeholder = "Vui lòng nhập mật khẩu!",
-                isFocused = remember { mutableStateOf(isFocusedPass)},
+                isFocused = remember { mutableStateOf(isFocusedPass) },
                 isPassword = true
             )
 
@@ -103,7 +166,7 @@ fun LoginUserScreen(navController: NavController){
                 modifier = Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.End
-            ){
+            ) {
                 Text(
                     text = "Quên mật khẩu ?",
                     fontSize = 16.sp,
@@ -116,7 +179,9 @@ fun LoginUserScreen(navController: NavController){
             Space(20.dp)
             ButtonComponent(
                 title = "Đăng nhập",
-                onClick = {},
+                onClick = {
+                    viewModel.login(email, password)
+                },
                 color = BlueButton,
                 textColor = White,
                 image = null,
@@ -134,7 +199,10 @@ fun LoginUserScreen(navController: NavController){
             Space(15.dp)
             ButtonComponent(
                 title = "Đăng nhập bằng Google",
-                onClick = {},
+                onClick = {
+                    val signInIntent = googleSignInClient.signInIntent
+                    launcher.launch(signInIntent)
+                },
                 color = White,
                 textColor = Black,
                 image = google,
@@ -148,14 +216,20 @@ fun LoginUserScreen(navController: NavController){
             //khong co tai khoan
             Space(20.dp)
             GoToRegister(navController = navController)
+            if (showDialog && errorMessage != null) {
+                NotifyDialogComponent(
+                    showDialog = showDialog,
+                    onClick = {
+                        showDialog = false
+                    },
+                    contentNotify = errorMessage!!,
+                    textButton = "Thử lại"
+                )
+            }
 
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewLogin(){
-    val navigation = rememberNavController()
-    LoginUserScreen(navigation)
+    if (isLoading) {
+        LoadingComponent(isLoading)
+    }
 }

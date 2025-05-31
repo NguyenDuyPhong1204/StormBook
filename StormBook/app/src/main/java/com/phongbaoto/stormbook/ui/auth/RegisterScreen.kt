@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,26 +23,29 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.phongbaoto.stormbook.navigation.ROUTER
 import com.phongbaoto.stormbook.ui.auth.component.GoToLogin
 import com.phongbaoto.stormbook.ui.auth.component.WelcomeComponent
 import com.phongbaoto.stormbook.ui.theme.Black
 import com.phongbaoto.stormbook.ui.theme.BlueButton
 import com.phongbaoto.stormbook.ui.theme.White
 import com.phongbaoto.stormbook.utils.UtilsComponent.ButtonComponent
+import com.phongbaoto.stormbook.utils.UtilsComponent.LoadingComponent
+import com.phongbaoto.stormbook.utils.UtilsComponent.NotifyDialogComponent
 import com.phongbaoto.stormbook.utils.UtilsComponent.Space
 import com.phongbaoto.stormbook.utils.UtilsComponent.TextFieldComponent
 import com.phongbaoto.stormbook.utils.register
-
-@Preview
-@Composable
-fun PreviewRegister(){
-    RegisterScreen(rememberNavController())
-}
+import com.phongbaoto.stormbook.viewmodel.authViewModel.RegisterViewModel
 
 @Composable
-fun RegisterScreen(navController: NavController){
+fun RegisterScreen(
+    navController: NavController,
+    viewModel: RegisterViewModel = hiltViewModel()
+) {
     val configuration = LocalConfiguration.current
     //thong tin dang ky
     //email
@@ -57,6 +62,25 @@ fun RegisterScreen(navController: NavController){
     var isFocusedConfirmPass by remember { mutableStateOf(false) }
     //
     val focusManager = LocalFocusManager.current
+    //viewmodel
+    val errorMessage by viewModel.errorMessage.collectAsState()
+    val successMessage by viewModel.successMessage.collectAsState()
+    val isSuccess by viewModel.isRegisterSuccess.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+
+    //dialog
+    var showDialog by remember { mutableStateOf(false) }
+    LaunchedEffect(errorMessage) {
+        if (errorMessage != null) {
+            showDialog = true
+        }
+    }
+
+    LaunchedEffect(successMessage) {
+        if (successMessage != null) {
+            showDialog = true
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -67,21 +91,21 @@ fun RegisterScreen(navController: NavController){
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null
-            ){
+            ) {
                 focusManager.clearFocus()
             }
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-        ){
+        ) {
             WelcomeComponent(
                 title = register
             )
             //email
             TextFieldComponent(
                 value = email,
-                onValueChange = {valueEmail ->
+                onValueChange = { valueEmail ->
                     email = valueEmail
                 },
                 placeholder = "Vui lòng nhập email!",
@@ -91,7 +115,7 @@ fun RegisterScreen(navController: NavController){
             Space(7.dp)
             TextFieldComponent(
                 value = name,
-                onValueChange = {valueName ->
+                onValueChange = { valueName ->
                     name = valueName
                 },
                 placeholder = "Vui lòng nhập tên hoặc biệt danh của bạn!",
@@ -101,29 +125,36 @@ fun RegisterScreen(navController: NavController){
             Space(7.dp)
             TextFieldComponent(
                 value = password,
-                onValueChange = {valuePassword ->
+                onValueChange = { valuePassword ->
                     password = valuePassword
                 },
                 placeholder = "Vui lòng nhập mật khẩu!",
-                isFocused = remember { mutableStateOf(isFocusedPass)},
+                isFocused = remember { mutableStateOf(isFocusedPass) },
                 isPassword = true
             )
             //confirm password
             Space(7.dp)
             TextFieldComponent(
                 value = confirmPassword,
-                onValueChange = {valueConfirmPassword ->
+                onValueChange = { valueConfirmPassword ->
                     confirmPassword = valueConfirmPassword
                 },
                 placeholder = "Vui lòng nhập lại mật khẩu!",
-                isFocused = remember { mutableStateOf(isFocusedConfirmPass)},
+                isFocused = remember { mutableStateOf(isFocusedConfirmPass) },
                 isPassword = true
             )
             //button dang ky
             Space(20.dp)
             ButtonComponent(
                 title = "Đăng ký",
-                onClick = {},
+                onClick = {
+                    viewModel.register(
+                        email,
+                        name,
+                        password,
+                        confirmPassword
+                    )
+                },
                 color = BlueButton,
                 textColor = White,
                 image = null,
@@ -136,8 +167,36 @@ fun RegisterScreen(navController: NavController){
 
             Space(20.dp)
             GoToLogin(navController)
+            if (showDialog && errorMessage != null) {
+                NotifyDialogComponent(
+                    showDialog = showDialog,
+                    onClick = {
+                        showDialog = false
+                    },
+                    contentNotify = errorMessage!!,
+                    textButton = "Thử lại"
+                )
+            }
+
+            if (isSuccess && successMessage != null) {
+                NotifyDialogComponent(
+                    showDialog = showDialog,
+                    onClick = {
+                        showDialog = false
+                        navController.navigate(ROUTER.LoginUser.name) {
+                            popUpTo(ROUTER.Register.name) { inclusive = true }
+                        }
+                    },
+                    contentNotify = successMessage!!,
+                    textButton = "Xác nhận"
+                )
+            }
 
         }
+    }
+//
+    if (isLoading) {
+        LoadingComponent(isLoading)
     }
 
 }

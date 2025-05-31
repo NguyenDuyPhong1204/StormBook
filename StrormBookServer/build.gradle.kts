@@ -45,6 +45,13 @@ dependencies {
 
 	//redis
 //	implementation("org.springframework.boot:spring-boot-starter-data-redis")
+	// OAuth2 client cho Spring Boot
+	implementation ("org.springframework.boot:spring-boot-starter-oauth2-client")
+
+	// Google API Client
+	implementation ("com.google.api-client:google-api-client:2.2.0")
+	implementation ("com.google.oauth-client:google-oauth-client:1.34.1")
+	implementation ("com.google.http-client:google-http-client-gson:1.43.1")
 
 }
 

@@ -38,3 +38,4 @@ val question = R.drawable.question
 val tralalelo = R.drawable.tralalelo
 val plane = R.drawable.plane
 val comment_3 = R.drawable.comment_3
+val checked = R.drawable.checked

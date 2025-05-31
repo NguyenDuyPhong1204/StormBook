@@ -1,5 +1,6 @@
 package com.api.stormbook.controller.AuthController;
 
+import com.api.stormbook.dto.AuthDTO.AuthGoogleRequest;
 import com.api.stormbook.dto.AuthDTO.AuthRequest;
 import com.api.stormbook.dto.AuthDTO.OTPRequest;
 import com.api.stormbook.dto.AuthDTO.UserDTO;
@@ -63,6 +64,14 @@ public class AuthController {
     public ResponseEntity<?> register(@RequestBody AuthRequest request){
         UserDTO result = authUserService.register(request);
         ApiResponse<UserDTO> response = new ApiResponse<>(HttpStatus.OK.value(), "Đăng ký thành công. Vui lòng kiểm tra email của bạn để xác nhận tài khoản!", result);
+        return ResponseEntity.ok(response);
+    }
+
+    //login google
+    @PostMapping("/login-google")
+    public ResponseEntity<?> loginGoogle(@RequestBody AuthGoogleRequest request){
+        UserDTO userDTO = authUserService.loginWithGoogle(request);
+        ApiResponse<UserDTO> response = new ApiResponse<>(HttpStatus.OK.value(), "Đăng nhập thành công", userDTO);
         return ResponseEntity.ok(response);
     }
 
