@@ -37,7 +37,6 @@ android {
         }
         debug {
             buildConfigField("String", "BASE_URL", "\"${localProperties["BASE_URL"]}\"")
-            buildConfigField("String", "ANDROID_CLIENT_ID", "\"${localProperties["ANDROID_CLIENT_ID"]}\"")
             buildConfigField("String", "WEB_CLIENT_ID", "\"${localProperties["WEB_CLIENT_ID"]}\"")
         }
         release {
@@ -48,7 +47,6 @@ android {
             )
             buildConfigField("String", "BASE_URL", "\"${localProperties["BASE_URL"]}\"")
             buildConfigField("String", "WEB_CLIENT_ID", "\"${localProperties["WEB_CLIENT_ID"]}\"")
-            buildConfigField("String", "ANDROID_CLIENT_ID", "\"${localProperties["GOOGLE_API"]}\"")
         }
     }
     compileOptions {
