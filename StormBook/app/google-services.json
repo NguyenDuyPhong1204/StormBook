@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "953202089482",
-    "project_id": "stormbook",
-    "storage_bucket": "stormbook.firebasestorage.app"
+    "project_number": "269376344327",
+    "project_id": "storm-4b104",
+    "storage_bucket": "storm-4b104.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:953202089482:android:e73cdcef4a171e2aab89f3",
+        "mobilesdk_app_id": "1:269376344327:android:56f4e0c463126766b4f5a2",
         "android_client_info": {
-          "package_name": "com.phongbaoto.stormbook"
+          "package_name": "com.phongbaoto.vnstormbook"
         }
       },
       "oauth_client": [
         {
-          "client_id": "953202089482-k3j17lh0qsu054hk0l3ucod1giqs2sg8.apps.googleusercontent.com",
+          "client_id": "269376344327-r13j6786eb9ul61co6olq9vf0odd9vv7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.phongbaoto.stormbook",
+            "package_name": "com.phongbaoto.vnstormbook",
             "certificate_hash": "1c3929aef223cab094872bc0fd25fb6b6008d2e7"
           }
         },
         {
-          "client_id": "953202089482-ttdf21tbkhh0c8845fo2phheeinri7ok.apps.googleusercontent.com",
+          "client_id": "269376344327-57pfld63sdqn1n97icee5fmc2scri0c6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCTIeIm-DPA7I_YAl_7VOJwoHsaEJlFi7U"
+          "current_key": "AIzaSyC8OBcG7I-K0WZib9kUbAx3N0LoSP4IM-o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "953202089482-ttdf21tbkhh0c8845fo2phheeinri7ok.apps.googleusercontent.com",
+              "client_id": "269376344327-57pfld63sdqn1n97icee5fmc2scri0c6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

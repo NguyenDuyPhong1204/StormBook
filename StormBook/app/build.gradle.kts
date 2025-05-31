@@ -14,11 +14,11 @@ val localProperties = Properties().apply {
     }
 }
 android {
-    namespace = "com.phongbaoto.stormbook"
+    namespace = "com.phongbaoto.vnstormbook"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.phongbaoto.stormbook"
+        applicationId = "com.phongbaoto.vnstormbook"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

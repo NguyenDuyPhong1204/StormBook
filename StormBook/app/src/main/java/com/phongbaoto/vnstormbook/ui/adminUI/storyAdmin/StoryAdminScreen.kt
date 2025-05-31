@@ -1,0 +1,79 @@
+package com.phongbaoto.vnstormbook.ui.adminUI.storyAdmin
+
+import android.annotation.SuppressLint
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.phongbaoto.vnstormbook.navigation.ROUTER
+import com.phongbaoto.vnstormbook.ui.adminUI.storyAdmin.component.PendingStory
+import com.phongbaoto.vnstormbook.ui.adminUI.storyAdmin.component.PostedStory
+import com.phongbaoto.vnstormbook.ui.theme.Black
+import com.phongbaoto.vnstormbook.ui.theme.BlueButton
+import com.phongbaoto.vnstormbook.ui.theme.White
+import com.phongbaoto.vnstormbook.utils.UtilsComponent.ButtonComponent
+import com.phongbaoto.vnstormbook.utils.UtilsComponent.CustomTabLayout
+import com.phongbaoto.vnstormbook.utils.UtilsComponent.Space
+
+@SuppressLint("ConfigurationScreenWidthHeight")
+@Composable
+fun StoryScreen(
+    navController: NavController
+){
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+    val tabs = listOf("Truyện đã đăng tải", "Truyện đang chờ duyệt")
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Black)
+            .statusBarsPadding()
+    ) {
+
+        // Column chính chứa tab và nội dung
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 80.dp) // Tạo không gian cho button ở dưới
+        ) {
+            Space(10.dp)
+            CustomTabLayout(
+                tabs = tabs,
+                modifier = Modifier.weight(1f) // Cho phép nội dung tab chiếm hết không gian còn lại
+            ) { selectedTabIndex ->
+                when (selectedTabIndex) {
+                    0 -> PostedStory(navController)
+                    1 -> PendingStory(navController)
+                }
+            }
+        }
+
+        // Button được đặt cố định ở cuối màn hình
+        ButtonComponent(
+            title = "Thêm truyện mới",
+            textColor = White,
+            fontWeight = FontWeight.SemiBold,
+            color = BlueButton,
+            image = null,
+            onClick = {
+                navController.navigate(ROUTER.AddStory.name)
+            },
+            modifier =  Modifier
+                .align(Alignment.BottomCenter)
+                .padding(start = 15.dp, end = 15.dp, bottom = 110.dp)
+                .fillMaxWidth()
+        )
+    }
+}
