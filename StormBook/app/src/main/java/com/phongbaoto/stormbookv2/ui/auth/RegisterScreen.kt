@@ -116,7 +116,7 @@ fun RegisterScreen(
                     name = valueName
                 },
                 placeholder = "Vui lòng nhập tên hoặc biệt danh của bạn!",
-                isFocused = remember { mutableStateOf(isFocusedEmail) }
+                isFocused = remember { mutableStateOf(isFocusedName) }
             )
             //password
             Space(7.dp)

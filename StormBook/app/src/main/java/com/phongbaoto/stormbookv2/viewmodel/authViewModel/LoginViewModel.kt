@@ -97,6 +97,7 @@ class LoginViewModel @Inject constructor(
                     prefs.edit().putBoolean("isLoginSuccess", true).apply()
                 },
                 onFailure = {
+                    _isLoading.value = false
                     _errorMessage.value = it.message
                 }
             )

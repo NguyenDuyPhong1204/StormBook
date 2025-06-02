@@ -18,7 +18,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.phongbaoto.stormbookv2.data.model.Category
 import com.phongbaoto.stormbookv2.ui.theme.BlueButton_2
 import com.phongbaoto.stormbookv2.ui.theme.DialogColor
 import com.phongbaoto.stormbookv2.ui.theme.RedButton
@@ -32,9 +31,9 @@ fun DialogSelectCategory(
 ) {
     var searchCategory by remember { mutableStateOf("") }
     var isFocused by remember { mutableStateOf(false) }
-    val listCategory = listOf(
-        Category(1, "Manhua"), Category(2, "Manhwa"), Category(3, "Action"), Category(4, "Lmao")
-    )
+//    val listCategory = listOf(
+//        Category(1, "Manhua"), Category(2, "Manhwa"), Category(3, "Action"), Category(4, "Lmao")
+//    )
     if (showDialog) {
         Dialog(
             onDismissRequest = onDismiss, properties = DialogProperties(
@@ -59,9 +58,9 @@ fun DialogSelectCategory(
                         placeholder = "Nhập thể loại muốn tìm..."
                     )
 
-                    ListCategory(
-                        listCategory
-                    )
+//                    ListCategory(
+//                        listCategory
+//                    )
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),

@@ -44,20 +44,6 @@ import com.phongbaoto.stormbookv2.utils.banner_2
 import com.phongbaoto.stormbookv2.utils.banner_3
 import com.phongbaoto.stormbookv2.utils.banner_4
 
-@Preview
-@Composable
-fun PreviewDialogSearch() {
-//    SearchDialog(
-//        showDialog = true,
-//        onDismiss = {}
-//    )
-    val story = Story(1, banner_3, "Ta Là Tà Đế", 100)
-    StoryItem(
-        story = story,
-        onClick = {}
-    )
-}
-
 @Composable
 fun SearchDialog(
     showDialog: Boolean,
@@ -66,13 +52,13 @@ fun SearchDialog(
     val context = LocalContext.current
     var isFocused by remember { mutableStateOf(false) }
     var searchText by remember { mutableStateOf("") }
-    val examList = listOf(
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-    )
+//    val examList = listOf(
+//        Story(1, banner, "Ta Là Tà Đế", 200),
+//        Story(2, banner_2, "Ta Là Tà Đế", 300),
+//        Story(1, banner_3, "Ta Là Tà Đế", 100),
+//        Story(1, banner_4, "Ta Là Tà Đế", 250),
+//        Story(1, banner, "Ta Là Tà Đế", 200),
+//    )
     if (showDialog) {
         Dialog(
             onDismissRequest = onDismiss,
@@ -122,16 +108,16 @@ fun SearchDialog(
                         }
                     }
                     //danh sach truyen khi tim kiem
-                    LazyColumn(
-                        verticalArrangement = Arrangement.spacedBy(15.dp)
-                    ){
-                        items(examList){
-                            StoryItem(
-                                story = it,
-                                onClick = {}
-                            )
-                        }
-                    }
+//                    LazyColumn(
+//                        verticalArrangement = Arrangement.spacedBy(15.dp)
+//                    ){
+//                        items(examList){
+//                            StoryItem(
+//                                story = it,
+//                                onClick = {}
+//                            )
+//                        }
+//                    }
 
                 }
             }
@@ -184,7 +170,7 @@ fun StoryItem(
         ) {
             //ten
             Text(
-                text = story.name,
+                text = story.title,
                 fontWeight = FontWeight.Medium,
                 fontSize = 14.sp,
                 color = White
@@ -198,7 +184,7 @@ fun StoryItem(
             )
             //chap moi nhat
             Text(
-                text = "Chương: " + story.chapterNumber.toString(),
+                text = "Chương: " + story.total_chapters.toString(),
                 fontWeight = FontWeight.Medium,
                 fontSize = 14.sp,
                 color = White

@@ -34,88 +34,7 @@ fun ListStoryByCategory(
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
-    val listStory = listOf(
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-    )
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -132,22 +51,22 @@ fun ListStoryByCategory(
             modifier = Modifier
                 .padding(horizontal = 15.dp)
         ){
-            ListWithPagination(
-                list = listStory,
-                itemsPerPage = 10,
-                onPageChange = {page ->
-
-                },
-                paddingBottom = 60.dp,
-                itemComponent = {item ->
-                    StoryItem(
-                        width = screenWidth/2f,
-                        height = 200.dp,
-                        story = item,
-                        onClick = {}
-                    )
-                }
-            )
+//            ListWithPagination(
+//                list = listStory,
+//                itemsPerPage = 10,
+//                onPageChange = {page ->
+//
+//                },
+//                paddingBottom = 60.dp,
+//                itemComponent = {item ->
+//                    StoryItem(
+//                        width = screenWidth/2f,
+//                        height = 200.dp,
+//                        story = item,
+//                        onClick = {}
+//                    )
+//                }
+//            )
         }
     }
 }

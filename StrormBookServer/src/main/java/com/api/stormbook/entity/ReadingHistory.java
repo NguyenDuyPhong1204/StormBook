@@ -2,6 +2,7 @@ package com.api.stormbook.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
@@ -34,6 +35,9 @@ public class ReadingHistory {
     @Builder.Default
     @Column(nullable = false)
     private Boolean isRead = false;
+
+    @CreationTimestamp
+    private Instant createdAt;
 
     @UpdateTimestamp
     private Instant last_read_at;

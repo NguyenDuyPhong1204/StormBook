@@ -2,7 +2,6 @@ package com.phongbaoto.stormbookv2.ui.main
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -15,6 +14,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -28,8 +29,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import com.phongbaoto.stormbookv2.data.model.Category
 import com.phongbaoto.stormbookv2.data.model.Story
 import com.phongbaoto.stormbookv2.navigation.ROUTER
 import com.phongbaoto.stormbookv2.ui.main.component.BannedComponent
@@ -50,13 +51,19 @@ import com.phongbaoto.stormbookv2.utils.banner_4
 import com.phongbaoto.stormbookv2.utils.hot
 import com.phongbaoto.stormbookv2.utils.propose
 import com.phongbaoto.stormbookv2.viewmodel.authViewModel.LoginViewModel
+import com.phongbaoto.stormbookv2.viewmodel.categoryViewModel.CategoryUiState
+import com.phongbaoto.stormbookv2.viewmodel.categoryViewModel.CategoryViewModel
+import com.phongbaoto.stormbookv2.viewmodel.storyViewModel.StoryUiState
+import com.phongbaoto.stormbookv2.viewmodel.storyViewModel.StoryViewModel
 import kotlinx.coroutines.delay
 
 @SuppressLint("ConfigurationScreenWidthHeight")
 @Composable
 fun HomeScreen(
     navController: NavController,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: LoginViewModel = hiltViewModel(),
+    categoryViewModel: CategoryViewModel = hiltViewModel(),
+    storyViewModel: StoryViewModel = hiltViewModel()
 ) {
     var showSuccess by remember { mutableStateOf(true) }
     val isLoginSuccess by viewModel.isLoginSuccess.collectAsState()
@@ -70,17 +77,18 @@ fun HomeScreen(
         mutableStateOf(prefs.getBoolean("isLoginSuccess", false))
     }
 
-    LaunchedEffect(Unit) {
-        Log.d("HomeScreen", "isLoginSuccess từ SharedPreferences: ${isLogin.value}")
-        Log.d("HomeScreen", "isLoginSuccess từ ViewModel: $isLoginSuccess")
-    }
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
     val scrollState = rememberScrollState()
     //
     var isShowDialog by remember { mutableStateOf(false) }
-
+    //category
+    val uiState by categoryViewModel.uiState.collectAsStateWithLifecycle()
+    //story
+    val uiStoryState by storyViewModel.uiState.collectAsStateWithLifecycle()
+    val suggestedStories by storyViewModel.suggestedStories.collectAsStateWithLifecycle()
+    val hotWeekStories by storyViewModel.hotWeekStories.collectAsStateWithLifecycle()
     LaunchedEffect(isLogin.value) {
         if (isLogin.value) {
             showSuccess = true
@@ -91,19 +99,6 @@ fun HomeScreen(
     }
 
     HideStatusBar()
-    val listCategory = listOf(
-        Category(1, "Manhua"),
-        Category(2, "Manhwa"),
-        Category(3, "Action"),
-        Category(4, "Lmao")
-    )
-
-    val listStory = listOf(
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-    )
 
     Box(
         modifier = Modifier
@@ -155,8 +150,20 @@ fun HomeScreen(
                     isImage = false,
                     image = null
                 )
+                //category
+                when (uiState) {
+                    CategoryUiState.Loading -> {
+                        CircularProgressIndicator()
+                    }
 
-                ListCategory(listCategory = listCategory)
+                    is CategoryUiState.Error -> {
+                        Text((uiState as CategoryUiState.Error).message)
+                    }
+
+                    is CategoryUiState.Success -> {
+                        ListCategory((uiState as CategoryUiState.Success).data)
+                    }
+                }
 
             }
 
@@ -169,10 +176,21 @@ fun HomeScreen(
                     image = propose
                 )
                 Space(5.dp)
-                ListStory(
-                    listStory,
-                    navController = navController
-                )
+//                ListStory(
+//                    listStory,
+//                    navController = navController
+//                )
+
+                when (suggestedStories) {
+                    is StoryUiState.Loading -> CircularProgressIndicator()
+                    is StoryUiState.Error -> Text((suggestedStories as StoryUiState.Error).message)
+                    is StoryUiState.SuggestedList -> {
+                        val listStory = (suggestedStories as StoryUiState.SuggestedList).data
+                        ListStory(listStory = listStory, navController = navController)
+                    }
+                    else -> {}
+                }
+
             }
 
             //truyen hot
@@ -185,10 +203,15 @@ fun HomeScreen(
                     image = hot
                 )
                 Space(5.dp)
-                ListStory(
-                    listStory,
-                    navController = navController
-                )
+                when (hotWeekStories) {
+                    is StoryUiState.Loading -> CircularProgressIndicator()
+                    is StoryUiState.Error -> Text((hotWeekStories as StoryUiState.Error).message)
+                    is StoryUiState.HotWeekList -> {
+                        val listStory = (hotWeekStories as StoryUiState.HotWeekList).data
+                        ListStory(listStory = listStory, navController = navController)
+                    }
+                    else -> {}
+                }
             }
             if (isShowDialog) {
                 SearchDialog(

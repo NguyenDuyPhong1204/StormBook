@@ -16,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.phongbaoto.stormbookv2.data.model.Category
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.ui.theme.White
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
@@ -28,12 +27,12 @@ import com.phongbaoto.stormbookv2.utils.wifi
 
 @Composable
 fun InfoStory(){
-    val listCategory = listOf(
-        Category(1, "Manhua"),
-        Category(2, "Manhwa"),
-        Category(3, "Action"),
-        Category(4,"Lmao")
-    )
+//    val listCategory = listOf(
+//        Category(1, "Manhua"),
+//        Category(2, "Manhwa"),
+//        Category(3, "Action"),
+//        Category(4,"Lmao")
+//    )
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -82,7 +81,7 @@ fun InfoStory(){
             width = 120.dp
         )
 
-        ListCategoryStory(listCategory)
+//        ListCategoryStory(listCategory)
 
     }
 }

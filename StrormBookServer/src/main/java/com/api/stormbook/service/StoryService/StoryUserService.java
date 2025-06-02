@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -51,5 +52,39 @@ public class StoryUserService {
                 .collect(Collectors.toList());
     }
 
+    // Lấy 10 truyện đề xuất ngẫu nhiên
+    public List<StoryDTO> getRandomStories(int limit) {
+        return storyRepository.findRandomStories(limit)
+                .stream().map(this::toDto)
+                .collect(Collectors.toList());
+    }
+    // Lấy 10 truyện hot nhất trong 7 ngày
+    public List<StoryDTO> getHotStoriesThisWeek(int limit) {
+        LocalDateTime sevenDaysAgo = LocalDateTime.now().minusDays(7);
+        return storyRepository.findHotStories(sevenDaysAgo, limit)
+                .stream().map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    // Hàm map từ Entity sang DTO
+    private StoryDTO toDto(Story story) {
+        return new StoryDTO(
+                story.getId(),
+                story.getTitle(),
+                story.getAuthor(),
+                story.getTransGroup(),
+                story.getCategories().stream()
+                        .map(Category::getId)
+                        .collect(Collectors.toList()),
+                story.getCover_image(),
+                story.getStatus(),
+                story.getView_count(),
+                story.getRating(),
+                story.getTotal_chapters(),
+                story.getDescription(),
+                story.getCreatedAt(),
+                story.getUpdatedAt()
+        );
+    }
 
 }

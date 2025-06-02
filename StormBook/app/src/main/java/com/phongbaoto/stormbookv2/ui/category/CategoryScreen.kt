@@ -15,9 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.phongbaoto.stormbookv2.data.model.Category
 import com.phongbaoto.stormbookv2.ui.category.component.DialogAddCategory
-import com.phongbaoto.stormbookv2.ui.category.component.ListCategory
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.HeaderComponent
 import com.phongbaoto.stormbookv2.utils.plus
@@ -26,12 +24,12 @@ import com.phongbaoto.stormbookv2.utils.plus
 fun CategoryScreen(
     navController: NavController
 ){
-    val listCategory = listOf(
-        Category(1, "Manhua"),
-        Category(2, "Manhwa"),
-        Category(3, "Action"),
-        Category(4,"Lmao")
-    )
+//    val listCategory = listOf(
+//        Category(1, "Manhua"),
+//        Category(2, "Manhwa"),
+//        Category(3, "Action"),
+//        Category(4,"Lmao")
+//    )
 
     var showDialog by remember { mutableStateOf(false) }
 
@@ -58,9 +56,9 @@ fun CategoryScreen(
                .fillMaxSize()
                .padding(start = 15.dp, end = 15.dp)
        ) {
-            ListCategory(
-                listCategory = listCategory
-            )
+//            ListCategory(
+//                listCategory = listCategory
+//            )
 
            if(showDialog){
                 DialogAddCategory(

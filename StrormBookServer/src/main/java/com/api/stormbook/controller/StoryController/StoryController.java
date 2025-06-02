@@ -81,6 +81,19 @@ public class StoryController {
         ApiResponse<List<StoryDTO>> response = new ApiResponse<>(HttpStatus.OK.value(), "Lấy danh sách truyện thành công!", storyDTOList);
         return ResponseEntity.ok(response);
     }
-
+    //de xuat
+    @GetMapping("/suggested")
+    public ResponseEntity<?> getSuggestedStories() {
+        List<StoryDTO> result = storyUserService.getRandomStories(10);
+        ApiResponse<List<StoryDTO>> response = new ApiResponse<>(HttpStatus.OK.value(), "Lấy danh sách thành công!", result);
+        return ResponseEntity.ok(response);
+    }
+    //truyen hot
+    @GetMapping("/hot-week")
+    public ResponseEntity<?> getHotStoriesThisWeek() {
+        List<StoryDTO> result = storyUserService.getHotStoriesThisWeek(10);
+        ApiResponse<List<StoryDTO>> response = new ApiResponse<>(HttpStatus.OK.value(), "Lấy danh sách thành công!", result);
+        return ResponseEntity.ok(response);
+    }
 //
 }

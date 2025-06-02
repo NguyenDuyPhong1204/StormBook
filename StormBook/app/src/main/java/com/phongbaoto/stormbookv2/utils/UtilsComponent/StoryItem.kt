@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -15,11 +16,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
+import com.phongbaoto.stormbookv2.BuildConfig
 import com.phongbaoto.stormbookv2.data.model.Story
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.ui.theme.White
@@ -31,6 +38,8 @@ fun StoryItem(
     story: Story,
     onClick: () -> Unit
 ){
+    val context = LocalContext.current
+    val url = BuildConfig.BASE_URL
     Column(
         modifier = Modifier
             .width(width)
@@ -41,24 +50,28 @@ fun StoryItem(
             .clickable { onClick() },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
-            painter = painterResource(story.image),
-            contentDescription = "image story",
+        AsyncImage(
+            model = ImageRequest.Builder(context)
+                .data(url + story.cover_image)
+                .crossfade(true)
+                .build(),
+            contentDescription = "cover_image",
+            contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(145.dp),
-            contentScale = ContentScale.Crop
-        )
-
-        Text(
-            text = story.name,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = White
+                .height(150.dp),
         )
         Space(5.dp)
         Text(
-            text = "Chương ${story.chapterNumber}",
+            text = story.title,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.SemiBold,
+            color = White,
+            textAlign = TextAlign.Center
+        )
+        Space(5.dp)
+        Text(
+            text = "Chương ${story.total_chapters}",
             fontSize = 14.sp,
             fontWeight = FontWeight.SemiBold,
             color = White

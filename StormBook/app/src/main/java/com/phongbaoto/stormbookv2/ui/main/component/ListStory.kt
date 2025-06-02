@@ -21,7 +21,7 @@ fun ListStory(
         items(listStory){item ->
             StoryItem(
                 width = 165.dp,
-                height = 200.dp,
+                height = 230.dp,
                 story = item,
                 onClick = {
                     navController.navigate("${ROUTER.DetailStory.name}/${false}")

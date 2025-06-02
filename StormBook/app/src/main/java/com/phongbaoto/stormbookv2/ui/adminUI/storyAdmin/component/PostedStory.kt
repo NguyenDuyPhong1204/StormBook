@@ -18,95 +18,14 @@ import com.phongbaoto.stormbookv2.utils.banner_4
 fun PostedStory(
     navController: NavController
 ) {
-    val listStory = listOf(
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(1, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner_4, "Ta Là Tà Đế", 250),
-    )
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 15.dp, end = 15.dp, bottom = 20.dp)
     ) {
-        StoryList(listStory, onClickItem = {
-            navController.navigate("${ROUTER.DetailStory.name}/${true}")
-        })
+//        StoryList(listStory, onClickItem = {
+//            navController.navigate("${ROUTER.DetailStory.name}/${true}")
+//        })
     }
 }

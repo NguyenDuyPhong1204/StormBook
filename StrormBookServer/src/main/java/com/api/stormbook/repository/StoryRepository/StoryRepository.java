@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,5 +39,18 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
     @Query("SELECT DISTINCT rh.story FROM ReadingHistory rh WHERE rh.user.id = :userId")
     Page<Story> findReadStoriesByUser(@Param("userId") Long userId, Pageable pageable);
 
-
+    // Lấy ngẫu nhiên 10 truyện
+    @Query(value = "SELECT * FROM stories ORDER BY RAND() LIMIT :limit", nativeQuery = true)
+    List<Story> findRandomStories(@Param("limit") int limit);
+    // Lấy 10 truyện có lượt đọc nhiều nhất trong 7 ngày gần nhất
+    @Query(value = """
+        SELECT s.*
+        FROM stories s
+        JOIN reading_histories rh ON rh.story_id = s.id
+        WHERE rh.created_at >= :startDate
+        GROUP BY s.id
+        ORDER BY COUNT(rh.id) DESC
+        LIMIT :limit
+    """, nativeQuery = true)
+    List<Story> findHotStories(@Param("startDate") LocalDateTime startDate, @Param("limit") int limit);
 }

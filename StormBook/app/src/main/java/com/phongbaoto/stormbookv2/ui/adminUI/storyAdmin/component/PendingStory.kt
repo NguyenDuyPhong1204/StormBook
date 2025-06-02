@@ -17,34 +17,34 @@ import com.phongbaoto.stormbookv2.utils.banner_3
 fun PendingStory(
     navController: NavController
 ){
-    val listStory = listOf(
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(3, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(3, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(3, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(3, banner_3, "Ta Là Tà Đế", 100),
-        Story(1, banner, "Ta Là Tà Đế", 200),
-        Story(2, banner_2, "Ta Là Tà Đế", 300),
-        Story(3, banner_3, "Ta Là Tà Đế", 100),
-
-    )
+//    val listStory = listOf(
+//        Story(1, banner, "Ta Là Tà Đế", 200),
+//        Story(2, banner_2, "Ta Là Tà Đế", 300),
+//        Story(3, banner_3, "Ta Là Tà Đế", 100),
+//        Story(1, banner, "Ta Là Tà Đế", 200),
+//        Story(2, banner_2, "Ta Là Tà Đế", 300),
+//        Story(3, banner_3, "Ta Là Tà Đế", 100),
+//        Story(1, banner, "Ta Là Tà Đế", 200),
+//        Story(2, banner_2, "Ta Là Tà Đế", 300),
+//        Story(3, banner_3, "Ta Là Tà Đế", 100),
+//        Story(1, banner, "Ta Là Tà Đế", 200),
+//        Story(2, banner_2, "Ta Là Tà Đế", 300),
+//        Story(3, banner_3, "Ta Là Tà Đế", 100),
+//        Story(1, banner, "Ta Là Tà Đế", 200),
+//        Story(2, banner_2, "Ta Là Tà Đế", 300),
+//        Story(3, banner_3, "Ta Là Tà Đế", 100),
+//
+//    )
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 15.dp, end = 15.dp, bottom = 20.dp)
     ){
-        StoryList(
-            listStory,
-            onClickItem = {
-                navController.navigate(ROUTER.DetailStoryAdmin.name)
-            }
-        )
+//        StoryList(
+//            listStory,
+//            onClickItem = {
+//                navController.navigate(ROUTER.DetailStoryAdmin.name)
+//            }
+//        )
     }
 }
