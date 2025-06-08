@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbookv2.utils.UtilsComponent
+package com.phongbaoto.stormbookv2.utils.UtilsComponent.dialog
 
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.updateTransition
@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.ui.theme.White
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
 import com.phongbaoto.stormbookv2.utils.checked
 import kotlinx.coroutines.delay
 

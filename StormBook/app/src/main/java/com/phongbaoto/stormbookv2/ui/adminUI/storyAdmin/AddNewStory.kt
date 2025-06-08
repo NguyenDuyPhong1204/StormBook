@@ -31,7 +31,7 @@ import com.phongbaoto.stormbookv2.ui.adminUI.storyAdmin.component.TextFieldStory
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.ui.theme.BlueButton
 import com.phongbaoto.stormbookv2.ui.theme.White
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.ButtonComponent
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.button.ButtonComponent
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.HeaderComponent
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
 

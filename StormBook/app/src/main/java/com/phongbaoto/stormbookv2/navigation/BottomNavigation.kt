@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,6 +22,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.phongbaoto.stormbookv2.ui.category.CategoryScreen
 import com.phongbaoto.stormbookv2.ui.main.HomeScreen
 import com.phongbaoto.stormbookv2.ui.adminUI.storyAdmin.StoryScreen
@@ -36,7 +40,7 @@ import com.phongbaoto.stormbookv2.utils.story
 @Composable
 fun BottomNavigation(
     navController: NavController
-){
+) {
     val navItemList = listOf(
         NavItem("Trang chủ", home),
         NavItem("Thể loại", category),
@@ -64,7 +68,7 @@ fun BottomNavigation(
                                 painter = painterResource(navItem.icon),
                                 contentDescription = null,
                                 modifier = Modifier.size(20.dp),
-                                tint = if(selectedIndex == index) RedIndicator else White
+                                tint = if (selectedIndex == index) RedIndicator else White
                             )
                         },
                         label = {
@@ -72,8 +76,8 @@ fun BottomNavigation(
                                 text = navItem.label,
                                 fontSize = 12.sp,
                                 fontWeight = FontWeight.Medium,
-                                color = if(selectedIndex == index) RedIndicator else White
-                                )
+                                color = if (selectedIndex == index) RedIndicator else White
+                            )
                         },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = RedIndicator,
@@ -87,8 +91,15 @@ fun BottomNavigation(
 
             }
         }
-    ){ innerPadding->
-        ContentScreen(modifier = Modifier.padding(innerPadding), selectedIndex, navController)
+    ) { innerPadding ->
+        ContentScreen(
+            modifier = Modifier.padding(innerPadding),
+            selectedIndex,
+            navController,
+            onTabChange = {
+                selectedIndex = it
+            }
+        )
     }
 }
 
@@ -96,13 +107,19 @@ fun BottomNavigation(
 fun ContentScreen(
     modifier: Modifier = Modifier,
     selectedIndex: Int,
-    navController: NavController
-){
+    navController: NavController,
+    onTabChange: (Int) -> Unit = {}
+) {
 
-    when(selectedIndex){
-        0 -> HomeScreen(navController)
-        1 -> CategoryScreen(navController)
+    when (selectedIndex) {
+        0 -> HomeScreen(
+            navController = navController,
+            onNavigateToCategory = {
+                onTabChange(1) // Chuyển sang tab "Thể loại" (index = 1)
+            }
+        )        1 -> CategoryScreen(navController)
         2 -> StoryScreen(navController)
         3 -> ProfileScreen(navController)
     }
 }
+

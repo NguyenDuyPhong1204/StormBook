@@ -45,7 +45,7 @@ import com.phongbaoto.stormbookv2.ui.theme.BlueButton_3
 import com.phongbaoto.stormbookv2.ui.theme.GreenButton
 import com.phongbaoto.stormbookv2.ui.theme.RedButton_3
 import com.phongbaoto.stormbookv2.ui.theme.White
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.ButtonComponent
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.button.ButtonComponent
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
 import com.phongbaoto.stormbookv2.utils.banner
 import com.phongbaoto.stormbookv2.utils.like

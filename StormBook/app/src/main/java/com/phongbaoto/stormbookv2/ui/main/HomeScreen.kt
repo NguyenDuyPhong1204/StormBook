@@ -31,7 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import com.phongbaoto.stormbookv2.data.model.Story
 import com.phongbaoto.stormbookv2.navigation.ROUTER
 import com.phongbaoto.stormbookv2.ui.main.component.BannedComponent
 import com.phongbaoto.stormbookv2.ui.main.component.ListCategory
@@ -40,14 +39,10 @@ import com.phongbaoto.stormbookv2.ui.main.component.SearchComponent
 import com.phongbaoto.stormbookv2.ui.main.component.TitleComponent
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.HideStatusBar
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.SearchDialog
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.dialog.SearchDialog
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.SuccessToast
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.dialog.SuccessToast
 import com.phongbaoto.stormbookv2.utils.background
-import com.phongbaoto.stormbookv2.utils.banner
-import com.phongbaoto.stormbookv2.utils.banner_2
-import com.phongbaoto.stormbookv2.utils.banner_3
-import com.phongbaoto.stormbookv2.utils.banner_4
 import com.phongbaoto.stormbookv2.utils.hot
 import com.phongbaoto.stormbookv2.utils.propose
 import com.phongbaoto.stormbookv2.viewmodel.authViewModel.LoginViewModel
@@ -63,9 +58,10 @@ fun HomeScreen(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel(),
     categoryViewModel: CategoryViewModel = hiltViewModel(),
-    storyViewModel: StoryViewModel = hiltViewModel()
+    storyViewModel: StoryViewModel = hiltViewModel(),
+    onNavigateToCategory: () -> Unit = {}
 ) {
-    var showSuccess by remember { mutableStateOf(true) }
+    var showSuccess by remember { mutableStateOf(false) }
     val isLoginSuccess by viewModel.isLoginSuccess.collectAsState()
 
     val context = LocalContext.current
@@ -145,7 +141,7 @@ fun HomeScreen(
                 TitleComponent(
                     title = "Thể loại",
                     onClick = {
-                        navController.navigate(ROUTER.Category.name)
+                       onNavigateToCategory()
                     },
                     isImage = false,
                     image = null

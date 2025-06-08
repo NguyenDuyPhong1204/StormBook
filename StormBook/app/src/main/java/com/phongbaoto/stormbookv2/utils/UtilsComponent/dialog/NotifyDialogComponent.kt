@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbookv2.utils.UtilsComponent
+package com.phongbaoto.stormbookv2.utils.UtilsComponent.dialog
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -19,6 +19,8 @@ import androidx.compose.ui.window.Dialog
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.ui.theme.BlueButton_2
 import com.phongbaoto.stormbookv2.ui.theme.White
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.button.ButtonComponent
 
 @Composable
 fun NotifyDialogComponent(

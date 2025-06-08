@@ -30,11 +30,11 @@ import com.phongbaoto.stormbookv2.ui.auth.component.WelcomeComponent
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.ui.theme.BlueButton
 import com.phongbaoto.stormbookv2.ui.theme.White
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.ButtonComponent
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.button.ButtonComponent
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.LoadingComponent
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.NotifyDialogComponent
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.dialog.NotifyDialogComponent
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.TextFieldComponent
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.textField.TextFieldComponent
 import com.phongbaoto.stormbookv2.utils.register
 import com.phongbaoto.stormbookv2.viewmodel.authViewModel.RegisterViewModel
 

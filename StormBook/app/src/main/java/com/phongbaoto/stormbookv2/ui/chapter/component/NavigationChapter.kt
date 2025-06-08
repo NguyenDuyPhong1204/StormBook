@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.phongbaoto.stormbookv2.ui.chapter.data.IconType
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.TextFieldComponent
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.textField.TextFieldComponent
 import com.phongbaoto.stormbookv2.utils.comment_3
 import com.phongbaoto.stormbookv2.utils.like
 import com.phongbaoto.stormbookv2.utils.plane

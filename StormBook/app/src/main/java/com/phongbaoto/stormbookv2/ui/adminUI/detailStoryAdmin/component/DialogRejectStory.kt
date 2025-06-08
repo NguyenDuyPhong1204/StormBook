@@ -24,9 +24,9 @@ import com.phongbaoto.stormbookv2.ui.theme.BlueButton_2
 import com.phongbaoto.stormbookv2.ui.theme.DialogColor
 import com.phongbaoto.stormbookv2.ui.theme.RedButton
 import com.phongbaoto.stormbookv2.ui.theme.White
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.ButtonDialog
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.button.ButtonDialog
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.TextFieldComponent
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.textField.TextFieldComponent
 
 @Composable
 fun DialogRejectStory(

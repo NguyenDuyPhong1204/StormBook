@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.ui.theme.White
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.TextFieldComponent
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.textField.TextFieldComponent
 
 @Composable
 fun TextFieldChapter(

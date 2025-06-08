@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbookv2.utils.UtilsComponent
+package com.phongbaoto.stormbookv2.utils.UtilsComponent.button
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Spacer

@@ -52,6 +52,9 @@ dependencies {
 	implementation ("com.google.api-client:google-api-client:2.2.0")
 	implementation ("com.google.oauth-client:google-oauth-client:1.34.1")
 	implementation ("com.google.http-client:google-http-client-gson:1.43.1")
+	//
+	implementation("com.mysql:mysql-connector-j:8.3.0")
+
 
 }
 

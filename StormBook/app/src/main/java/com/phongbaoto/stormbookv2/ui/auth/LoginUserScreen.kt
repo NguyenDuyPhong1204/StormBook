@@ -43,22 +43,25 @@ import com.phongbaoto.stormbookv2.ui.auth.component.GoToRegister
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.ui.theme.BlueButton
 import com.phongbaoto.stormbookv2.ui.theme.White
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.ButtonComponent
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.button.ButtonComponent
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.DividerWithText
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.TextFieldComponent
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.textField.TextFieldComponent
 import com.phongbaoto.stormbookv2.ui.auth.component.WelcomeComponent
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.LoadingComponent
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.NotifyDialogComponent
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.dialog.NotifyDialogComponent
 import com.phongbaoto.stormbookv2.utils.google
 import com.phongbaoto.stormbookv2.utils.login
+import com.phongbaoto.stormbookv2.utils.notifyInternet
 import com.phongbaoto.stormbookv2.viewmodel.authViewModel.LoginViewModel
+import com.phongbaoto.stormbookv2.viewmodel.networkViewModel.NetworkViewModel
 
 @SuppressLint("ConfigurationScreenWidthHeight")
 @Composable
 fun LoginUserScreen(
     navController: NavController,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: LoginViewModel = hiltViewModel(),
+    networkViewModel: NetworkViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
     val configuration = LocalConfiguration.current
@@ -117,6 +120,15 @@ fun LoginUserScreen(
         }
     }
 
+    val isConnected by networkViewModel.isConnected.collectAsState()
+    var showNetworkError by remember { mutableStateOf(false) }
+    var alreadyNavigated by remember { mutableStateOf(false) }
+    // Nếu mất kết nối mạng thì điều hướng về WelcomeScreen
+    LaunchedEffect(isConnected) {
+        if (!isConnected) {
+            showNetworkError = true
+        }
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -229,4 +241,19 @@ fun LoginUserScreen(
     if (isLoading) {
         LoadingComponent(isLoading)
     }
+
+    if (showNetworkError) {
+        NotifyDialogComponent(
+            showDialog = showNetworkError,
+            onClick = {
+                showNetworkError = false
+                navController.navigate(ROUTER.Welcome.name) {
+                    popUpTo(ROUTER.LoginUser.name) { inclusive = true }
+                }
+            },
+            contentNotify = notifyInternet,
+            textButton = "Thử lại"
+        )
+    }
+
 }

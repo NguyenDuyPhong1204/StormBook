@@ -7,6 +7,7 @@ enum class ROUTER{
     Home,
     BottomNav,
     Category,
+    Story,
     AddStory,
     DetailStoryAdmin,
     DetailStory,

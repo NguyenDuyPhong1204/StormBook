@@ -1,4 +1,4 @@
-package com.phongbaoto.stormbookv2.utils.UtilsComponent
+package com.phongbaoto.stormbookv2.utils.UtilsComponent.dialog
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
@@ -31,7 +29,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -39,10 +36,9 @@ import androidx.compose.ui.window.DialogProperties
 import com.phongbaoto.stormbookv2.data.model.Story
 import com.phongbaoto.stormbookv2.ui.theme.DialogColor
 import com.phongbaoto.stormbookv2.ui.theme.White
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.textField.TextFieldComponent
 import com.phongbaoto.stormbookv2.utils.banner
-import com.phongbaoto.stormbookv2.utils.banner_2
-import com.phongbaoto.stormbookv2.utils.banner_3
-import com.phongbaoto.stormbookv2.utils.banner_4
 
 @Composable
 fun SearchDialog(

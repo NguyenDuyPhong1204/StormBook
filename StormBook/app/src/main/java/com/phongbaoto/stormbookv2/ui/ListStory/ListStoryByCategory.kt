@@ -11,15 +11,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.phongbaoto.stormbookv2.data.model.Story
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.HeaderComponent
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.ListWithPagination
-import com.phongbaoto.stormbookv2.utils.UtilsComponent.StoryItem
-import com.phongbaoto.stormbookv2.utils.banner
-import com.phongbaoto.stormbookv2.utils.banner_2
-import com.phongbaoto.stormbookv2.utils.banner_3
-import com.phongbaoto.stormbookv2.utils.banner_4
 
 @Preview
 @Composable
