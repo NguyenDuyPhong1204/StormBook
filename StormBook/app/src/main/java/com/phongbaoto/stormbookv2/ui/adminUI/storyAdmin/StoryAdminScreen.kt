@@ -27,7 +27,7 @@ import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
 
 @SuppressLint("ConfigurationScreenWidthHeight")
 @Composable
-fun StoryScreen(
+fun StoryAdminScreen(
     navController: NavController
 ){
     val configuration = LocalConfiguration.current

@@ -10,6 +10,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.time.Duration
 import java.time.LocalDateTime
+import java.time.OffsetDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.Date
@@ -32,18 +33,15 @@ object FunUtils {
     }
 
     fun convertDateTime(dateTimeString: String): String {
-//         Parse chuỗi thành LocalDateTime
-        val dateTime = LocalDateTime.parse(
-            dateTimeString,
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")
-        )
+        val odt = OffsetDateTime.parse(dateTimeString) // Tự động hiểu ISO 8601 + Z
+        val localDateTime = odt.toLocalDateTime()      // Bỏ thông tin múi giờ nếu cần
 
-        // Format LocalDateTime thành chuỗi mới
-        return dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+        return localDateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
     }
 
+
     fun formatRelativeTime(timeStr: String): String {
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS SSS")
         val parsedTime = LocalDateTime.parse(timeStr, formatter)
 
         val now = LocalDateTime.now(ZoneId.systemDefault())

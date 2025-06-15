@@ -59,7 +59,9 @@ fun HomeScreen(
     viewModel: LoginViewModel = hiltViewModel(),
     categoryViewModel: CategoryViewModel = hiltViewModel(),
     storyViewModel: StoryViewModel = hiltViewModel(),
-    onNavigateToCategory: () -> Unit = {}
+    onNavigateToCategory: () -> Unit = {},
+    onNavigateToStory: () -> Unit = {},
+    onNavigateToDetail: () -> Unit ={}
 ) {
     var showSuccess by remember { mutableStateOf(false) }
     val isLoginSuccess by viewModel.isLoginSuccess.collectAsState()
@@ -167,7 +169,9 @@ fun HomeScreen(
             Column {
                 TitleComponent(
                     title = "Đề xuất",
-                    onClick = {},
+                    onClick = {
+                        onNavigateToStory()
+                    },
                     isImage = true,
                     image = propose
                 )
@@ -182,7 +186,7 @@ fun HomeScreen(
                     is StoryUiState.Error -> Text((suggestedStories as StoryUiState.Error).message)
                     is StoryUiState.SuggestedList -> {
                         val listStory = (suggestedStories as StoryUiState.SuggestedList).data
-                        ListStory(listStory = listStory, navController = navController)
+                        ListStory(listStory = listStory, navController = navController, onClick = onNavigateToDetail)
                     }
                     else -> {}
                 }
@@ -194,7 +198,9 @@ fun HomeScreen(
             Column {
                 TitleComponent(
                     title = "Truyện Hot",
-                    onClick = {},
+                    onClick = {
+                        onNavigateToStory()
+                    },
                     isImage = true,
                     image = hot
                 )
@@ -204,7 +210,7 @@ fun HomeScreen(
                     is StoryUiState.Error -> Text((hotWeekStories as StoryUiState.Error).message)
                     is StoryUiState.HotWeekList -> {
                         val listStory = (hotWeekStories as StoryUiState.HotWeekList).data
-                        ListStory(listStory = listStory, navController = navController)
+                        ListStory(listStory = listStory, navController = navController, onClick = onNavigateToDetail)
                     }
                     else -> {}
                 }

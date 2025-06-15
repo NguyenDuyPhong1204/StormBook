@@ -19,22 +19,36 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.crossfade
+import com.phongbaoto.stormbookv2.BuildConfig
 import com.phongbaoto.stormbookv2.data.model.Chapter
 import com.phongbaoto.stormbookv2.data.model.Comment
+import com.phongbaoto.stormbookv2.data.model.Story
 import com.phongbaoto.stormbookv2.navigation.ROUTER
 import com.phongbaoto.stormbookv2.ui.adminUI.detailStoryAdmin.component.InfoStory
 import com.phongbaoto.stormbookv2.ui.adminUI.detailStoryAdmin.component.IntroduceStory
@@ -51,111 +65,31 @@ import com.phongbaoto.stormbookv2.utils.banner
 import com.phongbaoto.stormbookv2.utils.like
 import com.phongbaoto.stormbookv2.utils.love
 import com.phongbaoto.stormbookv2.utils.story
-
-@Preview(showBackground = true)
-@Composable
-fun PreView(){
-    DetailStory(navController = rememberNavController(),true)
-}
+import com.phongbaoto.stormbookv2.viewmodel.storyViewModel.StoryUiState
+import com.phongbaoto.stormbookv2.viewmodel.storyViewModel.StoryViewModel
 
 @Composable
 fun DetailStory(
     navController: NavController,
-    isShowButton: Boolean
+    isShowButton: Boolean,
+    storyId: Long,
+    viewModel: StoryViewModel = hiltViewModel()
 ) {
 //    var showDialog by remember { mutableStateOf(false) }
-    val scrollState = rememberScrollState()
-    val listChapter = listOf(
-        Chapter(
-            chapterNumber = 123,
-            title = "",
-            time = "2025-03-18 15:33:40.875691"
-        ),
-        Chapter(
-            chapterNumber = 123,
-            title = "",
-            time = "2025-03-18 15:33:40.875691"
-        ),
-        Chapter(
-            chapterNumber = 123,
-            title = "",
-            time = "2025-03-18 15:33:40.875691"
-        ),
-        Chapter(
-            chapterNumber = 123,
-            title = "",
-            time = "2025-03-18 15:33:40.875691"
-        ),
-        Chapter(
-            chapterNumber = 123,
-            title = "",
-            time = "2025-03-18 15:33:40.875691"
-        ),
-        Chapter(
-            chapterNumber = 123,
-            title = "",
-            time = "2025-03-18 15:33:40.875691"
-        ),
-        Chapter(
-            chapterNumber = 123,
-            title = "",
-            time = "2025-03-18 15:33:40.875691"
-        ),
-        Chapter(
-            chapterNumber = 123,
-            title = "",
-            time = "2025-03-18 15:33:40.875691"
-        ),
-        Chapter(
-            chapterNumber = 123,
-            title = "",
-            time = "2025-03-18 15:33:40.875691"
-        ),
-        Chapter(
-            chapterNumber = 999,
-            title = "",
-            time = "2025-03-18 15:33:40.875691"
-        )
 
-    )
-    val listComment = listOf(
-        Comment(
-            avatar = "https://cdn-0001.qstv.on.epicgames.com/lSxoPBCDpPvtmkeBQD/image/landscape_comp.jpeg",
-            nameUser = "Phong Bão Tố",
-            comment = "Truyện hay quá",
-            countLike = 123,
-            timeComment = "2025-04-24 08:31:17.123456"
-        ),
-        Comment(
-            avatar = "https://cdn-0001.qstv.on.epicgames.com/lSxoPBCDpPvtmkeBQD/image/landscape_comp.jpeg",
-            nameUser = "Phong Bão Tố",
-            comment = "Truyện hay quá",
-            countLike = 123,
-            timeComment = "2025-03-18 15:33:40.875691"
-        ),
-        Comment(
-            avatar = "https://cdn-0001.qstv.on.epicgames.com/lSxoPBCDpPvtmkeBQD/image/landscape_comp.jpeg",
-            nameUser = "Phong Bão Tố",
-            comment = "Truyện hay quá",
-            countLike = 123,
-            timeComment = "2025-03-18 15:33:40.875691"
-        ),
-        Comment(
-            avatar = "https://cdn-0001.qstv.on.epicgames.com/lSxoPBCDpPvtmkeBQD/image/landscape_comp.jpeg",
-            nameUser = "Phong Bão Tố",
-            comment = "Truyện hay quá",
-            countLike = 123,
-            timeComment = "2025-03-18 15:33:40.875691"
-        ),
-        Comment(
-            avatar = "https://cdn-0001.qstv.on.epicgames.com/lSxoPBCDpPvtmkeBQD/image/landscape_comp.jpeg",
-            nameUser = "Phong Bão Tố",
-            comment = "Truyện hay quá",
-            countLike = 123,
-            timeComment = "2025-03-18 15:33:40.875691"
-        )
-    )
+    val context = LocalContext.current
+    val url = BuildConfig.BASE_URL
+
+    val scrollState = rememberScrollState()
     val focusManager = LocalFocusManager.current
+    //
+    val storyById by viewModel.storyById.collectAsState()
+    val listChapter by viewModel.listChapter.collectAsState()
+    LaunchedEffect(Unit) {
+        viewModel.getStoryById(storyId)
+        viewModel.getChapterByStoryId(storyId)
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -176,15 +110,27 @@ fun DetailStory(
                 .fillMaxWidth()
                 .height(260.dp)
         ) {
-            Image(
-                painter = painterResource(banner),
-                contentDescription = "coverImage",
+            AsyncImage(
+                model = ImageRequest.Builder(context)
+                    .data(url + storyById?.cover_image)
+                    .crossfade(true)
+                    .build(),
+                contentDescription = "cover_image",
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
+
             )
 
             IconButton(
-                onClick = { navController.popBackStack() },
+                onClick = {
+                    navController.popBackStack()
+
+                    val previousTab = navController
+                        .previousBackStackEntry
+                        ?.savedStateHandle
+                        ?.get<Int>("previousTab")
+                },
                 modifier = Modifier
                     .size(30.dp)
                     .offset(x = 0.dp, y = 10.dp)
@@ -198,12 +144,13 @@ fun DetailStory(
             }
         }
         //information story
+        Space(5.dp)
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 15.dp)
         ) {
-            InfoStory()
+            storyById?.let { InfoStory(story = it) }
         }
         //button
         Space(10.dp)
@@ -273,29 +220,50 @@ fun DetailStory(
 
         //gioi thieu
         Space(10.dp)
-        IntroduceStory(
-            nameStory = "Ta là Tà Đế"
-        )
+        storyById?.title?.let {
+            IntroduceStory(
+                nameStory = it
+            )
+        }
 
         //list chapter
         Space(10.dp)
-       Box(
-           modifier = Modifier
-               .fillMaxWidth()
-               .padding(horizontal = 15.dp)
-       ){
-           ListChapterStory(
-               listChapter = listChapter,
-               navController = navController,
-               isShowButton = isShowButton
-           )
-       }
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 15.dp)
+        ) {
+//            ListChapterStory(
+//                listChapter = listChapter,
+//                navController = navController,
+//                isShowButton = isShowButton
+//            )
+            when (listChapter) {
+                is StoryUiState.Loading -> {
+                    CircularProgressIndicator()
+                }
 
-        //comment
-        Space(10.dp)
-        CommentComponent(
-            listComment = listComment
-        )
+                is StoryUiState.ListChapter -> {
+                    ListChapterStory(
+                        listChapter = (listChapter as StoryUiState.ListChapter).data,
+                        navController = navController,
+                        isShowButton = isShowButton
+                    )
+                }
 
+                is StoryUiState.Error -> {
+                    Text(text = (listChapter as StoryUiState.Error).message)
+                }
+
+                else -> {}
+            }
+
+            //comment
+            Space(10.dp)
+//        CommentComponent(
+//            listComment = listComment
+//        )
+
+        }
     }
 }

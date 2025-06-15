@@ -69,13 +69,17 @@ fun MainNavigation() {
             }
             //
             //cai nay truyen id cua chapter + truyen trang thai hien button
-            composable("${ROUTER.DetailStory.name}/{isShowButton}",
+            composable("${ROUTER.DetailStory.name}/{storyId}/{isShowButton}",
                 arguments = listOf(
-                    navArgument("isShowButton") { type = NavType.BoolType }
+                    navArgument("isShowButton") { type = NavType.BoolType },
+                    navArgument("storyId"){type = NavType.LongType}
                 )
             ) { navBackStackEntry ->
                 val isShowButton = navBackStackEntry.arguments?.getBoolean("isShowButton") ?: false
-                DetailStory(navController, isShowButton)
+                val storyId = navBackStackEntry.arguments?.getLong("storyId")
+                if (storyId != null) {
+                    DetailStory(navController, isShowButton, storyId)
+                }
             }
             //
 

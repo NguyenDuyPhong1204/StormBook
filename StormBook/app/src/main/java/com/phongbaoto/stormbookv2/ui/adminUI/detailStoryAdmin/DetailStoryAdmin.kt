@@ -101,7 +101,7 @@ fun DetailStoryAdmin(
                 .fillMaxWidth()
                 .padding(horizontal = 15.dp)
         ) {
-            InfoStory()
+//            InfoStory()
         }
         //button
         Space(10.dp)

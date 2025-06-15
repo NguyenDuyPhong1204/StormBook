@@ -161,7 +161,7 @@ fun ItemChapter(
             }
 
             Text(
-                text = FunUtils.convertDateTime(chapter.time),
+                text = FunUtils.convertDateTime(chapter.createdAt),
                 fontSize = 16.sp,
                 color = White,
                 fontWeight = FontWeight.Medium

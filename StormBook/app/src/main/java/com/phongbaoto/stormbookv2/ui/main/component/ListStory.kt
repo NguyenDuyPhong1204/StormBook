@@ -13,7 +13,8 @@ import com.phongbaoto.stormbookv2.utils.UtilsComponent.StoryItem
 @Composable
 fun ListStory(
     listStory: List<Story>,
-    navController: NavController
+    navController: NavController,
+    onClick: () -> Unit ={}
 ){
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(15.dp)
@@ -24,7 +25,10 @@ fun ListStory(
                 height = 230.dp,
                 story = item,
                 onClick = {
-                    navController.navigate("${ROUTER.DetailStory.name}/${false}")
+                    navController.currentBackStackEntry?.savedStateHandle?.set("previousTab", 0)
+                    navController.navigate("${ROUTER.DetailStory.name}/${item.id}/false"){
+                        launchSingleTop = true
+                    }
                 }
             )
         }

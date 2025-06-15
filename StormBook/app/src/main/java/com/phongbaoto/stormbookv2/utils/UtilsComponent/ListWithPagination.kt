@@ -31,7 +31,7 @@ fun <T> ListWithPagination(
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
-    val minItemWidth = screenWidth / 3.5f
+    val minItemWidth = screenWidth / 3.2f
     //state de quan ly trang hien tai
     var currentPage by remember { mutableStateOf(1) }
     //tinh tong so trang dua tren danh sach va so luong item moi trang
