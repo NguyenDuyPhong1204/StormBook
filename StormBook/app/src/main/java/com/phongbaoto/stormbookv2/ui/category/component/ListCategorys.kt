@@ -14,20 +14,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.phongbaoto.stormbookv2.data.model.Category
+import com.phongbaoto.stormbookv2.navigation.ROUTER
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.ui.theme.White
 
 @Composable
 fun ListCategory(
-    listCategory: List<Category>
+    listCategory: List<Category>,
+    navController: NavController
 ){
     LazyVerticalGrid(
         columns = GridCells.Fixed(3)
     ){
         items(listCategory){item ->
             ItemCategory(
-                category = item
+                category = item,
+                navController
             )
         }
     }
@@ -35,10 +39,13 @@ fun ListCategory(
 
 @Composable
 fun ItemCategory(
-    category: Category
+    category: Category,
+    navController: NavController
 ){
     Button(
-        onClick = {},
+        onClick = {
+            navController.navigate("${ROUTER.ListStoryByCategory.name}/${category.id}")
+        },
         colors = ButtonColors(
             disabledContainerColor = White,
             contentColor = White,

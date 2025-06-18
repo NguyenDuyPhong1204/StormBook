@@ -59,12 +59,16 @@ import com.phongbaoto.stormbookv2.ui.theme.BlueButton_3
 import com.phongbaoto.stormbookv2.ui.theme.GreenButton
 import com.phongbaoto.stormbookv2.ui.theme.RedButton_3
 import com.phongbaoto.stormbookv2.ui.theme.White
+import com.phongbaoto.stormbookv2.utils.UtilsComponent.LoadingComponent
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.button.ButtonComponent
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.Space
 import com.phongbaoto.stormbookv2.utils.banner
 import com.phongbaoto.stormbookv2.utils.like
 import com.phongbaoto.stormbookv2.utils.love
 import com.phongbaoto.stormbookv2.utils.story
+import com.phongbaoto.stormbookv2.viewmodel.authViewModel.LoginViewModel
+import com.phongbaoto.stormbookv2.viewmodel.chapterViewModel.ChapterUIState
+import com.phongbaoto.stormbookv2.viewmodel.chapterViewModel.ChapterViewModel
 import com.phongbaoto.stormbookv2.viewmodel.storyViewModel.StoryUiState
 import com.phongbaoto.stormbookv2.viewmodel.storyViewModel.StoryViewModel
 
@@ -73,7 +77,9 @@ fun DetailStory(
     navController: NavController,
     isShowButton: Boolean,
     storyId: Long,
-    viewModel: StoryViewModel = hiltViewModel()
+    viewModel: StoryViewModel = hiltViewModel(),
+    chapterViewModel: ChapterViewModel = hiltViewModel(),
+    loginViewModel: LoginViewModel = hiltViewModel()
 ) {
 //    var showDialog by remember { mutableStateOf(false) }
 
@@ -85,9 +91,19 @@ fun DetailStory(
     //
     val storyById by viewModel.storyById.collectAsState()
     val listChapter by viewModel.listChapter.collectAsState()
+    val firstChapterId = (listChapter as? StoryUiState.ListChapter)?.data?.firstOrNull()?.id
+
+    val readList by chapterViewModel.listReadChapter.collectAsState()
+    val userId = loginViewModel.getUserInfo()?.id
+
+    val isLoading by chapterViewModel.isLoading.collectAsState()
+
     LaunchedEffect(Unit) {
         viewModel.getStoryById(storyId)
         viewModel.getChapterByStoryId(storyId)
+        if (userId != null) {
+            chapterViewModel.getListReadChapter(userId, storyId)
+        }
     }
 
     Column(
@@ -167,22 +183,24 @@ fun DetailStory(
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 //doc tu dau
-                ButtonComponent(
-                    title = "Đọc từ đầu",
-                    color = GreenButton,
-                    modifier = Modifier
-                        .height(50.dp),
-                    textColor = White,
-                    image = story,
-                    fontWeight = FontWeight.Medium,
-                    isImage = true,
-                    shape = 5.dp,
-                    fontSize = 16.sp,
-                    sizeIcon = 20.dp,
-                    onClick = {
-                        navController.navigate(ROUTER.ChapterScreen.name)
-                    },
-                )
+                firstChapterId?.let {
+                    ButtonComponent(
+                        title = "Đọc từ đầu",
+                        color = GreenButton,
+                        modifier = Modifier
+                            .height(50.dp),
+                        textColor = White,
+                        image = story,
+                        fontWeight = FontWeight.Medium,
+                        isImage = true,
+                        shape = 5.dp,
+                        fontSize = 16.sp,
+                        sizeIcon = 20.dp,
+                        onClick = {
+                            navController.navigate("${ROUTER.ChapterScreen.name}/$it")
+                        },
+                    )
+                }
                 //theo doi
                 ButtonComponent(
                     title = "Theo dõi",
@@ -214,7 +232,9 @@ fun DetailStory(
                 shape = 5.dp,
                 fontSize = 16.sp,
                 sizeIcon = 20.dp,
-                onClick = {},
+                onClick = {
+
+                },
             )
         }
 
@@ -233,26 +253,21 @@ fun DetailStory(
                 .fillMaxWidth()
                 .padding(horizontal = 15.dp)
         ) {
-//            ListChapterStory(
-//                listChapter = listChapter,
-//                navController = navController,
-//                isShowButton = isShowButton
-//            )
-            when (listChapter) {
-                is StoryUiState.Loading -> {
-                    CircularProgressIndicator()
+            when (readList) {
+                is ChapterUIState.Loading -> {
+//                    LoadingComponent(isLoading = isLoading)
                 }
 
-                is StoryUiState.ListChapter -> {
+                is ChapterUIState.ReadList -> {
                     ListChapterStory(
-                        listChapter = (listChapter as StoryUiState.ListChapter).data,
+                        listChapter = (readList as ChapterUIState.ReadList).data,
                         navController = navController,
                         isShowButton = isShowButton
                     )
                 }
 
-                is StoryUiState.Error -> {
-                    Text(text = (listChapter as StoryUiState.Error).message)
+                is ChapterUIState.Error -> {
+                    Text(text = (readList as ChapterUIState.Error).message)
                 }
 
                 else -> {}

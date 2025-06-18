@@ -29,20 +29,29 @@ import com.phongbaoto.stormbookv2.ui.chapter.data.ListFake
 import com.phongbaoto.stormbookv2.ui.theme.Black
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.HeaderComponent
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.phongbaoto.stormbookv2.data.model.Chapter
 import com.phongbaoto.stormbookv2.ui.chapter.component.DialogReport
 import com.phongbaoto.stormbookv2.ui.chapter.component.NavigationChapter
+import com.phongbaoto.stormbookv2.viewmodel.chapterViewModel.ChapterUIState
+import com.phongbaoto.stormbookv2.viewmodel.chapterViewModel.ChapterViewModel
 
 
 @Composable
 fun ChapterScreen(
-    navController: NavController
+    navController: NavController,
+    chapterId: Long,
+    viewModel: ChapterViewModel = hiltViewModel(),
 ) {
     val localHost = "http://10.0.2.2:8080"
     val context = LocalContext.current
@@ -61,6 +70,32 @@ fun ChapterScreen(
         isScrollingUp = currentOffset < lastScrollOffset
         lastScrollOffset = currentOffset
     }
+    //
+    val chapterState by viewModel.chapter.collectAsState()
+    val errorMessage by viewModel.errorMessage.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
+    var chapterInfo by remember { mutableStateOf<Chapter?>(null) }
+    LaunchedEffect(Unit){
+        viewModel.chapter(chapterId)
+    }
+
+    when (chapterState) {
+        is ChapterUIState.Loading -> {
+//            CircularProgressIndicator(modifier = Modifier.fillMaxSize())
+        }
+
+        is ChapterUIState.ChapterInfo -> {
+            chapterInfo = (chapterState as ChapterUIState.ChapterInfo).data
+        }
+
+        is ChapterUIState.Error -> {
+            val error = (chapterState as ChapterUIState.Error).message
+//            Text("Đã xảy ra lỗi: $error", color = Color.Red)
+        }
+
+        else -> {}
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -79,7 +114,7 @@ fun ChapterScreen(
                 .fillMaxWidth()
         ) {
             HeaderComponent(
-                title = "Chương 1",
+                title = "Chương ${chapterInfo?.chapterNumber}",
                 onClick = {},
                 navController = navController,
             )
@@ -89,17 +124,19 @@ fun ChapterScreen(
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                items(ListFake.listImage) { image ->
-                    AsyncImage(
-                        model = ImageRequest.Builder(context)
-                            .data(localHost + image.image)
-                            .crossfade(true)
-                            .build(),
-                        contentDescription = "Image Chapter",
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        contentScale = ContentScale.FillWidth
-                    )
+                chapterInfo?.let {
+                    items(it.image_url) { image ->
+                        AsyncImage(
+                            model = ImageRequest.Builder(context)
+                                .data(localHost + image)
+                                .crossfade(true)
+                                .build(),
+                            contentDescription = "Image Chapter",
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            contentScale = ContentScale.FillWidth
+                        )
+                    }
                 }
             }
         }

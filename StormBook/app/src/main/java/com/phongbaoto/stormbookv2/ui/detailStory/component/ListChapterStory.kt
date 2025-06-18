@@ -78,7 +78,7 @@ fun ListChapterStory(
                     ItemChapter(
                         chapter = item,
                         onClick = {
-//                            navController.navigate("${ROUTER.DetailStory.name}/${false}")
+                            navController.navigate("${ROUTER.ChapterScreen.name}/${item.id}")
                         }
                     )
                 }

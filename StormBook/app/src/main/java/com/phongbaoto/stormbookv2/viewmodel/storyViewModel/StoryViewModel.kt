@@ -18,6 +18,7 @@ sealed interface StoryUiState {
     data class HotWeekList(val data: List<Story>) : StoryUiState
     data class AllStory(val data: List<Story>) : StoryUiState
     data class ListChapter(val data: List<Chapter>) : StoryUiState
+    data class ListByCategoryID(val data: List<Story>) : StoryUiState
     data class Error(val message: String) : StoryUiState
 }
 
@@ -46,6 +47,9 @@ class StoryViewModel @Inject constructor(
 
     private val _listChapter = MutableStateFlow<StoryUiState>(StoryUiState.Loading)
     val listChapter: MutableStateFlow<StoryUiState> = _listChapter
+
+    private val _listByCategoryID = MutableStateFlow<StoryUiState>(StoryUiState.Loading)
+    val listByCategoryID: MutableStateFlow<StoryUiState> = _listByCategoryID
 
     init {
         getSuggestedStories()
@@ -85,6 +89,27 @@ class StoryViewModel @Inject constructor(
                 _allStory.value = StoryUiState.Error(it.message ?: "Lỗi không xác định")
             }
         )
+    }
+
+    fun getStoryByCategoryId(
+        categoryId: Long,
+        page: Int,
+        size: Int
+    ) {
+        viewModelScope.launch {
+            repository.getStoryByCategoryId(
+                categoryId = categoryId,
+                page = page,
+                size = size
+            ).fold(
+                onSuccess = {
+                    _listByCategoryID.value = StoryUiState.ListByCategoryID(it)
+                },
+                onFailure = {
+                    _listByCategoryID.value = StoryUiState.Error(it.message ?: "Lỗi không xác định")
+                }
+            )
+        }
     }
 
     fun getStoryById(storyId: Long) = viewModelScope.launch {

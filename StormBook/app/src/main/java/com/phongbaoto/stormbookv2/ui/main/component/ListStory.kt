@@ -4,11 +4,19 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.phongbaoto.stormbookv2.data.model.Chapter
 import com.phongbaoto.stormbookv2.data.model.Story
 import com.phongbaoto.stormbookv2.navigation.ROUTER
 import com.phongbaoto.stormbookv2.utils.UtilsComponent.StoryItem
+import com.phongbaoto.stormbookv2.viewmodel.chapterViewModel.ChapterViewModel
+import com.phongbaoto.stormbookv2.viewmodel.storyViewModel.StoryUiState
+import com.phongbaoto.stormbookv2.viewmodel.storyViewModel.StoryViewModel
 
 @Composable
 fun ListStory(
@@ -16,6 +24,9 @@ fun ListStory(
     navController: NavController,
     onClick: () -> Unit ={}
 ){
+
+    val viewModel: StoryViewModel = hiltViewModel()
+
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(15.dp)
     ) {

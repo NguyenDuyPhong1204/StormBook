@@ -82,7 +82,7 @@ fun CategoryScreen(
                 }
 
                 is CategoryUiState.Success -> {
-                    ListCategory((uiState as CategoryUiState.Success).data)
+                    ListCategory((uiState as CategoryUiState.Success).data, navController)
                 }
             }
 

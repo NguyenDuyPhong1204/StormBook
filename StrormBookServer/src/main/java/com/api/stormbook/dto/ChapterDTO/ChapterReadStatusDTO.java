@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Instant;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,8 +17,14 @@ public class ChapterReadStatusDTO {
 //            chapter.getChapterNumber(),
 //            chapter.getTitle(),
 //            readChapterIds.contains(chapter.getId())
-    private Long chapterId;
+    private long id;
     private int chapterNumber;
     private String title;
-    private boolean readStatus;
+    private long storyId;
+    private int view_count = 0;
+    private Boolean is_read = false;
+    private List<String> image_url;
+    private Instant createdAt;
+    private Instant updatedAt;
+
 }

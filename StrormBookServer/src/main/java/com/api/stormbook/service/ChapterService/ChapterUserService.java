@@ -45,8 +45,13 @@ public class ChapterUserService {
                         chapter.getId(),
                         chapter.getChapterNumber(),
                         chapter.getTitle(),
-                        readChapterIds.contains(chapter.getId())
-                ))
+                        chapter.getStory().getId(),
+                        chapter.getView_count(),
+                        chapter.getIs_read(),
+                        chapter.getImage_url(),
+                        chapter.getCreatedAt(),
+                        chapter.getUpdatedAt()
+                        ))
                 .collect(Collectors.toList());
     }
 

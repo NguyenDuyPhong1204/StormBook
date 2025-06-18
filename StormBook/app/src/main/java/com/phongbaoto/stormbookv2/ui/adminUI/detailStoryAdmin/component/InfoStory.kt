@@ -64,12 +64,12 @@ fun InfoStory(
             width = 120.dp
         )
 //        //luot thich
-//        RowContent(
-//            icon = like,
-//            title = "Lượt thích: ",
-//            content = story.,
-//            width = 120.dp
-//        )
+        RowContent(
+            icon = like,
+            title = "Lượt thích: ",
+            content = story.like_count.toString(),
+            width = 120.dp
+        )
 //        //luot theo doi
 //        RowContent(
 //            icon = love,

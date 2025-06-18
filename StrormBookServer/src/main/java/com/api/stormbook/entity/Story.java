@@ -48,6 +48,9 @@ public class Story {
     private int view_count;
 
     @Column
+    private int like_count;
+
+    @Column
     private double rating;
 
     @Column
@@ -62,23 +65,6 @@ public class Story {
     @UpdateTimestamp
     private Instant updatedAt;
 
-//    @OneToMany(mappedBy = "stories")
-//    private List<Chapter> chapters;
-//
-//    @OneToMany(mappedBy = "stories")
-//    private List<Report> reports;
-//
-//    @ManyToMany(mappedBy = "stories")
-//    private List<Favorite> favorites;
-//
-//    @OneToMany(mappedBy = "stories")
-//    private List<Rating> ratings;
-//
-//    @OneToMany(mappedBy = "stories")
-//    private List<Comment> comments;
-//
-//    @ManyToMany(mappedBy = "stories")
-//    private List<ReadingHistory> histories;
 
     public enum Status{
         OnGoing, Completed, Dropped

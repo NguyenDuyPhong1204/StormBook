@@ -10,7 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.phongbaoto.stormbookv2.ui.ListStory.ListStoryByCategory
+import com.phongbaoto.stormbookv2.ui.ListStory.StoryByCategoryScreen
 import com.phongbaoto.stormbookv2.ui.adminUI.addChapterStory.AddNewChapter
 import com.phongbaoto.stormbookv2.ui.auth.LoginUserScreen
 import com.phongbaoto.stormbookv2.ui.category.CategoryScreen
@@ -93,13 +93,30 @@ fun MainNavigation() {
             }
 
             //chapter
-            composable(ROUTER.ChapterScreen.name) {
-                ChapterScreen(navController)
+            composable("${ROUTER.ChapterScreen.name}/{chapterId}",
+                arguments = listOf(
+                    navArgument("chapterId"){type = NavType.LongType}
+                )
+                ) { navBackStackEntry ->
+                val chapterId = navBackStackEntry.arguments?.getLong("chapterId")
+                if (chapterId != null) {
+                    ChapterScreen(navController, chapterId)
+                }
             }
 
             //list story by category
-            composable(ROUTER.ListStoryByCategory.name) {
-                ListStoryByCategory(navController)
+            composable("${ROUTER.ListStoryByCategory.name}/{categoryId}",
+                arguments = listOf(
+                    navArgument("categoryId"){type = NavType.LongType}
+                )
+                ) { navBackStackEntry ->
+                val categoryId = navBackStackEntry.arguments?.getLong("categoryId")
+                if (categoryId != null) {
+                    StoryByCategoryScreen(
+                        navController,
+                        categoryId = categoryId
+                    )
+                }
             }
 
             //pre forgot pass

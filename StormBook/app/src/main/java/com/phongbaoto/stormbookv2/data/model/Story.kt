@@ -11,6 +11,7 @@ data class Story(
     val status: STATUS,
     val updated_at: String,
     val view_count: Int,
+    val like_count: Int,
     val description: String,
     val total_chapters: Int,
     val categoryId: List<Int>

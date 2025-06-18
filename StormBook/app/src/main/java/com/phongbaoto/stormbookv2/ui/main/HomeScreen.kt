@@ -48,6 +48,7 @@ import com.phongbaoto.stormbookv2.utils.propose
 import com.phongbaoto.stormbookv2.viewmodel.authViewModel.LoginViewModel
 import com.phongbaoto.stormbookv2.viewmodel.categoryViewModel.CategoryUiState
 import com.phongbaoto.stormbookv2.viewmodel.categoryViewModel.CategoryViewModel
+import com.phongbaoto.stormbookv2.viewmodel.chapterViewModel.ChapterViewModel
 import com.phongbaoto.stormbookv2.viewmodel.storyViewModel.StoryUiState
 import com.phongbaoto.stormbookv2.viewmodel.storyViewModel.StoryViewModel
 import kotlinx.coroutines.delay
@@ -59,6 +60,7 @@ fun HomeScreen(
     viewModel: LoginViewModel = hiltViewModel(),
     categoryViewModel: CategoryViewModel = hiltViewModel(),
     storyViewModel: StoryViewModel = hiltViewModel(),
+    chapterViewModel: ChapterViewModel = hiltViewModel(),
     onNavigateToCategory: () -> Unit = {},
     onNavigateToStory: () -> Unit = {},
     onNavigateToDetail: () -> Unit ={}
@@ -151,7 +153,7 @@ fun HomeScreen(
                 //category
                 when (uiState) {
                     CategoryUiState.Loading -> {
-                        CircularProgressIndicator()
+//                        CircularProgressIndicator()
                     }
 
                     is CategoryUiState.Error -> {
@@ -159,7 +161,7 @@ fun HomeScreen(
                     }
 
                     is CategoryUiState.Success -> {
-                        ListCategory((uiState as CategoryUiState.Success).data)
+                        ListCategory((uiState as CategoryUiState.Success).data, navController)
                     }
                 }
 
@@ -182,7 +184,7 @@ fun HomeScreen(
 //                )
 
                 when (suggestedStories) {
-                    is StoryUiState.Loading -> CircularProgressIndicator()
+                    is StoryUiState.Loading -> {}
                     is StoryUiState.Error -> Text((suggestedStories as StoryUiState.Error).message)
                     is StoryUiState.SuggestedList -> {
                         val listStory = (suggestedStories as StoryUiState.SuggestedList).data
@@ -206,7 +208,7 @@ fun HomeScreen(
                 )
                 Space(5.dp)
                 when (hotWeekStories) {
-                    is StoryUiState.Loading -> CircularProgressIndicator()
+                    is StoryUiState.Loading -> {}
                     is StoryUiState.Error -> Text((hotWeekStories as StoryUiState.Error).message)
                     is StoryUiState.HotWeekList -> {
                         val listStory = (hotWeekStories as StoryUiState.HotWeekList).data
